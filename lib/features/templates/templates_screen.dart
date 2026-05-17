@@ -5,7 +5,7 @@ import 'package:quickchat/data/services/template_service.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 
 class TemplatesScreen extends StatefulWidget {
-  final Function(String)? onTemplateSelected;
+  final void Function(String)? onTemplateSelected;
 
   const TemplatesScreen({
     super.key,
@@ -263,7 +263,7 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
     MessageTemplate template,
     AppLocalizations l10n,
   ) {
-    showModalBottomSheet(
+    showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
       shape: const RoundedRectangleBorder(
@@ -353,7 +353,7 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
     final formKey = GlobalKey<FormState>();
     final l10n = AppLocalizations.of(context)!;
 
-    showDialog(
+    showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(template == null ? l10n.addTemplate : l10n.editTemplate),
@@ -444,7 +444,7 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
     MessageTemplate template,
     AppLocalizations l10n,
   ) {
-    showDialog(
+    showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(l10n.deleteTemplate),

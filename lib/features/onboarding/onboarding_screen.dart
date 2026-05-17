@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quickchat/core/router/app_router.dart';
 import 'package:quickchat/data/services/preferences_service.dart';
-import 'package:quickchat/features/home/home_screen.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -24,10 +24,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Future<void> _completeOnboarding() async {
     await PreferencesService().setFirstLaunchComplete();
     if (mounted) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
-      );
+      AppRouter.pushHome(context);
     }
   }
 

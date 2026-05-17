@@ -1,46 +1,24 @@
-/// QuickChat Widget Tests
-/// Comprehensive test suite for the QuickChat application
+// QuickChat Widget Tests
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quickchat/app.dart';
-import 'package:quickchat/data/services/preferences_service.dart';
-import 'package:quickchat/data/local_storage/hive_service.dart';
-import 'package:quickchat/data/services/template_service.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('App Initialization Tests', () {
-    testWidgets('App widget can be created', (WidgetTester tester) async {
-      // Simple test that doesn't require plugin initialization
+  group('QuickChatApp', () {
+    test('can be constructed with isFirstLaunch: false', () {
       expect(() => const QuickChatApp(isFirstLaunch: false), returnsNormally);
     });
 
-    testWidgets('App widget accepts isFirstLaunch parameter', (WidgetTester tester) async {
+    test('can be constructed with isFirstLaunch: true', () {
       expect(() => const QuickChatApp(isFirstLaunch: true), returnsNormally);
-      expect(() => const QuickChatApp(isFirstLaunch: false), returnsNormally);
-    });
-  });
-
-  group('App Structure Tests', () {
-    test('App class exists and is constructable', () {
-      expect(QuickChatApp, isNotNull);
-      expect(() => const QuickChatApp(isFirstLaunch: false), returnsNormally);
     });
 
-    test('App constructor validates parameters', () {
-      // Test both boolean values
-      expect(() => const QuickChatApp(isFirstLaunch: true), returnsNormally);
-      expect(() => const QuickChatApp(isFirstLaunch: false), returnsNormally);
-    });
-  });
-
-  group('App Configuration Tests', () {
-    test('App has proper type', () {
+    test('is a StatelessWidget', () {
       const app = QuickChatApp(isFirstLaunch: false);
       expect(app, isA<StatelessWidget>());
-      expect(app, isA<QuickChatApp>());
     });
   });
 }

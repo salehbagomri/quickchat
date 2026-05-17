@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quickchat/core/router/app_router.dart';
 import 'package:quickchat/core/utils/app_utils.dart';
 import 'package:quickchat/data/local_storage/hive_service.dart';
 import 'package:quickchat/data/models/chat_history.dart';
-import 'package:quickchat/features/history/history_screen.dart';
-import 'package:quickchat/features/settings/settings_screen.dart';
-import 'package:quickchat/features/templates/templates_screen.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -114,16 +112,9 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () async {
-              final selectedMessage = await Navigator.push<String>(
-                context,
-                MaterialPageRoute(builder: (context) => const SettingsScreen()),
-              );
-
-              // إذا تم إرجاع نص من الإعدادات (من القوالب)، ضعه في حقل الرسالة
+              final selectedMessage = await AppRouter.pushSettings(context);
               if (selectedMessage != null && mounted) {
-                setState(() {
-                  _messageController.text = selectedMessage;
-                });
+                setState(() => _messageController.text = selectedMessage);
               }
             },
           ),
@@ -299,24 +290,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _showTemplatesBottomSheet(BuildContext context, AppLocalizations l10n) async {
-    final selectedMessage = await Navigator.push<String>(
+    final selectedMessage = await AppRouter.pushTemplates(
       context,
-      MaterialPageRoute(
-        builder: (context) => TemplatesScreen(
-          onTemplateSelected: (message) {
-            setState(() {
-              _messageController.text = message;
-            });
-          },
-        ),
-      ),
+      onSelected: (message) {
+        setState(() => _messageController.text = message);
+      },
     );
-
-    // إذا تم إرجاع نص من شاشة القوالب، ضعه في حقل الرسالة
     if (selectedMessage != null && mounted) {
-      setState(() {
-        _messageController.text = selectedMessage;
-      });
+      setState(() => _messageController.text = selectedMessage);
     }
   }
 
@@ -342,12 +323,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildHistoryButton(AppLocalizations l10n) {
     return OutlinedButton.icon(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const HistoryScreen()),
-        );
-      },
+      onPressed: () => AppRouter.pushHistory(context),
       icon: const Icon(Icons.history),
       label: Text(l10n.history),
       style: OutlinedButton.styleFrom(

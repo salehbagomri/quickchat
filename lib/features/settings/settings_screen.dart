@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quickchat/features/settings/settings_cubit.dart';
 import 'package:quickchat/data/local_storage/hive_service.dart';
-import 'package:quickchat/features/templates/templates_screen.dart';
-import 'package:quickchat/features/privacy/privacy_policy_screen.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 import 'package:quickchat/core/constants/app_constants.dart';
 import 'package:quickchat/core/utils/app_utils.dart';
+import 'package:quickchat/core/router/app_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -125,7 +122,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   void _showLanguageDialog(BuildContext context, SettingsState state, AppLocalizations l10n) {
-    showDialog(
+    showDialog<void>(
       context: context,
       builder: (dialogContext) => AlertDialog(
         title: Text(l10n.language),
@@ -197,7 +194,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   void _showThemeDialog(BuildContext context, SettingsState state, AppLocalizations l10n) {
-    showDialog(
+    showDialog<void>(
       context: context,
       builder: (dialogContext) => AlertDialog(
         title: Text(l10n.theme),
@@ -271,14 +268,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
         subtitle: Text(l10n.manageTemplates),
         trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
         onTap: () async {
-          final selectedMessage = await Navigator.push<String>(
-            context,
-            MaterialPageRoute(builder: (context) => const TemplatesScreen()),
-          );
-
-          // إذا تم اختيار قالب، ارجع للشاشة الرئيسية مع النص
+          final selectedMessage = await AppRouter.pushTemplates(context);
           if (selectedMessage != null && context.mounted) {
-            // إغلاق شاشة الإعدادات والرجوع للشاشة الرئيسية مع النص
             Navigator.pop(context, selectedMessage);
           }
         },
@@ -286,7 +277,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  // مسح السجل
   // مسح السجل
   Widget _buildHistorySection(BuildContext context, AppLocalizations l10n) {
     return Card(
@@ -434,8 +424,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
         subtitle: Text(l10n.rateAppDescription),
         trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
         onTap: () {
-          // TODO: Add actual Play Store/App Store link when published
-          final playStoreUrl = 'https://play.google.com/store/apps/details?id=com.bagomri.quickchat';
+          final playStoreUrl =
+              'https://play.google.com/store/apps/details?id=com.bagomri.quickchat';
           AppUtils.openUrl(playStoreUrl);
         },
       ),
@@ -450,12 +440,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         leading: Icon(Icons.privacy_tip_outlined, color: Theme.of(context).colorScheme.primary),
         title: Text(l10n.privacyPolicy),
         trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const PrivacyPolicyScreen()),
-          );
-        },
+        onTap: () => AppRouter.pushPrivacy(context),
       ),
     );
   }
