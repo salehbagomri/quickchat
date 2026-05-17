@@ -1,0 +1,25 @@
+class AppConstants {
+  static const String appName = 'QuickChat';
+  static const String appVersion = '1.0.0';
+
+  // SharedPreferences Keys
+  static const String keyFirstLaunch = 'first_launch';
+  static const String keyLanguage = 'language';
+  static const String keyThemeMode = 'theme_mode';
+
+  // Hive Box Names
+  static const String historyBox = 'history_box';
+
+  // WhatsApp URL
+  static const String whatsappBaseUrl = 'https://wa.me/';
+
+  // Supported Languages
+  static const String languageEnglish = 'en';
+  static const String languageArabic = 'ar';
+
+  // Theme Modes
+  static const String themeModeLight = 'light';
+  static const String themeModeDark = 'dark';
+  static const String themeModeSystem = 'system';
+}
+

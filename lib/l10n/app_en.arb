@@ -1,0 +1,312 @@
+{
+  "@@locale": "en",
+  "appName": "QuickChat",
+  "@appName": {
+    "description": "The application name"
+  },
+  "onboardingTitle1": "Quick & Easy",
+  "@onboardingTitle1": {
+    "description": "First onboarding screen title"
+  },
+  "onboardingDesc1": "Send WhatsApp messages to any number without saving it in your contacts",
+  "@onboardingDesc1": {
+    "description": "First onboarding screen description"
+  },
+  "onboardingTitle2": "Save Time",
+  "@onboardingTitle2": {
+    "description": "Second onboarding screen title"
+  },
+  "onboardingDesc2": "No need to save temporary contacts. Just enter the number and start chatting",
+  "@onboardingDesc2": {
+    "description": "Second onboarding screen description"
+  },
+  "onboardingTitle3": "Keep History",
+  "@onboardingTitle3": {
+    "description": "Third onboarding screen title"
+  },
+  "onboardingDesc3": "Access your chat history and quickly reconnect with recent numbers",
+  "@onboardingDesc3": {
+    "description": "Third onboarding screen description"
+  },
+  "skip": "Skip",
+  "@skip": {
+    "description": "Skip button text"
+  },
+  "next": "Next",
+  "@next": {
+    "description": "Next button text"
+  },
+  "getStarted": "Get Started",
+  "@getStarted": {
+    "description": "Get started button text"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home screen title"
+  },
+  "enterPhoneNumber": "Enter Phone Number",
+  "@enterPhoneNumber": {
+    "description": "Phone number input hint"
+  },
+  "enterMessage": "Enter Message (Optional)",
+  "@enterMessage": {
+    "description": "Message input hint"
+  },
+  "openWhatsApp": "Open WhatsApp",
+  "@openWhatsApp": {
+    "description": "Open WhatsApp button text"
+  },
+  "history": "History",
+  "@history": {
+    "description": "History screen title"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings screen title"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language setting label"
+  },
+  "theme": "Theme",
+  "@theme": {
+    "description": "Theme setting label"
+  },
+  "light": "Light",
+  "@light": {
+    "description": "Light theme option"
+  },
+  "dark": "Dark",
+  "@dark": {
+    "description": "Dark theme option"
+  },
+  "system": "System",
+  "@system": {
+    "description": "System theme option"
+  },
+  "clearHistory": "Clear History",
+  "@clearHistory": {
+    "description": "Clear history button text"
+  },
+  "privacyPolicy": "Privacy Policy",
+  "@privacyPolicy": {
+    "description": "Privacy policy link text"
+  },
+  "noHistory": "No history yet",
+  "@noHistory": {
+    "description": "Empty history message"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete button text"
+  },
+  "copy": "Copy",
+  "@copy": {
+    "description": "Copy button text"
+  },
+  "reopen": "Reopen",
+  "@reopen": {
+    "description": "Reopen chat button text"
+  },
+  "invalidPhoneNumber": "Invalid phone number",
+  "@invalidPhoneNumber": {
+    "description": "Invalid phone number error message"
+  },
+  "whatsappNotInstalled": "WhatsApp is not installed",
+  "@whatsappNotInstalled": {
+    "description": "WhatsApp not installed error message"
+  },
+  "confirmClearHistory": "Are you sure you want to clear all history?",
+  "@confirmClearHistory": {
+    "description": "Confirm clear history dialog message"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  "confirm": "Confirm",
+  "@confirm": {
+    "description": "Confirm button text"
+  },
+  "copiedToClipboard": "Copied to clipboard",
+  "@copiedToClipboard": {
+    "description": "Copied to clipboard snackbar message"
+  },
+  "phoneNumberCopied": "Phone number copied",
+  "@phoneNumberCopied": {
+    "description": "Phone number copied message"
+  },
+  "selectCountry": "Select Country",
+  "@selectCountry": {
+    "description": "Select country dialog title"
+  },
+  "search": "Search",
+  "@search": {
+    "description": "Search hint text"
+  },
+  "noResults": "No results found",
+  "@noResults": {
+    "description": "No search results message"
+  },
+  "madeWithLove": "Made with ❤️ by Saleh Bagomri",
+  "@madeWithLove": {
+    "description": "App footer credit"
+  },
+  "followOnInstagram": "Follow on Instagram",
+  "@followOnInstagram": {
+    "description": "Instagram follow text"
+  },
+  "templates": "Templates",
+  "@templates": {
+    "description": "Templates screen title"
+  },
+  "addTemplate": "Add Template",
+  "@addTemplate": {
+    "description": "Add template button"
+  },
+  "editTemplate": "Edit Template",
+  "@editTemplate": {
+    "description": "Edit template title"
+  },
+  "deleteTemplate": "Delete Template",
+  "@deleteTemplate": {
+    "description": "Delete template title"
+  },
+  "templateTitle": "Template Title",
+  "@templateTitle": {
+    "description": "Template title field"
+  },
+  "enterTemplateTitle": "Enter template title",
+  "@enterTemplateTitle": {
+    "description": "Template title hint"
+  },
+  "messageText": "Message Text",
+  "@messageText": {
+    "description": "Message text field"
+  },
+  "enterMessageText": "Enter message text",
+  "@enterMessageText": {
+    "description": "Message text hint"
+  },
+  "pleaseEnterTitle": "Please enter a title",
+  "@pleaseEnterTitle": {
+    "description": "Validation message for title"
+  },
+  "pleaseEnterMessage": "Please enter a message",
+  "@pleaseEnterMessage": {
+    "description": "Validation message for message"
+  },
+  "templateAdded": "Template added successfully",
+  "@templateAdded": {
+    "description": "Template added success message"
+  },
+  "templateUpdated": "Template updated successfully",
+  "@templateUpdated": {
+    "description": "Template updated success message"
+  },
+  "templateDeleted": "Template deleted",
+  "@templateDeleted": {
+    "description": "Template deleted message"
+  },
+  "confirmDeleteTemplate": "Are you sure you want to delete this template?",
+  "@confirmDeleteTemplate": {
+    "description": "Delete template confirmation"
+  },
+  "noTemplates": "No Templates",
+  "@noTemplates": {
+    "description": "No templates message"
+  },
+  "addYourFirstTemplate": "Add your first template to get started",
+  "@addYourFirstTemplate": {
+    "description": "Add first template hint"
+  },
+  "searchTemplates": "Search templates...",
+  "@searchTemplates": {
+    "description": "Search templates hint"
+  },
+  "use": "Use",
+  "@use": {
+    "description": "Use template button"
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "Edit button"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Save button"
+  },
+  "appearanceCustomization": "Appearance & Customization",
+  "@appearanceCustomization": {
+    "description": "Section header for appearance settings"
+  },
+  "usageData": "Usage & Data",
+  "@usageData": {
+    "description": "Section header for usage and data settings"
+  },
+  "general": "General",
+  "@general": {
+    "description": "Section header for general settings"
+  },
+  "manageTemplates": "Manage Templates",
+  "@manageTemplates": {
+    "description": "Button to navigate to templates screen"
+  },
+  "whatsappPreferences": "WhatsApp Preferences",
+  "@whatsappPreferences": {
+    "description": "WhatsApp preferences setting"
+  },
+  "selectWhatsappApp": "Select WhatsApp App",
+  "@selectWhatsappApp": {
+    "description": "Select which WhatsApp app to use"
+  },
+  "defaultWhatsapp": "Default (Ask every time)",
+  "@defaultWhatsapp": {
+    "description": "Default WhatsApp option"
+  },
+  "whatsappOfficial": "WhatsApp",
+  "@whatsappOfficial": {
+    "description": "Official WhatsApp app"
+  },
+  "whatsappBusiness": "WhatsApp Business",
+  "@whatsappBusiness": {
+    "description": "WhatsApp Business app"
+  },
+  "aboutApp": "About App",
+  "@aboutApp": {
+    "description": "About app section"
+  },
+  "version": "Version",
+  "@version": {
+    "description": "App version"
+  },
+  "developer": "Developer",
+  "@developer": {
+    "description": "App developer"
+  },
+  "contactUs": "Contact Us",
+  "@contactUs": {
+    "description": "Contact us option"
+  },
+  "sendFeedback": "Send Feedback",
+  "@sendFeedback": {
+    "description": "Send feedback description"
+  },
+  "rateApp": "Rate the App",
+  "@rateApp": {
+    "description": "Rate app option"
+  },
+  "rateAppDescription": "Enjoying the app? Rate us!",
+  "@rateAppDescription": {
+    "description": "Rate app description"
+  },
+  "today": "Today",
+  "@today": {
+    "description": "Today date label"
+  },
+  "yesterday": "Yesterday",
+  "@yesterday": {
+    "description": "Yesterday date label"
+  }
+}
+
