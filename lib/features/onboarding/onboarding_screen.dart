@@ -1,3 +1,5 @@
+import 'dart:async' show unawaited;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quickchat/core/router/app_router.dart';
@@ -24,7 +26,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Future<void> _completeOnboarding() async {
     await PreferencesService().setFirstLaunchComplete();
     if (mounted) {
-      AppRouter.pushHome(context);
+      unawaited(AppRouter.pushHome(context));
     }
   }
 

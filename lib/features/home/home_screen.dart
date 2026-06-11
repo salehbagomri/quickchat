@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show FilteringTextInputFormatter;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quickchat/core/constants/app_constants.dart';
 import 'package:quickchat/core/router/app_router.dart';
 import 'package:quickchat/core/utils/app_utils.dart';
 import 'package:quickchat/data/local_storage/hive_service.dart';
@@ -68,14 +70,13 @@ class _HomeScreenState extends State<HomeScreen> {
     final fullPhone = _processPhoneNumber(phone);
     final message = _messageController.text.trim();
 
-    final success = await AppUtils.openWhatsApp(fullPhone, message: message);
+    final result = await AppUtils.openWhatsApp(fullPhone, message: message);
 
     if (!mounted) return;
 
     setState(() => _isLoading = false);
 
-    if (success) {
-      // Save to history
+    if (result == WhatsAppLaunchResult.success) {
       final history = ChatHistory(
         phoneNumber: phone,
         message: message.isNotEmpty ? message : null,
@@ -84,11 +85,14 @@ class _HomeScreenState extends State<HomeScreen> {
       );
       await HiveService().addHistory(history);
 
-      // Clear fields
       _phoneController.clear();
       _messageController.clear();
     } else {
-      _showErrorSnackBar(AppLocalizations.of(context)!.whatsappNotInstalled);
+      final l10n = AppLocalizations.of(context)!;
+      final errorMsg = result == WhatsAppLaunchResult.notInstalled
+          ? l10n.whatsappNotInstalled
+          : l10n.whatsappLaunchFailed;
+      _showErrorSnackBar(errorMsg);
     }
   }
 
@@ -174,7 +178,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildPhoneInput(AppLocalizations l10n) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colorScheme = Theme.of(context).colorScheme;
+    final surfaceColor = colorScheme.surface;
+    final onSurfaceColor = colorScheme.onSurface;
+    final onSurfaceVariant = colorScheme.onSurfaceVariant;
+    final surfaceContainerHighest = colorScheme.surfaceContainerHighest;
 
     return Card(
       child: Padding(
@@ -187,70 +195,39 @@ class _HomeScreenState extends State<HomeScreen> {
                   _countryCode = code.dialCode ?? '+967';
                 });
               },
-              initialSelection: 'YE',  // اليمن كافتراضي
-              favorite: const ['+967', '+966', '+20', '+971'],  // اليمن في الأول
+              initialSelection: 'YE',
+              favorite: const ['+967', '+966', '+20', '+971'],
               showCountryOnly: false,
               showOnlyCountryWhenClosed: false,
               alignLeft: false,
-              // تخصيص الثيم للوضع الداكن
-              backgroundColor: isDark
-                  ? const Color(0xFF1E1E1E)
-                  : Colors.white,
+              backgroundColor: surfaceColor,
               barrierColor: Colors.black54,
-              dialogBackgroundColor: isDark
-                  ? const Color(0xFF1E1E1E)
-                  : Colors.white,
+              dialogBackgroundColor: surfaceColor,
               searchDecoration: InputDecoration(
-                hintText: Localizations.localeOf(context).languageCode == 'ar'
-                    ? 'بحث...'
-                    : 'Search...',
-                hintStyle: TextStyle(
-                  color: isDark ? Colors.grey[400] : Colors.grey[600],
-                ),
+                hintText: l10n.search,
+                hintStyle: TextStyle(color: onSurfaceVariant),
                 filled: true,
-                fillColor: isDark
-                    ? const Color(0xFF2C2C2C)
-                    : Colors.grey[100],
+                fillColor: surfaceContainerHighest,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
                 ),
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: isDark ? Colors.grey[400] : Colors.grey[600],
-                ),
+                prefixIcon: Icon(Icons.search, color: onSurfaceVariant),
                 contentPadding: const EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 12,
                 ),
               ),
-              dialogTextStyle: TextStyle(
-                color: isDark ? Colors.white : Colors.black,
-                fontSize: 16,
-              ),
-              searchStyle: TextStyle(
-                color: isDark ? Colors.white : Colors.black,
-                fontSize: 16,
-              ),
-              textStyle: TextStyle(
-                color: isDark ? Colors.white : Colors.black,
-                fontSize: 16,
-              ),
-              closeIcon: Icon(
-                Icons.close,
-                color: isDark ? Colors.white : Colors.black,
-              ),
+              dialogTextStyle: TextStyle(color: onSurfaceColor, fontSize: 16),
+              searchStyle: TextStyle(color: onSurfaceColor, fontSize: 16),
+              textStyle: TextStyle(color: onSurfaceColor, fontSize: 16),
+              closeIcon: Icon(Icons.close, color: onSurfaceColor),
               emptySearchBuilder: (context) => Center(
                 child: Padding(
                   padding: const EdgeInsets.all(24.0),
                   child: Text(
-                    Localizations.localeOf(context).languageCode == 'ar'
-                        ? 'لا توجد نتائج'
-                        : 'No results found',
-                    style: TextStyle(
-                      color: isDark ? Colors.grey[400] : Colors.grey[600],
-                      fontSize: 16,
-                    ),
+                    l10n.noResults,
+                    style: TextStyle(color: onSurfaceVariant, fontSize: 16),
                   ),
                 ),
               ),
@@ -259,10 +236,13 @@ class _HomeScreenState extends State<HomeScreen> {
               child: TextField(
                 controller: _phoneController,
                 keyboardType: TextInputType.phone,
+                maxLength: 15,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: InputDecoration(
                   hintText: l10n.enterPhoneNumber,
                   border: InputBorder.none,
                   filled: false,
+                  counterText: '',
                 ),
               ),
             ),
@@ -350,7 +330,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 8),
             // رابط الإنستقرام
             InkWell(
-              onTap: () => AppUtils.openUrl('https://instagram.com/salehbagomri'),
+              onTap: () => AppUtils.openUrl(AppConstants.instagramUrl),
               borderRadius: BorderRadius.circular(8),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
@@ -376,7 +356,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      '@salehbagomri',
+                      AppConstants.instagramHandle,
                       style: TextStyle(
                         fontSize: 12,
                         color: Theme.of(context).colorScheme.primary,

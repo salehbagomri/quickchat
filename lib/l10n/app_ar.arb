@@ -76,6 +76,7 @@
   "rateApp": "قيّم التطبيق",
   "rateAppDescription": "هل أعجبك التطبيق؟ قيّمنا!",
   "today": "اليوم",
-  "yesterday": "أمس"
+  "yesterday": "أمس",
+  "whatsappLaunchFailed": "تعذّر فتح واتساب. الرجاء المحاولة مرة أخرى."
 }
 

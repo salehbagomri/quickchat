@@ -307,6 +307,10 @@
   "yesterday": "Yesterday",
   "@yesterday": {
     "description": "Yesterday date label"
+  },
+  "whatsappLaunchFailed": "Failed to open WhatsApp. Please try again.",
+  "@whatsappLaunchFailed": {
+    "description": "Error when WhatsApp is installed but fails to open"
   }
 }
 

@@ -379,7 +379,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         : 'QuickChat App Feedback';
 
     final success = await AppUtils.openEmail(
-      's.bagomri@gmail.com',
+      AppConstants.developerEmail,
       subject: subject,
     );
 
@@ -394,7 +394,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           action: SnackBarAction(
             label: l10n.localeName == 'ar' ? 'نسخ البريد' : 'Copy Email',
             onPressed: () async {
-              await AppUtils.copyToClipboard('s.bagomri@gmail.com');
+              await AppUtils.copyToClipboard(AppConstants.developerEmail);
               if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -423,11 +423,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         title: Text(l10n.rateApp),
         subtitle: Text(l10n.rateAppDescription),
         trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
-        onTap: () {
-          final playStoreUrl =
-              'https://play.google.com/store/apps/details?id=com.bagomri.quickchat';
-          AppUtils.openUrl(playStoreUrl);
-        },
+        onTap: () => AppUtils.openUrl(AppConstants.playStoreUrl),
       ),
     );
   }

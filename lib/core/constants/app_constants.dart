@@ -21,5 +21,16 @@ class AppConstants {
   static const String themeModeLight = 'light';
   static const String themeModeDark = 'dark';
   static const String themeModeSystem = 'system';
+
+  // Developer / Contact Info
+  static const String developerEmail = 's.bagomri@gmail.com';
+  static const String developerName = 'Saleh Bagomri';
+  static const String instagramHandle = '@salehbagomri';
+  static const String instagramUrl = 'https://instagram.com/salehbagomri';
+
+  // Store
+  static const String playStoreId = 'com.bagomri.quickchat';
+  static const String playStoreUrl =
+      'https://play.google.com/store/apps/details?id=com.bagomri.quickchat';
 }
 

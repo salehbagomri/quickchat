@@ -1,5 +1,5 @@
-/// QuickChat Services Unit Tests
-/// Tests for PreferencesService, TemplateService, and other core services
+// QuickChat Services Unit Tests
+// Tests for PreferencesService, TemplateService, and other core services
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quickchat/data/services/preferences_service.dart';
@@ -79,13 +79,74 @@ void main() {
       );
       final after = DateTime.now().add(const Duration(milliseconds: 100));
 
-      // Timestamps should be between before and after
       expect(
         template.createdAt.isAfter(before.subtract(const Duration(seconds: 1))),
         isTrue
       );
       expect(template.createdAt.isBefore(after), isTrue);
       expect(template.updatedAt.isBefore(after), isTrue);
+    });
+
+    test('isDefault field defaults to false for user-created templates', () {
+      final template = MessageTemplate.create(
+        title: 'My Template',
+        message: 'Custom message',
+      );
+      expect(template.isDefaultTemplate, isFalse);
+      expect(template.isDefault, isNull);
+    });
+
+    test('isDefault field is true when explicitly set', () {
+      final template = MessageTemplate.create(
+        title: 'Default Template',
+        message: 'Default message',
+        isDefault: true,
+      );
+      expect(template.isDefaultTemplate, isTrue);
+      expect(template.isDefault, isTrue);
+    });
+
+    test('copyWith preserves isDefault flag', () {
+      final now = DateTime.now();
+      final defaultTemplate = MessageTemplate(
+        id: 'def1',
+        title: 'Default',
+        message: 'Default msg',
+        createdAt: now,
+        updatedAt: now,
+        isDefault: true,
+      );
+      final edited = defaultTemplate.copyWith(title: 'Edited');
+      // isDefault يُحفَظ، لكن updatedAt يتغير
+      expect(edited.isDefault, isTrue);
+      expect(edited.title, equals('Edited'));
+    });
+
+    test('unmodified default: createdAt == updatedAt', () {
+      final template = MessageTemplate.create(
+        title: 'Default',
+        message: 'Msg',
+        isDefault: true,
+      );
+      // عند الإنشاء createdAt == updatedAt — يُعامَل كغير معدَّل
+      expect(template.createdAt, equals(template.updatedAt));
+    });
+
+    test('modified default: copyWith sets updatedAt != createdAt', () async {
+      final now = DateTime(2025, 1, 1, 10, 0, 0);
+      final template = MessageTemplate(
+        id: 'def2',
+        title: 'Default',
+        message: 'Msg',
+        createdAt: now,
+        updatedAt: now,
+        isDefault: true,
+      );
+      // محاكاة تعديل المستخدم: updatedAt سيكون DateTime.now() != createdAt
+      await Future<void>.delayed(const Duration(milliseconds: 1));
+      final edited = template.copyWith(message: 'Edited msg');
+      expect(edited.createdAt, equals(now));
+      expect(edited.updatedAt.isAfter(now), isTrue);
     });
   });
 }

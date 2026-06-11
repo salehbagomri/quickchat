@@ -34,7 +34,7 @@ void main() async {
   } catch (e, stackTrace) {
     // Log error and run app with safe defaults
     debugPrint('Initialization error: $e\n$stackTrace');
-    runApp(QuickChatApp(isFirstLaunch: false));
+    runApp(const QuickChatApp(isFirstLaunch: false));
   }
 }
 

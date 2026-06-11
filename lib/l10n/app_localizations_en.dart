@@ -243,4 +243,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get yesterday => 'Yesterday';
+
+  @override
+  String get whatsappLaunchFailed =>
+      'Failed to open WhatsApp. Please try again.';
 }

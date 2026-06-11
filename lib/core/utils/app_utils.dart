@@ -1,8 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
+
+enum WhatsAppLaunchResult { success, notInstalled, launchFailed }
 
 /// Utility class for common app-wide operations.
 class AppUtils {
@@ -28,33 +29,39 @@ class AppUtils {
   // WhatsApp
   // ---------------------------------------------------------------------------
 
-  /// Opens a WhatsApp conversation with [phone] and an optional [message].
-  ///
-  /// Tries three URL strategies in order:
-  ///   1. `whatsapp://` scheme (most reliable on Android)
-  ///   2. `https://wa.me/` deep-link (cross-platform)
-  ///   3. `https://api.whatsapp.com/send` fallback
-  ///
-  /// Returns `true` if any strategy succeeded, `false` otherwise.
-  static Future<bool> openWhatsApp(String phone, {String? message}) async {
+  /// نتيجة محاولة فتح واتساب — تميّز بين "غير مثبت" و"فشل الفتح".
+  static Future<WhatsAppLaunchResult> openWhatsApp(
+    String phone, {
+    String? message,
+  }) async {
     final formattedPhone = formatPhoneNumber(phone);
     final encodedMsg = (message != null && message.isNotEmpty)
         ? Uri.encodeComponent(message)
         : '';
     final msgParam = encodedMsg.isNotEmpty ? '&text=$encodedMsg' : '';
 
+    // تحقق مسبق: هل واتساب مثبّت؟
+    final whatsappUri = Uri.parse('whatsapp://send?phone=$formattedPhone');
+    final isInstalled = await _canLaunch(whatsappUri);
+    if (!isInstalled) return WhatsAppLaunchResult.notInstalled;
+
     // 1. Native WhatsApp scheme
     if (await _tryLaunch('whatsapp://send?phone=$formattedPhone$msgParam')) {
-      return true;
+      return WhatsAppLaunchResult.success;
     }
 
     // 2. wa.me deep-link
     final waQuery = encodedMsg.isNotEmpty ? '?text=$encodedMsg' : '';
-    if (await _tryLaunch('https://wa.me/$formattedPhone$waQuery')) return true;
+    if (await _tryLaunch('https://wa.me/$formattedPhone$waQuery')) {
+      return WhatsAppLaunchResult.success;
+    }
 
     // 3. API URL fallback
-    return _tryLaunch(
+    final launched = await _tryLaunch(
         'https://api.whatsapp.com/send?phone=$formattedPhone$msgParam');
+    return launched
+        ? WhatsAppLaunchResult.success
+        : WhatsAppLaunchResult.launchFailed;
   }
 
   // ---------------------------------------------------------------------------
@@ -131,6 +138,14 @@ class AppUtils {
   // ---------------------------------------------------------------------------
   // Private helpers
   // ---------------------------------------------------------------------------
+
+  static Future<bool> _canLaunch(Uri uri) async {
+    try {
+      return await canLaunchUrl(uri);
+    } catch (_) {
+      return false;
+    }
+  }
 
   static Future<bool> _tryLaunch(String rawUrl) async {
     try {

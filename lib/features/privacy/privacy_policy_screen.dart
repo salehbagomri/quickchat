@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quickchat/core/constants/app_constants.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
@@ -179,10 +180,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
         _buildSection(
           context,
           '9. اتصل بنا',
-          '''إذا كان لديك أي أسئلة حول سياسة الخصوصية هذه، يمكنك التواصل معنا:
-
-البريد الإلكتروني: s.bagomri@gmail.com
-المطور: صالح باقمري''',
+          'إذا كان لديك أي أسئلة حول سياسة الخصوصية هذه، يمكنك التواصل معنا:\n\nالبريد الإلكتروني: ${AppConstants.developerEmail}\nالمطور: ${AppConstants.developerName}',
         ),
         const SizedBox(height: 32),
         _buildFooter(context, true),
@@ -202,19 +200,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
         _buildSection(
           context,
           '1. Data We Collect',
-          '''We want to assure you that QuickChat does not collect, store, or share any personal data. The app works entirely locally on your device.
-
-What we DON\'T collect:
-• We don\'t collect phone numbers
-• We don\'t collect messages or conversation content
-• We don\'t collect location information
-• We don\'t collect device information
-• We don\'t track your app usage
-
-Local Data Only:
-• Chat history and templates are saved locally on your device only
-• You can delete this data anytime from the app settings
-• No data is sent to our servers or any third party''',
+          "We want to assure you that QuickChat does not collect, store, or share any personal data. The app works entirely locally on your device.\n\nWhat we DON'T collect:\n• We don't collect phone numbers\n• We don't collect messages or conversation content\n• We don't collect location information\n• We don't collect device information\n• We don't track your app usage\n\nLocal Data Only:\n• Chat history and templates are saved locally on your device only\n• You can delete this data anytime from the app settings\n• No data is sent to our servers or any third party",
         ),
         _buildSection(
           context,
@@ -232,14 +218,7 @@ WhatsApp Access:
         _buildSection(
           context,
           '3. Data Sharing',
-          '''We do not share any data with any third party because we simply don\'t collect any data.
-
-The app does not contain:
-• No analytics services
-• No advertisements
-• No tracking
-• No marketing tools
-• No embedded social media''',
+          "We do not share any data with any third party because we simply don't collect any data.\n\nThe app does not contain:\n• No analytics services\n• No advertisements\n• No tracking\n• No marketing tools\n• No embedded social media",
         ),
         _buildSection(
           context,
@@ -265,14 +244,11 @@ We recommend:
         _buildSection(
           context,
           '6. Third-Party Services',
-          '''The app uses:
-• WhatsApp: When you press "Open WhatsApp", the WhatsApp app on your device opens. Your use of WhatsApp is subject to WhatsApp\'s own privacy policy.
-
-The app does not use any other services.''',
+          "The app uses:\n• WhatsApp: When you press \"Open WhatsApp\", the WhatsApp app on your device opens. Your use of WhatsApp is subject to WhatsApp's own privacy policy.\n\nThe app does not use any other services.",
         ),
         _buildSection(
           context,
-          '7. Children\'s Privacy',
+          "7. Children's Privacy",
           '''The app is suitable for all ages and does not collect any personal information from anyone, including children under 13 years old.''',
         ),
         _buildSection(
@@ -285,10 +261,7 @@ Last Updated: November 9, 2025''',
         _buildSection(
           context,
           '9. Contact Us',
-          '''If you have any questions about this Privacy Policy, you can contact us:
-
-Email: s.bagomri@gmail.com
-Developer: Saleh Bagomri''',
+          'If you have any questions about this Privacy Policy, you can contact us:\n\nEmail: ${AppConstants.developerEmail}\nDeveloper: ${AppConstants.developerName}',
         ),
         const SizedBox(height: 32),
         _buildFooter(context, false),

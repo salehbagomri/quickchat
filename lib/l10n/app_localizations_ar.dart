@@ -241,4 +241,8 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get yesterday => 'أمس';
+
+  @override
+  String get whatsappLaunchFailed =>
+      'تعذّر فتح واتساب. الرجاء المحاولة مرة أخرى.';
 }

@@ -365,6 +365,7 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
               children: [
                 TextFormField(
                   controller: titleController,
+                  maxLength: 50,
                   decoration: InputDecoration(
                     labelText: l10n.templateTitle,
                     hintText: l10n.enterTemplateTitle,
@@ -381,6 +382,7 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: messageController,
+                  maxLength: 1000,
                   decoration: InputDecoration(
                     labelText: l10n.messageText,
                     hintText: l10n.enterMessageText,

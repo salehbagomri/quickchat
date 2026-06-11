@@ -186,15 +186,18 @@ class HistoryScreen extends StatelessWidget {
   }
 
   Future<void> _reopenChat(BuildContext context, ChatHistory history, AppLocalizations l10n) async {
-    final success = await AppUtils.openWhatsApp(
+    final result = await AppUtils.openWhatsApp(
       history.formattedPhone,
       message: history.message,
     );
 
-    if (!success && context.mounted) {
+    if (result != WhatsAppLaunchResult.success && context.mounted) {
+      final errorMsg = result == WhatsAppLaunchResult.notInstalled
+          ? l10n.whatsappNotInstalled
+          : l10n.whatsappLaunchFailed;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(l10n.whatsappNotInstalled),
+          content: Text(errorMsg),
           backgroundColor: Colors.red,
         ),
       );

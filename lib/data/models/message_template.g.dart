@@ -22,13 +22,14 @@ class MessageTemplateAdapter extends TypeAdapter<MessageTemplate> {
       message: fields[2] as String,
       createdAt: fields[3] as DateTime,
       updatedAt: fields[4] as DateTime,
+      isDefault: fields[5] as bool?,
     );
   }
 
   @override
   void write(BinaryWriter writer, MessageTemplate obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -38,7 +39,9 @@ class MessageTemplateAdapter extends TypeAdapter<MessageTemplate> {
       ..writeByte(3)
       ..write(obj.createdAt)
       ..writeByte(4)
-      ..write(obj.updatedAt);
+      ..write(obj.updatedAt)
+      ..writeByte(5)
+      ..write(obj.isDefault);
   }
 
   @override

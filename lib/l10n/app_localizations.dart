@@ -559,6 +559,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Yesterday'**
   String get yesterday;
+
+  /// Error when WhatsApp is installed but fails to open
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to open WhatsApp. Please try again.'**
+  String get whatsappLaunchFailed;
 }
 
 class _AppLocalizationsDelegate

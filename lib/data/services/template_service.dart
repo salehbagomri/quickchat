@@ -88,13 +88,12 @@ class TemplateService {
   /// إضافة قوالب افتراضية (عند أول تشغيل)
   Future<void> addDefaultTemplates(String languageCode) async {
     if (box.isEmpty) {
-      // قوالب افتراضية حسب اللغة
       final defaultTemplates = languageCode == 'ar'
           ? _getArabicTemplates()
           : _getEnglishTemplates();
 
       for (var template in defaultTemplates) {
-        await addTemplate(
+        await _addDefaultTemplate(
           title: template['title']!,
           message: template['message']!,
         );
@@ -102,23 +101,43 @@ class TemplateService {
     }
   }
 
-  /// إعادة توليد القوالب الافتراضية بلغة جديدة
-  /// يتم استدعاء هذه الدالة عند تغيير اللغة من الإعدادات
+  /// إعادة توليد القوالب الافتراضية بلغة جديدة — يحتفظ بقوالب المستخدم
   Future<void> regenerateDefaultTemplates(String languageCode) async {
-    // حذف جميع القوالب الحالية
-    await clearAllTemplates();
+    // احذف فقط القوالب الافتراضية غير المعدّلة (createdAt == updatedAt)
+    final toDelete = box.values.where((t) {
+      final isUnmodifiedDefault =
+          t.isDefaultTemplate && t.createdAt == t.updatedAt;
+      return isUnmodifiedDefault;
+    }).map((t) => t.id).toList();
 
-    // إضافة القوالب الجديدة باللغة المختارة
+    for (final id in toDelete) {
+      await box.delete(id);
+    }
+
+    // أضف القوالب الافتراضية الجديدة باللغة المختارة
     final defaultTemplates = languageCode == 'ar'
         ? _getArabicTemplates()
         : _getEnglishTemplates();
 
     for (var template in defaultTemplates) {
-      await addTemplate(
+      await _addDefaultTemplate(
         title: template['title']!,
         message: template['message']!,
       );
     }
+  }
+
+  /// يضيف قالباً مُعلَّماً كافتراضي (للاستخدام الداخلي فقط)
+  Future<void> _addDefaultTemplate({
+    required String title,
+    required String message,
+  }) async {
+    final template = MessageTemplate.create(
+      title: title,
+      message: message,
+      isDefault: true,
+    );
+    await box.put(template.id, template);
   }
 
   /// القوالب الافتراضية بالعربية
