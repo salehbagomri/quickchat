@@ -41,7 +41,7 @@ class MessageTemplate extends HiveObject {
   }) {
     final now = DateTime.now();
     return MessageTemplate(
-      id: now.millisecondsSinceEpoch.toString(),
+      id: now.microsecondsSinceEpoch.toString(),
       title: title,
       message: message,
       createdAt: now,

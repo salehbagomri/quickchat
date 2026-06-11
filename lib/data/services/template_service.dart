@@ -103,11 +103,20 @@ class TemplateService {
 
   /// إعادة توليد القوالب الافتراضية بلغة جديدة — يحتفظ بقوالب المستخدم
   Future<void> regenerateDefaultTemplates(String languageCode) async {
-    // احذف فقط القوالب الافتراضية غير المعدّلة (createdAt == updatedAt)
+    // عناوين القوالب الافتراضية المعروفة (لـ migration من v1.0.0 حيث isDefault == null)
+    final knownDefaultTitles = {
+      ..._getArabicTemplates().map((t) => t['title']!),
+      ..._getEnglishTemplates().map((t) => t['title']!),
+    };
+
     final toDelete = box.values.where((t) {
-      final isUnmodifiedDefault =
-          t.isDefaultTemplate && t.createdAt == t.updatedAt;
-      return isUnmodifiedDefault;
+      // الحالة 1: قوالب v1.0.1+ — مُعلَّمة كافتراضية وغير معدّلة
+      if (t.isDefaultTemplate && t.createdAt == t.updatedAt) return true;
+      // الحالة 2: migration — قوالب v1.0.0 (isDefault == null) بعناوين افتراضية معروفة
+      if (t.isDefault == null && knownDefaultTitles.contains(t.title)) {
+        return true;
+      }
+      return false;
     }).map((t) => t.id).toList();
 
     for (final id in toDelete) {

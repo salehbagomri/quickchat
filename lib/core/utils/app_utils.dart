@@ -39,11 +39,7 @@ class AppUtils {
         ? Uri.encodeComponent(message)
         : '';
     final msgParam = encodedMsg.isNotEmpty ? '&text=$encodedMsg' : '';
-
-    // تحقق مسبق: هل واتساب مثبّت؟
-    final whatsappUri = Uri.parse('whatsapp://send?phone=$formattedPhone');
-    final isInstalled = await _canLaunch(whatsappUri);
-    if (!isInstalled) return WhatsAppLaunchResult.notInstalled;
+    final waQuery = encodedMsg.isNotEmpty ? '?text=$encodedMsg' : '';
 
     // 1. Native WhatsApp scheme
     if (await _tryLaunch('whatsapp://send?phone=$formattedPhone$msgParam')) {
@@ -51,17 +47,22 @@ class AppUtils {
     }
 
     // 2. wa.me deep-link
-    final waQuery = encodedMsg.isNotEmpty ? '?text=$encodedMsg' : '';
     if (await _tryLaunch('https://wa.me/$formattedPhone$waQuery')) {
       return WhatsAppLaunchResult.success;
     }
 
     // 3. API URL fallback
-    final launched = await _tryLaunch(
-        'https://api.whatsapp.com/send?phone=$formattedPhone$msgParam');
-    return launched
-        ? WhatsAppLaunchResult.success
-        : WhatsAppLaunchResult.launchFailed;
+    if (await _tryLaunch(
+        'https://api.whatsapp.com/send?phone=$formattedPhone$msgParam')) {
+      return WhatsAppLaunchResult.success;
+    }
+
+    // كل الاستراتيجيات فشلت — canLaunchUrl للتشخيص فقط (لا يُستخدم كحارس مسبق)
+    final isInstalled =
+        await _canLaunch(Uri.parse('whatsapp://send?phone=$formattedPhone'));
+    return isInstalled
+        ? WhatsAppLaunchResult.launchFailed
+        : WhatsAppLaunchResult.notInstalled;
   }
 
   // ---------------------------------------------------------------------------
