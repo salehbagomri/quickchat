@@ -1,0 +1,103 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quickchat/features/settings/settings_cubit.dart';
+import 'package:quickchat/l10n/app_localizations.dart';
+
+class ThemeTile extends StatelessWidget {
+  const ThemeTile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final state = context.watch<SettingsCubit>().state;
+
+    String themeName() {
+      return switch (state.themeMode) {
+        ThemeMode.light => l10n.light,
+        ThemeMode.dark => l10n.dark,
+        _ => l10n.system,
+      };
+    }
+
+    return ListTile(
+      leading: Icon(Icons.palette_outlined,
+          color: Theme.of(context).colorScheme.primary),
+      title: Text(l10n.theme),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            themeName(),
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium
+                ?.copyWith(color: Colors.grey[600]),
+          ),
+          const SizedBox(width: 4),
+          Icon(Icons.chevron_right, color: Colors.grey[400]),
+        ],
+      ),
+      onTap: () => _showThemeDialog(context, state, l10n),
+    );
+  }
+
+  void _showThemeDialog(
+      BuildContext context, SettingsState state, AppLocalizations l10n) {
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n.theme),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _radioTile(
+              ctx: ctx,
+              icon: Icons.light_mode,
+              label: l10n.light,
+              value: ThemeMode.light,
+              groupValue: state.themeMode,
+            ),
+            _radioTile(
+              ctx: ctx,
+              icon: Icons.dark_mode,
+              label: l10n.dark,
+              value: ThemeMode.dark,
+              groupValue: state.themeMode,
+            ),
+            _radioTile(
+              ctx: ctx,
+              icon: Icons.brightness_auto,
+              label: l10n.system,
+              value: ThemeMode.system,
+              groupValue: state.themeMode,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _radioTile({
+    required BuildContext ctx,
+    required IconData icon,
+    required String label,
+    required ThemeMode value,
+    required ThemeMode groupValue,
+  }) {
+    return RadioListTile<ThemeMode>(
+      title: Row(children: [
+        Icon(icon, size: 20),
+        const SizedBox(width: 12),
+        Text(label),
+      ]),
+      value: value,
+      groupValue: groupValue,
+      onChanged: (v) {
+        if (v != null) {
+          ctx.read<SettingsCubit>().changeThemeMode(v);
+          Navigator.pop(ctx);
+        }
+      },
+    );
+  }
+}
