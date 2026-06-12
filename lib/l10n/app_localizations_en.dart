@@ -323,4 +323,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get rename => 'Rename';
+
+  @override
+  String get copyLink => 'Copy Link';
+
+  @override
+  String get shareLink => 'Share';
+
+  @override
+  String get qrCode => 'QR Code';
+
+  @override
+  String get linkCopied => 'Link copied to clipboard';
+
+  @override
+  String get scanQrHint => 'Scan to open in WhatsApp';
 }

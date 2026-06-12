@@ -12,18 +12,29 @@ class HomeCubit extends Cubit<HomeState> {
   void updateCountryCode(String code) =>
       emit(state.copyWith(countryCode: code));
 
+  /// Resolves [rawPhone] + current country code into a full E.164-style number.
+  String formatPhone(String rawPhone) {
+    String phone = rawPhone.replaceAll(RegExp(r'[^\d+]'), '');
+    final codeDigits = state.countryCode.replaceAll('+', '');
+    if (phone.startsWith('+')) phone = phone.substring(1);
+    if (phone.startsWith(codeDigits)) phone = phone.substring(codeDigits.length);
+    return state.countryCode + phone;
+  }
+
+  /// Builds a wa.me universal link for the given phone + optional message.
+  String buildWaMeUrl(String rawPhone, {String? message}) =>
+      WhatsAppService.buildWaMeUrl(
+        phoneNumber: formatPhone(rawPhone),
+        message: message,
+      );
+
   Future<WhatsAppLaunchResult> sendWhatsApp(
     String rawPhone, {
     String? message,
   }) async {
     emit(state.copyWith(isLoading: true));
 
-    // Strip duplicate country code if the user typed it, then prepend
-    String phone = rawPhone.replaceAll(RegExp(r'[^\d+]'), '');
-    final codeDigits = state.countryCode.replaceAll('+', '');
-    if (phone.startsWith('+')) phone = phone.substring(1);
-    if (phone.startsWith(codeDigits)) phone = phone.substring(codeDigits.length);
-    final fullPhone = state.countryCode + phone;
+    final fullPhone = formatPhone(rawPhone);
 
     final result =
         await WhatsAppService.openWhatsApp(fullPhone, message: message);

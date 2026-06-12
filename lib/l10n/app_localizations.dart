@@ -709,6 +709,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Rename'**
   String get rename;
+
+  /// Copy wa.me link to clipboard
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Link'**
+  String get copyLink;
+
+  /// Share wa.me link via system share sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get shareLink;
+
+  /// Show QR code for the wa.me link
+  ///
+  /// In en, this message translates to:
+  /// **'QR Code'**
+  String get qrCode;
+
+  /// Snackbar after copying wa.me link
+  ///
+  /// In en, this message translates to:
+  /// **'Link copied to clipboard'**
+  String get linkCopied;
+
+  /// Hint shown below QR code in the bottom sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Scan to open in WhatsApp'**
+  String get scanQrHint;
 }
 
 class _AppLocalizationsDelegate

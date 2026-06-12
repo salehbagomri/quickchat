@@ -321,4 +321,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get rename => 'إعادة تسمية';
+
+  @override
+  String get copyLink => 'نسخ الرابط';
+
+  @override
+  String get shareLink => 'مشاركة';
+
+  @override
+  String get qrCode => 'رمز QR';
+
+  @override
+  String get linkCopied => 'تم نسخ الرابط';
+
+  @override
+  String get scanQrHint => 'امسح لفتح في واتساب';
 }

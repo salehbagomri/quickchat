@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show Clipboard, HapticFeedback;
+import 'package:flutter/services.dart' show Clipboard, ClipboardData, HapticFeedback;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:quickchat/core/extensions/whatsapp_result_ext.dart';
 import 'package:quickchat/core/router/app_router.dart';
 import 'package:quickchat/core/theme/app_spacing.dart';
@@ -199,6 +201,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   l10n: l10n,
                 ),
+                ValueListenableBuilder<TextEditingValue>(
+                  valueListenable: _phoneController,
+                  builder: (_, value, __) {
+                    final phone = value.text.trim();
+                    if (phone.isEmpty ||
+                        !WhatsAppService.isValidPhoneNumber(phone)) {
+                      return const SizedBox.shrink();
+                    }
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: _buildLinkActions(context, l10n, phone),
+                    );
+                  },
+                ),
                 const SizedBox(height: 30),
                 BlocBuilder<HomeCubit, HomeState>(
                   buildWhen: (p, c) => p.isLoading != c.isLoading,
@@ -221,6 +237,93 @@ class _HomeScreenState extends State<HomeScreen> {
                 const HomeFooter(),
               ],
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLinkActions(
+      BuildContext context, AppLocalizations l10n, String phone) {
+    return Row(
+      children: [
+        Expanded(
+          child: OutlinedButton.icon(
+            icon: const Icon(Icons.copy_outlined, size: 18),
+            label: Text(l10n.copyLink),
+            onPressed: () => _copyWaMeLink(context, l10n, phone),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: OutlinedButton.icon(
+            icon: const Icon(Icons.share_outlined, size: 18),
+            label: Text(l10n.shareLink),
+            onPressed: () => _shareWaMeLink(phone),
+          ),
+        ),
+        const SizedBox(width: 8),
+        OutlinedButton(
+          onPressed: () => _showQrCode(context, l10n, phone),
+          child: const Icon(Icons.qr_code),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _copyWaMeLink(
+      BuildContext context, AppLocalizations l10n, String phone) async {
+    final url = _cubit.buildWaMeUrl(phone,
+        message: _messageController.text.trim().isNotEmpty
+            ? _messageController.text.trim()
+            : null);
+    await Clipboard.setData(ClipboardData(text: url));
+    await HapticFeedback.lightImpact();
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l10n.linkCopied)),
+      );
+    }
+  }
+
+  Future<void> _shareWaMeLink(String phone) async {
+    final url = _cubit.buildWaMeUrl(phone,
+        message: _messageController.text.trim().isNotEmpty
+            ? _messageController.text.trim()
+            : null);
+    await Share.share(url);
+  }
+
+  void _showQrCode(BuildContext context, AppLocalizations l10n, String phone) {
+    final url = _cubit.buildWaMeUrl(phone,
+        message: _messageController.text.trim().isNotEmpty
+            ? _messageController.text.trim()
+            : null);
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (_) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(l10n.qrCode,
+                  style: Theme.of(context).textTheme.titleLarge),
+              const SizedBox(height: 16),
+              Container(
+                color: Colors.white,
+                padding: const EdgeInsets.all(12),
+                child: QrImageView(
+                  data: url,
+                  version: QrVersions.auto,
+                  size: 220,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Text(l10n.scanQrHint,
+                  style: Theme.of(context).textTheme.bodySmall),
+              const SizedBox(height: 8),
+            ],
           ),
         ),
       ),

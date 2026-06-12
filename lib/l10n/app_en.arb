@@ -388,6 +388,16 @@
   "manageFavorites": "Manage Favorites",
   "@manageFavorites": { "description": "Manage favorites screen title" },
   "rename": "Rename",
-  "@rename": { "description": "Rename action label" }
+  "@rename": { "description": "Rename action label" },
+  "copyLink": "Copy Link",
+  "@copyLink": { "description": "Copy wa.me link to clipboard" },
+  "shareLink": "Share",
+  "@shareLink": { "description": "Share wa.me link via system share sheet" },
+  "qrCode": "QR Code",
+  "@qrCode": { "description": "Show QR code for the wa.me link" },
+  "linkCopied": "Link copied to clipboard",
+  "@linkCopied": { "description": "Snackbar after copying wa.me link" },
+  "scanQrHint": "Scan to open in WhatsApp",
+  "@scanQrHint": { "description": "Hint shown below QR code in the bottom sheet" }
 }
 
