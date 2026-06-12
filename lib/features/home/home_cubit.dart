@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quickchat/core/utils/locale_dial_code.dart';
 import 'package:quickchat/data/local_storage/hive_service.dart';
 import 'package:quickchat/data/models/chat_history.dart';
 import 'package:quickchat/data/services/whatsapp_service.dart';
@@ -7,7 +8,10 @@ import 'package:quickchat/data/services/whatsapp_service.dart';
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(const HomeState());
+  HomeCubit([String? initialCountryCode])
+      : super(HomeState(
+          countryCode: initialCountryCode ?? getDefaultDialCode(),
+        ));
 
   void updateCountryCode(String code) =>
       emit(state.copyWith(countryCode: code));
