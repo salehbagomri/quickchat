@@ -29,7 +29,7 @@ dependencies:
   google_fonts: ^6.3.2
   country_code_picker: ^3.0.0
   flutter_svg: ^2.0.10+1
-  font_awesome_flutter: ^10.12.0
+  font_awesome_flutter: ^11.0.0
 
   # Utilities
   url_launcher: ^6.3.2
