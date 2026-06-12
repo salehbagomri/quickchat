@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,6 +13,7 @@ import 'package:quickchat/features/home/widgets/message_input_card.dart';
 import 'package:quickchat/features/home/widgets/phone_input_card.dart';
 import 'package:quickchat/features/home/widgets/send_button.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
+import 'package:share_handler/share_handler.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,15 +26,44 @@ class _HomeScreenState extends State<HomeScreen> {
   final _phoneController = TextEditingController();
   final _messageController = TextEditingController();
   late final HomeCubit _cubit;
+  StreamSubscription<SharedMedia>? _sharingSub;
 
   @override
   void initState() {
     super.initState();
     _cubit = HomeCubit();
+    _initShareHandler();
+  }
+
+  Future<void> _initShareHandler() async {
+    final handler = ShareHandlerPlatform.instance;
+    final initial = await handler.getInitialSharedMedia();
+    _handleSharedText(initial?.content);
+    _sharingSub = handler.sharedMediaStream.listen(
+      (media) => _handleSharedText(media.content),
+    );
+  }
+
+  void _handleSharedText(String? text) {
+    if (text == null || text.isEmpty || !mounted) return;
+    final phone = _extractPhone(text);
+    if (phone != null) _phoneController.text = phone;
+  }
+
+  /// Extracts the first phone-like sequence from arbitrary text.
+  /// Supports +international, 00-prefix, or plain digit formats.
+  String? _extractPhone(String text) {
+    final match =
+        RegExp(r'(\+|00)?[0-9][0-9\s\-\.]{5,17}[0-9]').firstMatch(text);
+    if (match == null) return null;
+    var cleaned = match.group(0)!.replaceAll(RegExp(r'[\s\-\.]'), '');
+    if (cleaned.startsWith('00')) cleaned = '+${cleaned.substring(2)}';
+    return WhatsAppService.isValidPhoneNumber(cleaned) ? cleaned : null;
   }
 
   @override
   void dispose() {
+    _sharingSub?.cancel();
     _phoneController.dispose();
     _messageController.dispose();
     _cubit.close();
