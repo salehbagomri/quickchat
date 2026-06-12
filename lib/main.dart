@@ -40,4 +40,3 @@ void main() async {
     runApp(const QuickChatApp(isFirstLaunch: false));
   }
 }
-

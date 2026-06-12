@@ -5,8 +5,10 @@ import 'package:quickchat/core/extensions/whatsapp_result_ext.dart';
 import 'package:quickchat/core/widgets/app_empty_state.dart';
 import 'package:quickchat/data/models/chat_history.dart';
 import 'package:quickchat/data/services/whatsapp_service.dart';
+import 'package:intl/intl.dart';
 import 'package:quickchat/features/favorites/favorites_cubit.dart';
 import 'package:quickchat/features/history/history_cubit.dart';
+import 'package:quickchat/features/settings/settings_cubit.dart';
 import 'package:quickchat/features/history/widgets/history_search_bar.dart';
 import 'package:quickchat/features/history/widgets/history_tile.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
@@ -158,7 +160,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       } else if (day == yesterday) {
         key = l10n.yesterday;
       } else {
-        key = '${day.day}/${day.month}/${day.year}';
+        key = DateFormat.yMd(l10n.localeName).format(day);
       }
       groups.putIfAbsent(key, () => []).add(item);
     }
@@ -185,9 +187,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
     ChatHistory history,
     AppLocalizations l10n,
   ) async {
+    final app = context.read<SettingsCubit>().state.whatsAppApp;
     final result = await WhatsAppService.openWhatsApp(
       history.formattedPhone,
       message: history.message,
+      app: app,
     );
     if (result != WhatsAppLaunchResult.success && context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(

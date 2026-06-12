@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 
@@ -72,7 +73,8 @@ class AppUtils {
     } else if (dateOnly == yesterday) {
       return l10n.yesterday;
     } else {
-      return '${date.day}/${date.month}/${date.year}';
+      final locale = Localizations.localeOf(context).languageCode;
+      return DateFormat.yMd(locale).format(date);
     }
   }
 }
