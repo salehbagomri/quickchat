@@ -7,6 +7,7 @@ class AppConstants {
   static const String keyLanguage = 'language';
   static const String keyThemeMode = 'theme_mode';
   static const String keyClipboardDetection = 'clipboard_detection';
+  static const String keyWhatsAppApp = 'whatsapp_app';
 
   // Hive Box Names
   static const String historyBox = 'history_box';

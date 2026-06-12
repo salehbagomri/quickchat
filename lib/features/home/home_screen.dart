@@ -12,6 +12,7 @@ import 'package:quickchat/core/theme/app_spacing.dart';
 import 'package:quickchat/data/services/whatsapp_service.dart';
 import 'package:quickchat/data/services/preferences_service.dart';
 import 'package:quickchat/features/favorites/favorites_cubit.dart';
+import 'package:quickchat/features/settings/settings_cubit.dart';
 import 'package:quickchat/features/favorites/widgets/favorites_bar.dart';
 import 'package:quickchat/features/home/home_cubit.dart';
 import 'package:quickchat/features/home/widgets/home_footer.dart';
@@ -119,9 +120,11 @@ class _HomeScreenState extends State<HomeScreen> {
       return;
     }
 
+    final app = context.read<SettingsCubit>().state.whatsAppApp;
     final result = await _cubit.sendWhatsApp(
       phone,
       message: _messageController.text.trim(),
+      app: app,
     );
 
     if (!mounted) return;

@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quickchat/core/constants/app_constants.dart';
+import 'package:quickchat/data/services/whatsapp_service.dart';
 import 'dart:ui' as ui;
 
 class PreferencesService {
@@ -86,6 +87,16 @@ class PreferencesService {
 
   Future<void> setClipboardDetection(bool enabled) async {
     await prefs.setBool(AppConstants.keyClipboardDetection, enabled);
+  }
+
+  // WhatsApp app preference (default: auto)
+  WhatsAppApp getWhatsAppApp() {
+    final index = prefs.getInt(AppConstants.keyWhatsAppApp) ?? 0;
+    return WhatsAppApp.values[index.clamp(0, WhatsAppApp.values.length - 1)];
+  }
+
+  Future<void> setWhatsAppApp(WhatsAppApp app) async {
+    await prefs.setInt(AppConstants.keyWhatsAppApp, app.index);
   }
 }
 

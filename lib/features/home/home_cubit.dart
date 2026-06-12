@@ -31,13 +31,14 @@ class HomeCubit extends Cubit<HomeState> {
   Future<WhatsAppLaunchResult> sendWhatsApp(
     String rawPhone, {
     String? message,
+    WhatsAppApp app = WhatsAppApp.auto,
   }) async {
     emit(state.copyWith(isLoading: true));
 
     final fullPhone = formatPhone(rawPhone);
 
     final result =
-        await WhatsAppService.openWhatsApp(fullPhone, message: message);
+        await WhatsAppService.openWhatsApp(fullPhone, message: message, app: app);
 
     if (result == WhatsAppLaunchResult.success) {
       await HiveService().addHistory(ChatHistory(

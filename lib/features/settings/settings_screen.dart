@@ -11,6 +11,7 @@ import 'package:quickchat/features/settings/settings_cubit.dart';
 import 'package:quickchat/features/settings/widgets/language_tile.dart';
 import 'package:quickchat/features/settings/widgets/settings_section.dart';
 import 'package:quickchat/features/settings/widgets/theme_tile.dart';
+import 'package:quickchat/features/settings/widgets/whatsapp_app_tile.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -49,6 +50,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
               _sectionHeader(l10n.appearanceCustomization),
               const SettingsSection(child: ThemeTile()),
               const SettingsSection(child: LanguageTile()),
+
+              const SizedBox(height: 24),
+
+              // واتساب
+              _sectionHeader(l10n.whatsappPreferences),
+              const SettingsSection(child: WhatsAppAppTile()),
 
               const SizedBox(height: 24),
 

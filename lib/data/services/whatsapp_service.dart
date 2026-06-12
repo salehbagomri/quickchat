@@ -3,6 +3,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 enum WhatsAppLaunchResult { success, notInstalled, launchFailed }
 
+/// Which WhatsApp variant to target when launching.
+enum WhatsAppApp { auto, official, business }
+
 class WhatsAppService {
   WhatsAppService._();
 
@@ -49,6 +52,7 @@ class WhatsAppService {
   static Future<WhatsAppLaunchResult> openWhatsApp(
     String phone, {
     String? message,
+    WhatsAppApp app = WhatsAppApp.auto,
   }) async {
     final formattedPhone = _cleanPhone(phone);
     final encodedMsg = (message != null && message.isNotEmpty)
@@ -57,7 +61,20 @@ class WhatsAppService {
     final msgParam = encodedMsg.isNotEmpty ? '&text=$encodedMsg' : '';
     final waQuery = encodedMsg.isNotEmpty ? '?text=$encodedMsg' : '';
 
-    // 1. Native WhatsApp scheme
+    // Targeted launch for a specific WhatsApp variant
+    if (app == WhatsAppApp.official) {
+      if (await _tryLaunch(
+          _buildIntentUrl(formattedPhone, msgParam, 'com.whatsapp'))) {
+        return WhatsAppLaunchResult.success;
+      }
+    } else if (app == WhatsAppApp.business) {
+      if (await _tryLaunch(
+          _buildIntentUrl(formattedPhone, msgParam, 'com.whatsapp.w4b'))) {
+        return WhatsAppLaunchResult.success;
+      }
+    }
+
+    // 1. Native WhatsApp scheme (auto or fallback when specific package failed)
     if (await _tryLaunch('whatsapp://send?phone=$formattedPhone$msgParam')) {
       return WhatsAppLaunchResult.success;
     }
@@ -80,6 +97,11 @@ class WhatsAppService {
         ? WhatsAppLaunchResult.launchFailed
         : WhatsAppLaunchResult.notInstalled;
   }
+
+  static String _buildIntentUrl(
+          String phone, String msgParam, String package) =>
+      'intent://send?phone=$phone$msgParam'
+      '#Intent;scheme=whatsapp;package=$package;end';
 
   // ---------------------------------------------------------------------------
   // Private helpers

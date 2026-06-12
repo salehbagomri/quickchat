@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:quickchat/core/constants/app_constants.dart';
 import 'package:quickchat/data/services/preferences_service.dart';
 import 'package:quickchat/data/services/template_service.dart';
+import 'package:quickchat/data/services/whatsapp_service.dart';
 
 part 'settings_state.dart';
 
@@ -16,6 +17,7 @@ class SettingsCubit extends Cubit<SettingsState> {
           locale: Locale(_preferencesService.getLanguage()),
           themeMode: _getThemeModeFromString(_preferencesService.getThemeMode()),
           clipboardDetection: _preferencesService.getClipboardDetection(),
+          whatsAppApp: _preferencesService.getWhatsAppApp(),
         ));
 
   static ThemeMode _getThemeModeFromString(String mode) {
@@ -61,6 +63,11 @@ class SettingsCubit extends Cubit<SettingsState> {
   Future<void> toggleClipboardDetection(bool enabled) async {
     await _preferencesService.setClipboardDetection(enabled);
     emit(state.copyWith(clipboardDetection: enabled));
+  }
+
+  Future<void> changeWhatsAppApp(WhatsAppApp app) async {
+    await _preferencesService.setWhatsAppApp(app);
+    emit(state.copyWith(whatsAppApp: app));
   }
 }
 
