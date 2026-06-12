@@ -10,6 +10,7 @@ class AppConstants {
 
   // Hive Box Names
   static const String historyBox = 'history_box';
+  static const String favoritesBox = 'favorites_box';
 
   // WhatsApp URL
   static const String whatsappBaseUrl = 'https://wa.me/';

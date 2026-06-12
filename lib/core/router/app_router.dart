@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quickchat/features/favorites/favorites_screen.dart';
 import 'package:quickchat/features/history/history_screen.dart';
 import 'package:quickchat/features/home/home_screen.dart';
 import 'package:quickchat/features/onboarding/onboarding_screen.dart';
@@ -54,6 +55,10 @@ abstract class AppRouter {
         context,
         _route(TemplatesScreen(onTemplateSelected: onSelected)),
       );
+
+  /// Pushes [FavoritesScreen] (manage favorites).
+  static Future<void> pushFavorites(BuildContext context) =>
+      Navigator.push(context, _route(const FavoritesScreen()));
 
   /// Pushes [PrivacyPolicyScreen].
   static Future<void> pushPrivacy(BuildContext context) =>

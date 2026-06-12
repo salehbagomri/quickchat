@@ -366,6 +366,28 @@
   "clipboardDetectionDesc": "Suggest phone numbers found in clipboard",
   "@clipboardDetectionDesc": {
     "description": "Settings toggle subtitle for clipboard detection"
-  }
+  },
+  "favorites": "Favorites",
+  "@favorites": { "description": "Favorites screen title" },
+  "addToFavorites": "Add to Favorites",
+  "@addToFavorites": { "description": "Add contact to favorites action" },
+  "removeFromFavorites": "Remove from Favorites",
+  "@removeFromFavorites": { "description": "Remove contact from favorites action" },
+  "noFavorites": "No favorites yet",
+  "@noFavorites": { "description": "Empty favorites state message" },
+  "addFavoritesHint": "Add numbers from history for quick access",
+  "@addFavoritesHint": { "description": "Empty favorites state hint" },
+  "labelOptional": "Name (optional)",
+  "@labelOptional": { "description": "Label field title in add favorite dialog" },
+  "enterLabel": "e.g. Restaurant orders",
+  "@enterLabel": { "description": "Label field hint in add favorite dialog" },
+  "favoriteAdded": "Added to favorites",
+  "@favoriteAdded": { "description": "Snackbar after adding to favorites" },
+  "favoriteRemoved": "Removed from favorites",
+  "@favoriteRemoved": { "description": "Snackbar after removing from favorites" },
+  "manageFavorites": "Manage Favorites",
+  "@manageFavorites": { "description": "Manage favorites screen title" },
+  "rename": "Rename",
+  "@rename": { "description": "Rename action label" }
 }
 

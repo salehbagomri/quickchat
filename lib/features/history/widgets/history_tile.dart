@@ -8,6 +8,8 @@ class HistoryTile extends StatelessWidget {
   final VoidCallback onCopy;
   final VoidCallback onReopen;
   final VoidCallback onDelete;
+  final VoidCallback? onFavorite;
+  final bool isFavorite;
 
   const HistoryTile({
     required this.history,
@@ -15,6 +17,8 @@ class HistoryTile extends StatelessWidget {
     required this.onReopen,
     required this.onDelete,
     super.key,
+    this.onFavorite,
+    this.isFavorite = false,
   });
 
   @override
@@ -68,6 +72,8 @@ class HistoryTile extends StatelessWidget {
                         onCopy();
                       case 'reopen':
                         onReopen();
+                      case 'favorite':
+                        onFavorite?.call();
                       case 'delete':
                         onDelete();
                     }
@@ -89,6 +95,17 @@ class HistoryTile extends StatelessWidget {
                         Text(l10n.reopen),
                       ]),
                     ),
+                    if (onFavorite != null)
+                      PopupMenuItem(
+                        value: 'favorite',
+                        child: Row(children: [
+                          Icon(isFavorite ? Icons.star : Icons.star_outline),
+                          const SizedBox(width: 8),
+                          Text(isFavorite
+                              ? l10n.removeFromFavorites
+                              : l10n.addToFavorites),
+                        ]),
+                      ),
                     PopupMenuItem(
                       value: 'delete',
                       child: Row(children: [

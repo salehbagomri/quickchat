@@ -9,6 +9,8 @@ import 'package:quickchat/core/router/app_router.dart';
 import 'package:quickchat/core/theme/app_spacing.dart';
 import 'package:quickchat/data/services/whatsapp_service.dart';
 import 'package:quickchat/data/services/preferences_service.dart';
+import 'package:quickchat/features/favorites/favorites_cubit.dart';
+import 'package:quickchat/features/favorites/widgets/favorites_bar.dart';
 import 'package:quickchat/features/home/home_cubit.dart';
 import 'package:quickchat/features/home/widgets/home_footer.dart';
 import 'package:quickchat/features/home/widgets/message_input_card.dart';
@@ -148,6 +150,15 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: Text(l10n.appName),
           actions: [
+            BlocBuilder<FavoritesCubit, FavoritesState>(
+              builder: (context, state) => state.contacts.isNotEmpty
+                  ? IconButton(
+                      icon: const Icon(Icons.star_outline),
+                      tooltip: l10n.manageFavorites,
+                      onPressed: () => AppRouter.pushFavorites(context),
+                    )
+                  : const SizedBox.shrink(),
+            ),
             IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () async {
@@ -168,6 +179,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: AppSpacing.md),
                 _buildHeader(l10n),
                 const SizedBox(height: AppSpacing.xl),
+                FavoritesBar(
+                  onFavoriteTap: (phone) => _phoneController.text = phone,
+                ),
                 BlocBuilder<HomeCubit, HomeState>(
                   buildWhen: (p, c) => p.countryCode != c.countryCode,
                   builder: (_, __) => PhoneInputCard(

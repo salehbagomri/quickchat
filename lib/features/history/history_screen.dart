@@ -5,6 +5,7 @@ import 'package:quickchat/core/extensions/whatsapp_result_ext.dart';
 import 'package:quickchat/core/widgets/app_empty_state.dart';
 import 'package:quickchat/data/models/chat_history.dart';
 import 'package:quickchat/data/services/whatsapp_service.dart';
+import 'package:quickchat/features/favorites/favorites_cubit.dart';
 import 'package:quickchat/features/history/history_cubit.dart';
 import 'package:quickchat/features/history/widgets/history_search_bar.dart';
 import 'package:quickchat/features/history/widgets/history_tile.dart';
@@ -87,6 +88,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
     AppLocalizations l10n,
   ) {
     final groups = _groupByDay(items, l10n);
+    final favCubit = context.read<FavoritesCubit>();
+
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       children: [
@@ -98,10 +101,43 @@ class _HistoryScreenState extends State<HistoryScreen> {
               onCopy: () => _copyPhone(context, history, l10n),
               onReopen: () => _reopenChat(context, history, l10n),
               onDelete: () => _deleteWithUndo(context, history, l10n),
+              isFavorite: favCubit.isFavorite(history.formattedPhone),
+              onFavorite: () =>
+                  _toggleFavorite(context, history, favCubit, l10n),
             ),
         ],
       ],
     );
+  }
+
+  Future<void> _toggleFavorite(
+    BuildContext context,
+    ChatHistory history,
+    FavoritesCubit cubit,
+    AppLocalizations l10n,
+  ) async {
+    if (cubit.isFavorite(history.formattedPhone)) {
+      final id = cubit.state.contacts
+          .firstWhere((c) => c.formattedPhone == history.formattedPhone)
+          .id;
+      await cubit.removeFavorite(id);
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.favoriteRemoved)),
+        );
+      }
+    } else {
+      await cubit.addFavorite(
+        phoneNumber: history.phoneNumber,
+        countryCode: history.countryCode ?? '',
+        label: null,
+      );
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.favoriteAdded)),
+        );
+      }
+    }
   }
 
   List<(String, List<ChatHistory>)> _groupByDay(

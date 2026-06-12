@@ -47,42 +47,31 @@ class ThemeTile extends StatelessWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         title: Text(l10n.theme),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _radioTile(
-              ctx: ctx,
-              icon: Icons.light_mode,
-              label: l10n.light,
-              value: ThemeMode.light,
-              groupValue: state.themeMode,
-            ),
-            _radioTile(
-              ctx: ctx,
-              icon: Icons.dark_mode,
-              label: l10n.dark,
-              value: ThemeMode.dark,
-              groupValue: state.themeMode,
-            ),
-            _radioTile(
-              ctx: ctx,
-              icon: Icons.brightness_auto,
-              label: l10n.system,
-              value: ThemeMode.system,
-              groupValue: state.themeMode,
-            ),
-          ],
+        content: RadioGroup<ThemeMode>(
+          groupValue: state.themeMode,
+          onChanged: (v) {
+            if (v != null) {
+              context.read<SettingsCubit>().changeThemeMode(v);
+              Navigator.pop(ctx);
+            }
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _radioTile(icon: Icons.light_mode, label: l10n.light, value: ThemeMode.light),
+              _radioTile(icon: Icons.dark_mode, label: l10n.dark, value: ThemeMode.dark),
+              _radioTile(icon: Icons.brightness_auto, label: l10n.system, value: ThemeMode.system),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _radioTile({
-    required BuildContext ctx,
     required IconData icon,
     required String label,
     required ThemeMode value,
-    required ThemeMode groupValue,
   }) {
     return RadioListTile<ThemeMode>(
       title: Row(children: [
@@ -91,13 +80,6 @@ class ThemeTile extends StatelessWidget {
         Text(label),
       ]),
       value: value,
-      groupValue: groupValue,
-      onChanged: (v) {
-        if (v != null) {
-          ctx.read<SettingsCubit>().changeThemeMode(v);
-          Navigator.pop(ctx);
-        }
-      },
     );
   }
 }

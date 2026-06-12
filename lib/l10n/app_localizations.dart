@@ -643,6 +643,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Suggest phone numbers found in clipboard'**
   String get clipboardDetectionDesc;
+
+  /// Favorites screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get favorites;
+
+  /// Add contact to favorites action
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Favorites'**
+  String get addToFavorites;
+
+  /// Remove contact from favorites action
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from Favorites'**
+  String get removeFromFavorites;
+
+  /// Empty favorites state message
+  ///
+  /// In en, this message translates to:
+  /// **'No favorites yet'**
+  String get noFavorites;
+
+  /// Empty favorites state hint
+  ///
+  /// In en, this message translates to:
+  /// **'Add numbers from history for quick access'**
+  String get addFavoritesHint;
+
+  /// Label field title in add favorite dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Name (optional)'**
+  String get labelOptional;
+
+  /// Label field hint in add favorite dialog
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Restaurant orders'**
+  String get enterLabel;
+
+  /// Snackbar after adding to favorites
+  ///
+  /// In en, this message translates to:
+  /// **'Added to favorites'**
+  String get favoriteAdded;
+
+  /// Snackbar after removing from favorites
+  ///
+  /// In en, this message translates to:
+  /// **'Removed from favorites'**
+  String get favoriteRemoved;
+
+  /// Manage favorites screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Manage Favorites'**
+  String get manageFavorites;
+
+  /// Rename action label
+  ///
+  /// In en, this message translates to:
+  /// **'Rename'**
+  String get rename;
 }
 
 class _AppLocalizationsDelegate

@@ -93,6 +93,17 @@
     "placeholders": { "phone": { "type": "String" } }
   },
   "clipboardDetectionTitle": "كشف الحافظة",
-  "clipboardDetectionDesc": "اقتراح أرقام الهاتف الموجودة في الحافظة"
+  "clipboardDetectionDesc": "اقتراح أرقام الهاتف الموجودة في الحافظة",
+  "favorites": "المفضلة",
+  "addToFavorites": "إضافة إلى المفضلة",
+  "removeFromFavorites": "إزالة من المفضلة",
+  "noFavorites": "لا توجد مفضلة بعد",
+  "addFavoritesHint": "أضف أرقاماً من السجل للوصول السريع",
+  "labelOptional": "اسم (اختياري)",
+  "enterLabel": "مثال: طلبات المطعم",
+  "favoriteAdded": "تمت الإضافة إلى المفضلة",
+  "favoriteRemoved": "تمت الإزالة من المفضلة",
+  "manageFavorites": "إدارة المفضلة",
+  "rename": "إعادة تسمية"
 }
 

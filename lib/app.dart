@@ -5,6 +5,7 @@ import 'package:quickchat/core/theme/app_theme.dart';
 import 'package:quickchat/data/services/preferences_service.dart';
 import 'package:quickchat/features/onboarding/onboarding_screen.dart';
 import 'package:quickchat/features/home/home_screen.dart';
+import 'package:quickchat/features/favorites/favorites_cubit.dart';
 import 'package:quickchat/features/settings/settings_cubit.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 
@@ -12,14 +13,17 @@ class QuickChatApp extends StatelessWidget {
   final bool isFirstLaunch;
 
   const QuickChatApp({
-    super.key,
     required this.isFirstLaunch,
+    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SettingsCubit(PreferencesService()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => SettingsCubit(PreferencesService())),
+        BlocProvider(create: (_) => FavoritesCubit()),
+      ],
       child: BlocBuilder<SettingsCubit, SettingsState>(
         builder: (context, state) {
           return MaterialApp(
@@ -46,4 +50,5 @@ class QuickChatApp extends StatelessWidget {
     );
   }
 }
+
 

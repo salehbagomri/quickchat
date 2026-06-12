@@ -290,4 +290,37 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get clipboardDetectionDesc =>
       'Suggest phone numbers found in clipboard';
+
+  @override
+  String get favorites => 'Favorites';
+
+  @override
+  String get addToFavorites => 'Add to Favorites';
+
+  @override
+  String get removeFromFavorites => 'Remove from Favorites';
+
+  @override
+  String get noFavorites => 'No favorites yet';
+
+  @override
+  String get addFavoritesHint => 'Add numbers from history for quick access';
+
+  @override
+  String get labelOptional => 'Name (optional)';
+
+  @override
+  String get enterLabel => 'e.g. Restaurant orders';
+
+  @override
+  String get favoriteAdded => 'Added to favorites';
+
+  @override
+  String get favoriteRemoved => 'Removed from favorites';
+
+  @override
+  String get manageFavorites => 'Manage Favorites';
+
+  @override
+  String get rename => 'Rename';
 }

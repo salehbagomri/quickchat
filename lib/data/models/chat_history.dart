@@ -18,8 +18,8 @@ class ChatHistory extends HiveObject {
 
   ChatHistory({
     required this.phoneNumber,
-    this.message,
     required this.timestamp,
+    this.message,
     this.countryCode,
   });
 

@@ -117,10 +117,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Widget _buildPage({
     required BuildContext context,
-    IconData? icon,
-    String? svgPath,
     required String title,
     required String description,
+    IconData? icon,
+    String? svgPath,
   }) {
     return Padding(
       padding: const EdgeInsets.all(40),

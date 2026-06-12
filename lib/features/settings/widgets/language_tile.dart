@@ -40,32 +40,27 @@ class LanguageTile extends StatelessWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         title: Text(l10n.language),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            RadioListTile<String>(
-              title: const Text('العربية'),
-              value: AppConstants.languageArabic,
-              groupValue: state.locale.languageCode,
-              onChanged: (v) {
-                if (v != null) {
-                  context.read<SettingsCubit>().changeLanguage(v);
-                  Navigator.pop(ctx);
-                }
-              },
-            ),
-            RadioListTile<String>(
-              title: const Text('English'),
-              value: AppConstants.languageEnglish,
-              groupValue: state.locale.languageCode,
-              onChanged: (v) {
-                if (v != null) {
-                  context.read<SettingsCubit>().changeLanguage(v);
-                  Navigator.pop(ctx);
-                }
-              },
-            ),
-          ],
+        content: RadioGroup<String>(
+          groupValue: state.locale.languageCode,
+          onChanged: (v) {
+            if (v != null) {
+              context.read<SettingsCubit>().changeLanguage(v);
+              Navigator.pop(ctx);
+            }
+          },
+          child: const Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              RadioListTile<String>(
+                title: Text('العربية'),
+                value: AppConstants.languageArabic,
+              ),
+              RadioListTile<String>(
+                title: Text('English'),
+                value: AppConstants.languageEnglish,
+              ),
+            ],
+          ),
         ),
       ),
     );

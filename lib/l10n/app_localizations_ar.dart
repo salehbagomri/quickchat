@@ -288,4 +288,37 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get clipboardDetectionDesc =>
       'اقتراح أرقام الهاتف الموجودة في الحافظة';
+
+  @override
+  String get favorites => 'المفضلة';
+
+  @override
+  String get addToFavorites => 'إضافة إلى المفضلة';
+
+  @override
+  String get removeFromFavorites => 'إزالة من المفضلة';
+
+  @override
+  String get noFavorites => 'لا توجد مفضلة بعد';
+
+  @override
+  String get addFavoritesHint => 'أضف أرقاماً من السجل للوصول السريع';
+
+  @override
+  String get labelOptional => 'اسم (اختياري)';
+
+  @override
+  String get enterLabel => 'مثال: طلبات المطعم';
+
+  @override
+  String get favoriteAdded => 'تمت الإضافة إلى المفضلة';
+
+  @override
+  String get favoriteRemoved => 'تمت الإزالة من المفضلة';
+
+  @override
+  String get manageFavorites => 'إدارة المفضلة';
+
+  @override
+  String get rename => 'إعادة تسمية';
 }
