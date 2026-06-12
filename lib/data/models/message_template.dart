@@ -34,6 +34,8 @@ class MessageTemplate extends HiveObject {
     this.isDefault,
   });
 
+  static int _idSeq = 0;
+
   factory MessageTemplate.create({
     required String title,
     required String message,
@@ -41,7 +43,7 @@ class MessageTemplate extends HiveObject {
   }) {
     final now = DateTime.now();
     return MessageTemplate(
-      id: now.microsecondsSinceEpoch.toString(),
+      id: '${now.microsecondsSinceEpoch}_${_idSeq++}',
       title: title,
       message: message,
       createdAt: now,

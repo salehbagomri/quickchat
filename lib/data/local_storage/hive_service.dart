@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:quickchat/core/constants/app_constants.dart';
 import 'package:quickchat/data/models/chat_history.dart';
@@ -68,6 +69,23 @@ class HiveService {
 
   Future<void> close() async {
     await _historyBox?.close();
+  }
+
+  @visibleForTesting
+  static Future<void> initForTest(String path) async {
+    Hive.init(path);
+    if (!Hive.isAdapterRegistered(0)) Hive.registerAdapter(ChatHistoryAdapter());
+    if (!Hive.isAdapterRegistered(1)) Hive.registerAdapter(MessageTemplateAdapter());
+    if (!Hive.isAdapterRegistered(2)) Hive.registerAdapter(FavoriteContactAdapter());
+    _instance._historyBox = await Hive.openBox<ChatHistory>(AppConstants.historyBox);
+    _instance._favoritesBox = await Hive.openBox<FavoriteContact>(AppConstants.favoritesBox);
+  }
+
+  @visibleForTesting
+  static Future<void> closeForTest() async {
+    await Hive.close();
+    _instance._historyBox = null;
+    _instance._favoritesBox = null;
   }
 }
 
