@@ -60,7 +60,7 @@ class MessageTemplate extends HiveObject {
       message: message ?? this.message,
       createdAt: createdAt,
       updatedAt: DateTime.now(),
-      isDefault: isDefault,
+      isDefault: null, // editing any template (including a default) makes it user-owned
     );
   }
 }

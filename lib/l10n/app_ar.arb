@@ -77,6 +77,12 @@
   "rateAppDescription": "هل أعجبك التطبيق؟ قيّمنا!",
   "today": "اليوم",
   "yesterday": "أمس",
-  "whatsappLaunchFailed": "تعذّر فتح واتساب. الرجاء المحاولة مرة أخرى."
+  "whatsappLaunchFailed": "تعذّر فتح واتساب. الرجاء المحاولة مرة أخرى.",
+  "aboutAppDescription": "تطبيق لفتح محادثات واتساب مباشرة بدون حفظ الأرقام",
+  "developerName": "صالح باقمري",
+  "feedbackEmailSubject": "ملاحظات على تطبيق QuickChat",
+  "noEmailApp": "لا يوجد تطبيق بريد إلكتروني مثبت على جهازك",
+  "copyEmail": "نسخ البريد",
+  "emailCopied": "تم نسخ البريد الإلكتروني"
 }
 

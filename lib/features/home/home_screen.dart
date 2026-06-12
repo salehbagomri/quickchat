@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quickchat/core/extensions/whatsapp_result_ext.dart';
 import 'package:quickchat/core/router/app_router.dart';
 import 'package:quickchat/core/theme/app_spacing.dart';
 import 'package:quickchat/data/services/whatsapp_service.dart';
@@ -57,9 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
       _phoneController.clear();
       _messageController.clear();
     } else {
-      _showError(result == WhatsAppLaunchResult.notInstalled
-          ? l10n.whatsappNotInstalled
-          : l10n.whatsappLaunchFailed);
+      _showError(result.errorMessage(l10n));
     }
   }
 

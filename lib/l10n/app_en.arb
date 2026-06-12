@@ -311,6 +311,30 @@
   "whatsappLaunchFailed": "Failed to open WhatsApp. Please try again.",
   "@whatsappLaunchFailed": {
     "description": "Error when WhatsApp is installed but fails to open"
+  },
+  "aboutAppDescription": "Open WhatsApp conversations without saving contacts",
+  "@aboutAppDescription": {
+    "description": "Short description shown in the About dialog"
+  },
+  "developerName": "Saleh Bagomri",
+  "@developerName": {
+    "description": "Developer name shown in About dialog"
+  },
+  "feedbackEmailSubject": "QuickChat App Feedback",
+  "@feedbackEmailSubject": {
+    "description": "Subject line for feedback email"
+  },
+  "noEmailApp": "No email app installed on your device",
+  "@noEmailApp": {
+    "description": "Shown when no email client is available"
+  },
+  "copyEmail": "Copy Email",
+  "@copyEmail": {
+    "description": "Snackbar action to copy email address"
+  },
+  "emailCopied": "Email copied to clipboard",
+  "@emailCopied": {
+    "description": "Confirmation after copying email address"
   }
 }
 

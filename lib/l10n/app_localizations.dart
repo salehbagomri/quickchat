@@ -565,6 +565,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to open WhatsApp. Please try again.'**
   String get whatsappLaunchFailed;
+
+  /// Short description shown in the About dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Open WhatsApp conversations without saving contacts'**
+  String get aboutAppDescription;
+
+  /// Developer name shown in About dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Saleh Bagomri'**
+  String get developerName;
+
+  /// Subject line for feedback email
+  ///
+  /// In en, this message translates to:
+  /// **'QuickChat App Feedback'**
+  String get feedbackEmailSubject;
+
+  /// Shown when no email client is available
+  ///
+  /// In en, this message translates to:
+  /// **'No email app installed on your device'**
+  String get noEmailApp;
+
+  /// Snackbar action to copy email address
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Email'**
+  String get copyEmail;
+
+  /// Confirmation after copying email address
+  ///
+  /// In en, this message translates to:
+  /// **'Email copied to clipboard'**
+  String get emailCopied;
 }
 
 class _AppLocalizationsDelegate

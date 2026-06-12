@@ -247,4 +247,23 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get whatsappLaunchFailed =>
       'Failed to open WhatsApp. Please try again.';
+
+  @override
+  String get aboutAppDescription =>
+      'Open WhatsApp conversations without saving contacts';
+
+  @override
+  String get developerName => 'Saleh Bagomri';
+
+  @override
+  String get feedbackEmailSubject => 'QuickChat App Feedback';
+
+  @override
+  String get noEmailApp => 'No email app installed on your device';
+
+  @override
+  String get copyEmail => 'Copy Email';
+
+  @override
+  String get emailCopied => 'Email copied to clipboard';
 }

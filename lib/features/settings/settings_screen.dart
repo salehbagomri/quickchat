@@ -179,9 +179,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       children: [
         const SizedBox(height: 16),
         Text(
-          l10n.localeName == 'ar'
-              ? 'تطبيق لفتح محادثات واتساب مباشرة بدون حفظ الأرقام'
-              : 'Open WhatsApp conversations without saving contacts',
+          l10n.aboutAppDescription,
           textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 14),
         ),
@@ -189,7 +187,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text('${l10n.developer}: ',
               style: const TextStyle(fontWeight: FontWeight.bold)),
-          Text(l10n.localeName == 'ar' ? 'صالح باقمري' : 'Saleh Bagomri'),
+          Text(l10n.developerName),
         ]),
         const SizedBox(height: 8),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -203,28 +201,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Future<void> _contactEmail(
       BuildContext context, AppLocalizations l10n) async {
-    final subject = l10n.localeName == 'ar'
-        ? 'ملاحظات على تطبيق QuickChat'
-        : 'QuickChat App Feedback';
-
-    final success =
-        await AppUtils.openEmail(AppConstants.developerEmail, subject: subject);
+    final success = await AppUtils.openEmail(
+      AppConstants.developerEmail,
+      subject: l10n.feedbackEmailSubject,
+    );
 
     if (!success && context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(l10n.localeName == 'ar'
-            ? 'لا يوجد تطبيق بريد إلكتروني مثبت على جهازك'
-            : 'No email app installed on your device'),
+        content: Text(l10n.noEmailApp),
         action: SnackBarAction(
-          label: l10n.localeName == 'ar' ? 'نسخ البريد' : 'Copy Email',
+          label: l10n.copyEmail,
           onPressed: () async {
             await AppUtils.copyToClipboard(AppConstants.developerEmail);
             if (context.mounted) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(l10n.localeName == 'ar'
-                    ? 'تم نسخ البريد الإلكتروني'
-                    : 'Email copied to clipboard'),
-              ));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(l10n.emailCopied)),
+              );
             }
           },
         ),

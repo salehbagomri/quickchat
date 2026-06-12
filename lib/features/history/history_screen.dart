@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quickchat/core/extensions/whatsapp_result_ext.dart';
 import 'package:quickchat/core/widgets/confirm_dialog.dart';
 import 'package:quickchat/data/models/chat_history.dart';
 import 'package:quickchat/data/services/whatsapp_service.dart';
@@ -67,11 +68,11 @@ class HistoryScreen extends StatelessWidget {
     );
 
     if (result != WhatsAppLaunchResult.success && context.mounted) {
-      final msg = result == WhatsAppLaunchResult.notInstalled
-          ? l10n.whatsappNotInstalled
-          : l10n.whatsappLaunchFailed;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(msg), backgroundColor: Colors.red),
+        SnackBar(
+          content: Text(result.errorMessage(l10n)),
+          backgroundColor: Colors.red,
+        ),
       );
     }
   }

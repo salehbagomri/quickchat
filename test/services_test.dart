@@ -117,8 +117,8 @@ void main() {
         isDefault: true,
       );
       final edited = defaultTemplate.copyWith(title: 'Edited');
-      // isDefault يُحفَظ، لكن updatedAt يتغير
-      expect(edited.isDefault, isTrue);
+      // تعديل أي قالب (حتى الافتراضي) يجعله مملوكاً للمستخدم — isDefault تُمسح
+      expect(edited.isDefault, isNull);
       expect(edited.title, equals('Edited'));
     });
 

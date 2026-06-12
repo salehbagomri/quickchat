@@ -112,8 +112,10 @@ class TemplateService {
     final toDelete = box.values.where((t) {
       // الحالة 1: قوالب v1.0.1+ — مُعلَّمة كافتراضية وغير معدّلة
       if (t.isDefaultTemplate && t.createdAt == t.updatedAt) return true;
-      // الحالة 2: migration — قوالب v1.0.0 (isDefault == null) بعناوين افتراضية معروفة
-      if (t.isDefault == null && knownDefaultTitles.contains(t.title)) {
+      // الحالة 2: migration — قوالب v1.0.0 (isDefault == null) بعناوين افتراضية معروفة وغير معدّلة
+      if (t.isDefault == null &&
+          knownDefaultTitles.contains(t.title) &&
+          t.createdAt == t.updatedAt) {
         return true;
       }
       return false;

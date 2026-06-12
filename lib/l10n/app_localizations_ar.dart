@@ -245,4 +245,23 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get whatsappLaunchFailed =>
       'تعذّر فتح واتساب. الرجاء المحاولة مرة أخرى.';
+
+  @override
+  String get aboutAppDescription =>
+      'تطبيق لفتح محادثات واتساب مباشرة بدون حفظ الأرقام';
+
+  @override
+  String get developerName => 'صالح باقمري';
+
+  @override
+  String get feedbackEmailSubject => 'ملاحظات على تطبيق QuickChat';
+
+  @override
+  String get noEmailApp => 'لا يوجد تطبيق بريد إلكتروني مثبت على جهازك';
+
+  @override
+  String get copyEmail => 'نسخ البريد';
+
+  @override
+  String get emailCopied => 'تم نسخ البريد الإلكتروني';
 }
