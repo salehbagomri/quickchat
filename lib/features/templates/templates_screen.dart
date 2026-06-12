@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickchat/core/widgets/app_empty_state.dart';
-import 'package:quickchat/core/widgets/confirm_dialog.dart';
 import 'package:quickchat/data/models/message_template.dart';
 import 'package:quickchat/data/services/template_service.dart';
 import 'package:quickchat/features/templates/templates_cubit.dart';
@@ -100,7 +99,7 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
                           template: template,
                         ),
                         onDelete: () =>
-                            _confirmDelete(context, template, l10n),
+                            _deleteWithUndo(context, template, l10n),
                       );
                     },
                   );
@@ -131,27 +130,22 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
     }
   }
 
-  Future<void> _confirmDelete(
+  Future<void> _deleteWithUndo(
     BuildContext context,
     MessageTemplate template,
     AppLocalizations l10n,
   ) async {
-    final confirmed = await showConfirmDialog(
-      context,
-      title: l10n.deleteTemplate,
-      message: l10n.confirmDeleteTemplate,
-      confirmLabel: l10n.delete,
-      cancelLabel: l10n.cancel,
-      isDestructive: true,
+    final copy = await _cubit.deleteTemplateForUndo(template.id);
+    if (!context.mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(l10n.templateDeleted),
+        duration: const Duration(seconds: 4),
+        action: SnackBarAction(
+          label: l10n.undo,
+          onPressed: () => _cubit.restoreTemplate(copy),
+        ),
+      ),
     );
-
-    if (confirmed && context.mounted) {
-      await _cubit.deleteTemplate(template.id);
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.templateDeleted)),
-        );
-      }
-    }
   }
 }

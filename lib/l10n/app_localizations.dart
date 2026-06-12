@@ -601,6 +601,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Email copied to clipboard'**
   String get emailCopied;
+
+  /// Hint text for history search field
+  ///
+  /// In en, this message translates to:
+  /// **'Search history...'**
+  String get searchHistory;
+
+  /// Snackbar message after deleting a history item
+  ///
+  /// In en, this message translates to:
+  /// **'History item deleted'**
+  String get historyDeleted;
+
+  /// Undo action label in snackbar
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get undo;
+
+  /// Empty state when history search returns no results
+  ///
+  /// In en, this message translates to:
+  /// **'No results for this search'**
+  String get noHistoryForSearch;
 }
 
 class _AppLocalizationsDelegate

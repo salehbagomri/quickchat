@@ -83,6 +83,10 @@
   "feedbackEmailSubject": "ملاحظات على تطبيق QuickChat",
   "noEmailApp": "لا يوجد تطبيق بريد إلكتروني مثبت على جهازك",
   "copyEmail": "نسخ البريد",
-  "emailCopied": "تم نسخ البريد الإلكتروني"
+  "emailCopied": "تم نسخ البريد الإلكتروني",
+  "searchHistory": "بحث في السجل...",
+  "historyDeleted": "تم حذف السجل",
+  "undo": "تراجع",
+  "noHistoryForSearch": "لا توجد نتائج لهذا البحث"
 }
 

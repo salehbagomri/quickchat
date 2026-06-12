@@ -264,4 +264,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get emailCopied => 'تم نسخ البريد الإلكتروني';
+
+  @override
+  String get searchHistory => 'بحث في السجل...';
+
+  @override
+  String get historyDeleted => 'تم حذف السجل';
+
+  @override
+  String get undo => 'تراجع';
+
+  @override
+  String get noHistoryForSearch => 'لا توجد نتائج لهذا البحث';
 }

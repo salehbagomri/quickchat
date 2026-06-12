@@ -266,4 +266,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emailCopied => 'Email copied to clipboard';
+
+  @override
+  String get searchHistory => 'Search history...';
+
+  @override
+  String get historyDeleted => 'History item deleted';
+
+  @override
+  String get undo => 'Undo';
+
+  @override
+  String get noHistoryForSearch => 'No results for this search';
 }

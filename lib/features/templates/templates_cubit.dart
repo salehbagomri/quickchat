@@ -46,6 +46,20 @@ class TemplatesCubit extends Cubit<TemplatesState> {
 
   Future<void> deleteTemplate(String id) => _service.deleteTemplate(id);
 
+  /// Deletes template and returns a detached copy for potential Undo.
+  Future<MessageTemplate> deleteTemplateForUndo(String id) async {
+    final template = _service.getTemplate(id)!;
+    final copy = MessageTemplate.create(
+      title: template.title,
+      message: template.message,
+    );
+    await _service.deleteTemplate(id);
+    return copy;
+  }
+
+  Future<void> restoreTemplate(MessageTemplate template) =>
+      _service.addTemplate(title: template.title, message: template.message);
+
   @override
   Future<void> close() {
     _sub?.cancel();

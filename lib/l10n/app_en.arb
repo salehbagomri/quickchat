@@ -335,6 +335,22 @@
   "emailCopied": "Email copied to clipboard",
   "@emailCopied": {
     "description": "Confirmation after copying email address"
+  },
+  "searchHistory": "Search history...",
+  "@searchHistory": {
+    "description": "Hint text for history search field"
+  },
+  "historyDeleted": "History item deleted",
+  "@historyDeleted": {
+    "description": "Snackbar message after deleting a history item"
+  },
+  "undo": "Undo",
+  "@undo": {
+    "description": "Undo action label in snackbar"
+  },
+  "noHistoryForSearch": "No results for this search",
+  "@noHistoryForSearch": {
+    "description": "Empty state when history search returns no results"
   }
 }
 
