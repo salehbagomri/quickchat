@@ -398,6 +398,8 @@
   "linkCopied": "Link copied to clipboard",
   "@linkCopied": { "description": "Snackbar after copying wa.me link" },
   "scanQrHint": "Scan to open in WhatsApp",
-  "@scanQrHint": { "description": "Hint shown below QR code in the bottom sheet" }
+  "@scanQrHint": { "description": "Hint shown below QR code in the bottom sheet" },
+  "clearField": "Clear",
+  "@clearField": { "description": "Tooltip for clear/reset icon buttons" }
 }
 

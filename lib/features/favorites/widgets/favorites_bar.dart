@@ -27,27 +27,25 @@ class FavoritesBar extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
             ),
-            SizedBox(
-              height: 40,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: state.contacts.length,
-                separatorBuilder: (_, __) => const SizedBox(width: 8),
-                itemBuilder: (context, index) {
-                  final contact = state.contacts[index];
-                  return ActionChip(
-                    avatar: const Icon(Icons.star, size: 16),
-                    label: Text(
-                      contact.displayName,
-                      overflow: TextOverflow.ellipsis,
+            // SingleChildScrollView + Row adapts to text scale, unlike fixed SizedBox.
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  for (int i = 0; i < state.contacts.length; i++) ...[
+                    if (i > 0) const SizedBox(width: 8),
+                    ActionChip(
+                      avatar: const Icon(Icons.star, size: 16),
+                      label: Text(state.contacts[i].displayName),
+                      onPressed: () =>
+                          onFavoriteTap(state.contacts[i].formattedPhone),
                     ),
-                    onPressed: () => onFavoriteTap(contact.formattedPhone),
-                  );
-                },
+                  ],
+                ],
               ),
             ),
             const SizedBox(height: 12),

@@ -27,6 +27,7 @@ class HistorySearchBar extends StatelessWidget {
           suffixIcon: controller.text.isNotEmpty
               ? IconButton(
                   icon: const Icon(Icons.clear),
+                  tooltip: l10n.clearField,
                   onPressed: onClear,
                 )
               : null,

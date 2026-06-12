@@ -338,4 +338,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get scanQrHint => 'Scan to open in WhatsApp';
+
+  @override
+  String get clearField => 'Clear';
 }

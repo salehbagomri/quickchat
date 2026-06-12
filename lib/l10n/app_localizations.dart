@@ -739,6 +739,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Scan to open in WhatsApp'**
   String get scanQrHint;
+
+  /// Tooltip for clear/reset icon buttons
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get clearField;
 }
 
 class _AppLocalizationsDelegate

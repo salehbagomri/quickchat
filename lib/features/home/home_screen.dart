@@ -166,6 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             IconButton(
               icon: const Icon(Icons.settings),
+              tooltip: l10n.settings,
               onPressed: () async {
                 final msg = await AppRouter.pushSettings(context);
                 if (msg != null && mounted) {
@@ -266,9 +267,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         const SizedBox(width: 8),
-        OutlinedButton(
-          onPressed: () => _showQrCode(context, l10n, phone),
-          child: const Icon(Icons.qr_code),
+        Tooltip(
+          message: l10n.qrCode,
+          child: OutlinedButton(
+            onPressed: () => _showQrCode(context, l10n, phone),
+            child: const Icon(Icons.qr_code),
+          ),
         ),
       ],
     );
@@ -313,13 +317,18 @@ class _HomeScreenState extends State<HomeScreen> {
               Text(l10n.qrCode,
                   style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 16),
-              Container(
-                color: Colors.white,
-                padding: const EdgeInsets.all(12),
-                child: QrImageView(
-                  data: url,
-                  version: QrVersions.auto,
-                  size: 220,
+              Semantics(
+                label: l10n.qrCode,
+                image: true,
+                excludeSemantics: true,
+                child: Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.all(12),
+                  child: QrImageView(
+                    data: url,
+                    version: QrVersions.auto,
+                    size: 220,
+                  ),
                 ),
               ),
               const SizedBox(height: 12),

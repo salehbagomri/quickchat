@@ -109,6 +109,7 @@
   "shareLink": "مشاركة",
   "qrCode": "رمز QR",
   "linkCopied": "تم نسخ الرابط",
-  "scanQrHint": "امسح لفتح في واتساب"
+  "scanQrHint": "امسح لفتح في واتساب",
+  "clearField": "مسح"
 }
 

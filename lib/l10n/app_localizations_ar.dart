@@ -336,4 +336,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get scanQrHint => 'امسح لفتح في واتساب';
+
+  @override
+  String get clearField => 'مسح';
 }
