@@ -19,6 +19,12 @@ class AppConstants {
   // Supported Languages
   static const String languageEnglish = 'en';
   static const String languageArabic = 'ar';
+  static const String languageSpanish = 'es';
+  static const String languageHindi = 'hi';
+  static const String languagePortuguese = 'pt';
+  static const String languageIndonesian = 'id';
+  static const String languageUrdu = 'ur';
+  static const String languageTurkish = 'tr';
 
   // Theme Modes
   static const String themeModeLight = 'light';

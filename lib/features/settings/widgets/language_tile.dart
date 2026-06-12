@@ -4,6 +4,17 @@ import 'package:quickchat/core/constants/app_constants.dart';
 import 'package:quickchat/features/settings/settings_cubit.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 
+const _languageNames = {
+  AppConstants.languageArabic: 'العربية',
+  AppConstants.languageEnglish: 'English',
+  AppConstants.languageSpanish: 'Español',
+  AppConstants.languageHindi: 'हिन्दी',
+  AppConstants.languagePortuguese: 'Português',
+  AppConstants.languageIndonesian: 'Bahasa Indonesia',
+  AppConstants.languageUrdu: 'اردو',
+  AppConstants.languageTurkish: 'Türkçe',
+};
+
 class LanguageTile extends StatelessWidget {
   const LanguageTile({super.key});
 
@@ -11,6 +22,8 @@ class LanguageTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final state = context.watch<SettingsCubit>().state;
+    final currentName =
+        _languageNames[state.locale.languageCode] ?? 'English';
 
     return ListTile(
       leading: Icon(Icons.language,
@@ -20,7 +33,7 @@ class LanguageTile extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            state.locale.languageCode == 'ar' ? 'العربية' : 'English',
+            currentName,
             style: Theme.of(context)
                 .textTheme
                 .bodyMedium
@@ -40,26 +53,28 @@ class LanguageTile extends StatelessWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         title: Text(l10n.language),
-        content: RadioGroup<String>(
-          groupValue: state.locale.languageCode,
-          onChanged: (v) {
-            if (v != null) {
-              context.read<SettingsCubit>().changeLanguage(v);
-              Navigator.pop(ctx);
-            }
-          },
-          child: const Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              RadioListTile<String>(
-                title: Text('العربية'),
-                value: AppConstants.languageArabic,
+        contentPadding: const EdgeInsets.symmetric(vertical: 8),
+        content: SizedBox(
+          width: double.maxFinite,
+          child: RadioGroup<String>(
+            groupValue: state.locale.languageCode,
+            onChanged: (v) {
+              if (v != null) {
+                context.read<SettingsCubit>().changeLanguage(v);
+                Navigator.pop(ctx);
+              }
+            },
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: _languageNames.entries
+                    .map((e) => RadioListTile<String>(
+                          title: Text(e.value),
+                          value: e.key,
+                        ))
+                    .toList(),
               ),
-              RadioListTile<String>(
-                title: Text('English'),
-                value: AppConstants.languageEnglish,
-              ),
-            ],
+            ),
           ),
         ),
       ),

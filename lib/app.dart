@@ -42,6 +42,12 @@ class QuickChatApp extends StatelessWidget {
             supportedLocales: const [
               Locale('en'),
               Locale('ar'),
+              Locale('es'),
+              Locale('hi'),
+              Locale('pt'),
+              Locale('id'),
+              Locale('ur'),
+              Locale('tr'),
             ],
             home: isFirstLaunch ? const OnboardingScreen() : const HomeScreen(),
           );

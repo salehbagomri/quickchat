@@ -88,11 +88,7 @@ class TemplateService {
   /// إضافة قوالب افتراضية (عند أول تشغيل)
   Future<void> addDefaultTemplates(String languageCode) async {
     if (box.isEmpty) {
-      final defaultTemplates = languageCode == 'ar'
-          ? _getArabicTemplates()
-          : _getEnglishTemplates();
-
-      for (var template in defaultTemplates) {
+      for (var template in _getTemplatesForLanguage(languageCode)) {
         await _addDefaultTemplate(
           title: template['title']!,
           message: template['message']!,
@@ -107,6 +103,12 @@ class TemplateService {
     final knownDefaultTitles = {
       ..._getArabicTemplates().map((t) => t['title']!),
       ..._getEnglishTemplates().map((t) => t['title']!),
+      ..._getSpanishTemplates().map((t) => t['title']!),
+      ..._getHindiTemplates().map((t) => t['title']!),
+      ..._getPortugueseTemplates().map((t) => t['title']!),
+      ..._getIndonesianTemplates().map((t) => t['title']!),
+      ..._getUrduTemplates().map((t) => t['title']!),
+      ..._getTurkishTemplates().map((t) => t['title']!),
     };
 
     final toDelete = box.values.where((t) {
@@ -126,11 +128,7 @@ class TemplateService {
     }
 
     // أضف القوالب الافتراضية الجديدة باللغة المختارة
-    final defaultTemplates = languageCode == 'ar'
-        ? _getArabicTemplates()
-        : _getEnglishTemplates();
-
-    for (var template in defaultTemplates) {
+    for (var template in _getTemplatesForLanguage(languageCode)) {
       await _addDefaultTemplate(
         title: template['title']!,
         message: template['message']!,
@@ -244,6 +242,109 @@ class TemplateService {
         'title': 'Apology for Delay',
         'message': 'We apologize for the delay, we will reach you as soon as possible. Thank you for your understanding.',
       },
+    ];
+  }
+
+  List<Map<String, String>> _getTemplatesForLanguage(String code) {
+    switch (code) {
+      case 'ar': return _getArabicTemplates();
+      case 'es': return _getSpanishTemplates();
+      case 'hi': return _getHindiTemplates();
+      case 'pt': return _getPortugueseTemplates();
+      case 'id': return _getIndonesianTemplates();
+      case 'ur': return _getUrduTemplates();
+      case 'tr': return _getTurkishTemplates();
+      default:   return _getEnglishTemplates();
+    }
+  }
+
+  List<Map<String, String>> _getSpanishTemplates() {
+    return [
+      {'title': 'Saludo General', 'message': 'Hola, ¿en qué puedo ayudarte?'},
+      {'title': 'Consulta de Producto', 'message': 'Hola, me gustaría consultar sobre su producto.'},
+      {'title': 'Confirmación de Pedido', 'message': '¡Gracias! Su pedido ha sido recibido y nos comunicaremos con usted pronto.'},
+      {'title': 'Solicitar Información', 'message': 'Hola, ¿puede enviarme más detalles?'},
+      {'title': 'Agradecimiento', 'message': 'Gracias por contactarnos, apreciamos su confianza.'},
+      {'title': 'Conductor - Llegué', 'message': 'Hola, he llegado a su ubicación. Le estoy esperando.'},
+      {'title': 'Conductor - En Camino', 'message': 'Hola, estoy en camino y llegaré en aproximadamente 10 minutos.'},
+      {'title': 'Consulta de Precio', 'message': 'Hola, ¿cuál es el precio final incluyendo el envío?'},
+      {'title': 'Disponibilidad del Producto', 'message': 'Hola, ¿está disponible el producto actualmente? ¿Cuándo puede entregarse?'},
+      {'title': 'Disculpa por Retraso', 'message': 'Nos disculpamos por el retraso, nos comunicaremos con usted lo antes posible. Gracias por su comprensión.'},
+    ];
+  }
+
+  List<Map<String, String>> _getHindiTemplates() {
+    return [
+      {'title': 'सामान्य अभिवादन', 'message': 'नमस्ते, मैं आपकी कैसे मदद कर सकता हूं?'},
+      {'title': 'उत्पाद पूछताछ', 'message': 'नमस्ते, मैं आपके उत्पाद के बारे में पूछना चाहता हूं।'},
+      {'title': 'ऑर्डर पुष्टि', 'message': 'धन्यवाद! आपका ऑर्डर प्राप्त हो गया है और हम जल्द आपसे संपर्क करेंगे।'},
+      {'title': 'जानकारी अनुरोध', 'message': 'नमस्ते, क्या आप अधिक विवरण भेज सकते हैं?'},
+      {'title': 'धन्यवाद', 'message': 'हमसे संपर्क करने के लिए धन्यवाद, हम आपके विश्वास की सराहना करते हैं।'},
+      {'title': 'ड्राइवर - पहुंच गया', 'message': 'नमस्ते, मैं आपके स्थान पर पहुंच गया हूं। मैं आपका इंतजार कर रहा हूं।'},
+      {'title': 'ड्राइवर - रास्ते में', 'message': 'नमस्ते, मैं रास्ते में हूं और लगभग 10 मिनट में पहुंचूंगा।'},
+      {'title': 'कीमत पूछताछ', 'message': 'नमस्ते, डिलीवरी सहित अंतिम कीमत क्या है?'},
+      {'title': 'उत्पाद उपलब्धता', 'message': 'नमस्ते, क्या उत्पाद अभी उपलब्ध है? इसे कब डिलीवर किया जा सकता है?'},
+      {'title': 'देरी के लिए माफी', 'message': 'देरी के लिए माफी, हम जल्द से जल्द आपसे संपर्क करेंगे। आपकी समझ के लिए धन्यवाद।'},
+    ];
+  }
+
+  List<Map<String, String>> _getPortugueseTemplates() {
+    return [
+      {'title': 'Saudação Geral', 'message': 'Olá, como posso ajudá-lo?'},
+      {'title': 'Consulta de Produto', 'message': 'Olá, gostaria de saber mais sobre o seu produto.'},
+      {'title': 'Confirmação de Pedido', 'message': 'Obrigado! Seu pedido foi recebido e entraremos em contato em breve.'},
+      {'title': 'Solicitar Informações', 'message': 'Olá, você pode enviar mais detalhes?'},
+      {'title': 'Agradecimento', 'message': 'Obrigado por entrar em contato conosco, agradecemos sua confiança.'},
+      {'title': 'Motorista - Chegou', 'message': 'Olá, cheguei ao seu local. Estou aguardando você.'},
+      {'title': 'Motorista - A Caminho', 'message': 'Olá, estou a caminho e chegarei em aproximadamente 10 minutos.'},
+      {'title': 'Consulta de Preço', 'message': 'Olá, qual é o preço final incluindo a entrega?'},
+      {'title': 'Disponibilidade do Produto', 'message': 'Olá, o produto está disponível atualmente? Quando pode ser entregue?'},
+      {'title': 'Desculpas pelo Atraso', 'message': 'Pedimos desculpas pelo atraso, entraremos em contato o mais breve possível. Obrigado pela compreensão.'},
+    ];
+  }
+
+  List<Map<String, String>> _getIndonesianTemplates() {
+    return [
+      {'title': 'Salam Umum', 'message': 'Halo, bagaimana saya bisa membantu Anda?'},
+      {'title': 'Pertanyaan Produk', 'message': 'Halo, saya ingin menanyakan tentang produk Anda.'},
+      {'title': 'Konfirmasi Pesanan', 'message': 'Terima kasih! Pesanan Anda telah diterima dan kami akan segera menghubungi Anda.'},
+      {'title': 'Meminta Informasi', 'message': 'Halo, bisakah Anda mengirim informasi lebih lanjut?'},
+      {'title': 'Terima Kasih', 'message': 'Terima kasih telah menghubungi kami, kami menghargai kepercayaan Anda.'},
+      {'title': 'Pengemudi - Sudah Tiba', 'message': 'Halo, saya sudah tiba di lokasi Anda. Saya menunggu Anda.'},
+      {'title': 'Pengemudi - Dalam Perjalanan', 'message': 'Halo, saya sedang dalam perjalanan dan akan tiba dalam sekitar 10 menit.'},
+      {'title': 'Permintaan Harga', 'message': 'Halo, berapa harga akhir termasuk pengiriman?'},
+      {'title': 'Ketersediaan Produk', 'message': 'Halo, apakah produk tersedia saat ini? Kapan bisa dikirim?'},
+      {'title': 'Maaf atas Keterlambatan', 'message': 'Kami mohon maaf atas keterlambatan, kami akan menghubungi Anda sesegera mungkin. Terima kasih atas pengertian Anda.'},
+    ];
+  }
+
+  List<Map<String, String>> _getUrduTemplates() {
+    return [
+      {'title': 'عمومی سلام', 'message': 'السلام علیکم، میں آپ کی کس طرح مدد کر سکتا ہوں؟'},
+      {'title': 'مصنوع کے بارے میں', 'message': 'السلام علیکم، میں آپ کی مصنوع کے بارے میں پوچھنا چاہتا ہوں۔'},
+      {'title': 'آرڈر کی تصدیق', 'message': 'شکریہ! آپ کا آرڈر موصول ہو گیا ہے اور ہم جلد آپ سے رابطہ کریں گے۔'},
+      {'title': 'معلومات کی درخواست', 'message': 'السلام علیکم، کیا آپ مزید تفصیلات بھیج سکتے ہیں؟'},
+      {'title': 'شکریہ', 'message': 'ہم سے رابطہ کرنے کا شکریہ، ہم آپ کے اعتماد کی قدر کرتے ہیں۔'},
+      {'title': 'ڈرائیور - پہنچ گیا', 'message': 'السلام علیکم، میں آپ کے مقام پر پہنچ گیا ہوں۔ میں آپ کا انتظار کر رہا ہوں۔'},
+      {'title': 'ڈرائیور - راستے میں', 'message': 'السلام علیکم، میں راستے میں ہوں اور تقریباً 10 منٹ میں پہنچ جاؤں گا۔'},
+      {'title': 'قیمت کی پوچھ گچھ', 'message': 'السلام علیکم، ڈیلیوری سمیت آخری قیمت کیا ہے؟'},
+      {'title': 'مصنوع کی دستیابی', 'message': 'السلام علیکم، کیا مصنوع ابھی دستیاب ہے؟ کب ڈیلیور کیا جا سکتا ہے؟'},
+      {'title': 'تاخیر کے لیے معذرت', 'message': 'تاخیر کے لیے معذرت، ہم جلد از جلد آپ سے رابطہ کریں گے۔ آپ کی سمجھ کا شکریہ۔'},
+    ];
+  }
+
+  List<Map<String, String>> _getTurkishTemplates() {
+    return [
+      {'title': 'Genel Selamlama', 'message': 'Merhaba, nasıl yardımcı olabilirim?'},
+      {'title': 'Ürün Hakkında Bilgi', 'message': 'Merhaba, ürününüz hakkında bilgi almak istiyorum.'},
+      {'title': 'Sipariş Onayı', 'message': 'Teşekkürler! Siparişiniz alındı ve en kısa sürede sizinle iletişime geçeceğiz.'},
+      {'title': 'Bilgi Talebi', 'message': 'Merhaba, daha fazla ayrıntı gönderebilir misiniz?'},
+      {'title': 'Teşekkür', 'message': 'Bize ulaştığınız için teşekkürler, güveninizi takdir ediyoruz.'},
+      {'title': 'Sürücü - Geldi', 'message': 'Merhaba, konumunuza ulaştım. Sizi bekliyorum.'},
+      {'title': 'Sürücü - Yolda', 'message': 'Merhaba, yoldayım ve yaklaşık 10 dakika içinde ulaşacağım.'},
+      {'title': 'Fiyat Talebi', 'message': 'Merhaba, teslimat dahil nihai fiyat nedir?'},
+      {'title': 'Ürün Mevcudiyeti', 'message': 'Merhaba, ürün şu anda mevcut mu? Ne zaman teslim edilebilir?'},
+      {'title': 'Gecikme İçin Özür', 'message': 'Gecikme için özür dileriz, en kısa sürede size ulaşacağız. Anlayışınız için teşekkürler.'},
     ];
   }
 }

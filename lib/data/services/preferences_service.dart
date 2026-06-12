@@ -34,14 +34,17 @@ class PreferencesService {
       final languageCode = systemLocale.languageCode.toLowerCase();
 
       // تحقق من اللغات المدعومة
-      if (languageCode == 'ar') {
-        return AppConstants.languageArabic;
-      } else if (languageCode == 'en') {
-        return AppConstants.languageEnglish;
-      } else {
-        // اللغة الافتراضية إذا كانت اللغة غير مدعومة
-        return AppConstants.languageEnglish;
-      }
+      const supported = {
+        'ar': AppConstants.languageArabic,
+        'en': AppConstants.languageEnglish,
+        'es': AppConstants.languageSpanish,
+        'hi': AppConstants.languageHindi,
+        'pt': AppConstants.languagePortuguese,
+        'id': AppConstants.languageIndonesian,
+        'ur': AppConstants.languageUrdu,
+        'tr': AppConstants.languageTurkish,
+      };
+      return supported[languageCode] ?? AppConstants.languageEnglish;
     } catch (e) {
       // في حالة حدوث خطأ، استخدم الإنجليزية كافتراضي
       return AppConstants.languageEnglish;
