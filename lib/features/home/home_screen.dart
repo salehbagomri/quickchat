@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show HapticFeedback;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quickchat/core/extensions/whatsapp_result_ext.dart';
@@ -87,9 +88,11 @@ class _HomeScreenState extends State<HomeScreen> {
     if (!mounted) return;
 
     if (result == WhatsAppLaunchResult.success) {
+      await HapticFeedback.lightImpact();
       _phoneController.clear();
       _messageController.clear();
     } else {
+      await HapticFeedback.heavyImpact();
       _showError(result.errorMessage(l10n));
     }
   }

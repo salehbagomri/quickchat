@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:quickchat/app.dart';
 import 'package:quickchat/data/local_storage/hive_service.dart';
 import 'package:quickchat/data/services/preferences_service.dart';
 import 'package:quickchat/data/services/template_service.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   // Configure app orientation
   await SystemChrome.setPreferredOrientations([
@@ -30,10 +32,11 @@ void main() async {
     // Check first launch status
     final isFirstLaunch = PreferencesService().isFirstLaunch();
 
+    FlutterNativeSplash.remove();
     runApp(QuickChatApp(isFirstLaunch: isFirstLaunch));
   } catch (e, stackTrace) {
-    // Log error and run app with safe defaults
     debugPrint('Initialization error: $e\n$stackTrace');
+    FlutterNativeSplash.remove();
     runApp(const QuickChatApp(isFirstLaunch: false));
   }
 }

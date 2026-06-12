@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show HapticFeedback;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickchat/core/widgets/app_empty_state.dart';
 import 'package:quickchat/data/models/message_template.dart';
@@ -136,6 +137,7 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
     AppLocalizations l10n,
   ) async {
     final copy = await _cubit.deleteTemplateForUndo(template.id);
+    await HapticFeedback.mediumImpact();
     if (!context.mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

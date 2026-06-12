@@ -136,6 +136,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
     AppLocalizations l10n,
   ) async {
     await Clipboard.setData(ClipboardData(text: history.formattedPhone));
+    await HapticFeedback.lightImpact();
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(l10n.phoneNumberCopied)),
@@ -169,6 +170,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   ) async {
     final cubit = context.read<HistoryCubit>();
     final copy = await cubit.deleteItemForUndo(history);
+    await HapticFeedback.mediumImpact();
     if (!context.mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

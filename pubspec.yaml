@@ -54,6 +54,19 @@ flutter:
   assets:
     - assets/icons/
 
+# Native splash screen
+flutter_native_splash:
+  color: "#FFFFFF"
+  color_dark: "#121212"
+  image: assets/icons/icon.png
+  android_12:
+    image: assets/icons/icon.png
+    color: "#FFFFFF"
+    color_dark: "#121212"
+  android: true
+  ios: false
+  web: false
+
 # App icon configuration
 flutter_launcher_icons:
   android: true

@@ -39,7 +39,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         child: Column(
           children: [
             Align(
-              alignment: Alignment.topRight,
+              alignment: AlignmentDirectional.topEnd,
               child: TextButton(
                 onPressed: _completeOnboarding,
                 child: Text(l10n.skip),
