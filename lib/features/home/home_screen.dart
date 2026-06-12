@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show HapticFeedback;
+import 'package:flutter/services.dart' show Clipboard, HapticFeedback;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quickchat/core/extensions/whatsapp_result_ext.dart';
 import 'package:quickchat/core/router/app_router.dart';
 import 'package:quickchat/core/theme/app_spacing.dart';
 import 'package:quickchat/data/services/whatsapp_service.dart';
+import 'package:quickchat/data/services/preferences_service.dart';
 import 'package:quickchat/features/home/home_cubit.dart';
 import 'package:quickchat/features/home/widgets/home_footer.dart';
 import 'package:quickchat/features/home/widgets/message_input_card.dart';
@@ -34,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _cubit = HomeCubit();
     _initShareHandler();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _checkClipboard());
   }
 
   Future<void> _initShareHandler() async {
@@ -49,6 +51,39 @@ class _HomeScreenState extends State<HomeScreen> {
     if (text == null || text.isEmpty || !mounted) return;
     final phone = _extractPhone(text);
     if (phone != null) _phoneController.text = phone;
+  }
+
+  Future<void> _checkClipboard() async {
+    if (!PreferencesService().getClipboardDetection()) return;
+    if (_phoneController.text.isNotEmpty) return;
+
+    final clipData = await Clipboard.getData(Clipboard.kTextPlain);
+    if (!mounted) return;
+
+    final phone = _extractPhone(clipData?.text ?? '');
+    if (phone == null) return;
+
+    final l10n = AppLocalizations.of(context)!;
+    ScaffoldMessenger.of(context).showMaterialBanner(
+      MaterialBanner(
+        content: Text(l10n.clipboardSuggestion(phone)),
+        leading: const Icon(Icons.phone_outlined),
+        actions: [
+          TextButton(
+            onPressed: () =>
+                ScaffoldMessenger.of(context).hideCurrentMaterialBanner(),
+            child: Text(l10n.cancel),
+          ),
+          TextButton(
+            onPressed: () {
+              _phoneController.text = phone;
+              ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+            },
+            child: Text(l10n.use),
+          ),
+        ],
+      ),
+    );
   }
 
   /// Extracts the first phone-like sequence from arbitrary text.

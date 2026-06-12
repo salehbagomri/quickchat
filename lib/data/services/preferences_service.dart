@@ -78,5 +78,14 @@ class PreferencesService {
   Future<void> setThemeMode(String themeMode) async {
     await prefs.setString(AppConstants.keyThemeMode, themeMode);
   }
+
+  // Clipboard detection (default: enabled)
+  bool getClipboardDetection() {
+    return prefs.getBool(AppConstants.keyClipboardDetection) ?? true;
+  }
+
+  Future<void> setClipboardDetection(bool enabled) async {
+    await prefs.setBool(AppConstants.keyClipboardDetection, enabled);
+  }
 }
 

@@ -87,6 +87,12 @@
   "searchHistory": "بحث في السجل...",
   "historyDeleted": "تم حذف السجل",
   "undo": "تراجع",
-  "noHistoryForSearch": "لا توجد نتائج لهذا البحث"
+  "noHistoryForSearch": "لا توجد نتائج لهذا البحث",
+  "clipboardSuggestion": "رقم هاتفي في الحافظة: {phone}",
+  "@clipboardSuggestion": {
+    "placeholders": { "phone": { "type": "String" } }
+  },
+  "clipboardDetectionTitle": "كشف الحافظة",
+  "clipboardDetectionDesc": "اقتراح أرقام الهاتف الموجودة في الحافظة"
 }
 

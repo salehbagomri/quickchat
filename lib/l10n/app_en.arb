@@ -351,6 +351,21 @@
   "noHistoryForSearch": "No results for this search",
   "@noHistoryForSearch": {
     "description": "Empty state when history search returns no results"
+  },
+  "clipboardSuggestion": "Phone number in clipboard: {phone}",
+  "@clipboardSuggestion": {
+    "description": "Material banner shown when a phone number is detected in clipboard",
+    "placeholders": {
+      "phone": { "type": "String", "description": "The detected phone number" }
+    }
+  },
+  "clipboardDetectionTitle": "Clipboard Detection",
+  "@clipboardDetectionTitle": {
+    "description": "Settings toggle title for clipboard detection"
+  },
+  "clipboardDetectionDesc": "Suggest phone numbers found in clipboard",
+  "@clipboardDetectionDesc": {
+    "description": "Settings toggle subtitle for clipboard detection"
   }
 }
 

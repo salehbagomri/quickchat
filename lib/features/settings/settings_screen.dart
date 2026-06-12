@@ -70,6 +70,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               SettingsSection(
+                child: SwitchListTile(
+                  secondary: Icon(Icons.content_paste_outlined,
+                      color: Theme.of(context).colorScheme.primary),
+                  title: Text(l10n.clipboardDetectionTitle),
+                  subtitle: Text(l10n.clipboardDetectionDesc),
+                  value: state.clipboardDetection,
+                  onChanged: (v) =>
+                      context.read<SettingsCubit>().toggleClipboardDetection(v),
+                ),
+              ),
+              SettingsSection(
                 child: ListTile(
                   leading: Icon(Icons.delete_outline,
                       color: Theme.of(context).colorScheme.error),

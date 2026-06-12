@@ -15,6 +15,7 @@ class SettingsCubit extends Cubit<SettingsState> {
       : super(SettingsState(
           locale: Locale(_preferencesService.getLanguage()),
           themeMode: _getThemeModeFromString(_preferencesService.getThemeMode()),
+          clipboardDetection: _preferencesService.getClipboardDetection(),
         ));
 
   static ThemeMode _getThemeModeFromString(String mode) {
@@ -55,6 +56,11 @@ class SettingsCubit extends Cubit<SettingsState> {
   Future<void> changeThemeMode(ThemeMode themeMode) async {
     await _preferencesService.setThemeMode(_getStringFromThemeMode(themeMode));
     emit(state.copyWith(themeMode: themeMode));
+  }
+
+  Future<void> toggleClipboardDetection(bool enabled) async {
+    await _preferencesService.setClipboardDetection(enabled);
+    emit(state.copyWith(clipboardDetection: enabled));
   }
 }
 

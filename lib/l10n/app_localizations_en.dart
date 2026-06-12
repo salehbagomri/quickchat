@@ -278,4 +278,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noHistoryForSearch => 'No results for this search';
+
+  @override
+  String clipboardSuggestion(String phone) {
+    return 'Phone number in clipboard: $phone';
+  }
+
+  @override
+  String get clipboardDetectionTitle => 'Clipboard Detection';
+
+  @override
+  String get clipboardDetectionDesc =>
+      'Suggest phone numbers found in clipboard';
 }

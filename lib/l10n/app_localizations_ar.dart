@@ -276,4 +276,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noHistoryForSearch => 'لا توجد نتائج لهذا البحث';
+
+  @override
+  String clipboardSuggestion(String phone) {
+    return 'رقم هاتفي في الحافظة: $phone';
+  }
+
+  @override
+  String get clipboardDetectionTitle => 'كشف الحافظة';
+
+  @override
+  String get clipboardDetectionDesc =>
+      'اقتراح أرقام الهاتف الموجودة في الحافظة';
 }

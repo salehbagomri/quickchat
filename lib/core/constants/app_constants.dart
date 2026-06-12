@@ -6,6 +6,7 @@ class AppConstants {
   static const String keyFirstLaunch = 'first_launch';
   static const String keyLanguage = 'language';
   static const String keyThemeMode = 'theme_mode';
+  static const String keyClipboardDetection = 'clipboard_detection';
 
   // Hive Box Names
   static const String historyBox = 'history_box';

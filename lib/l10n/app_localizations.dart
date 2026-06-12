@@ -625,6 +625,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No results for this search'**
   String get noHistoryForSearch;
+
+  /// Material banner shown when a phone number is detected in clipboard
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number in clipboard: {phone}'**
+  String clipboardSuggestion(String phone);
+
+  /// Settings toggle title for clipboard detection
+  ///
+  /// In en, this message translates to:
+  /// **'Clipboard Detection'**
+  String get clipboardDetectionTitle;
+
+  /// Settings toggle subtitle for clipboard detection
+  ///
+  /// In en, this message translates to:
+  /// **'Suggest phone numbers found in clipboard'**
+  String get clipboardDetectionDesc;
 }
 
 class _AppLocalizationsDelegate
