@@ -38,7 +38,7 @@
 - [x] `build.gradle.kts` مُعد للتوقيع
 - [x] الملفات الحساسة محمية في `.gitignore`
 - [x] نسخة احتياطية آمنة للملفات الحساسة
-  - Location: `D:\FlutterProjects\quickchatData\upload-keystore.jks`
+  - Location: `android/keystore/quickchat-keystore.jks` (داخل المشروع، محمي بـ .gitignore)
 
 ### 4. ✅ الأيقونات (Icons)
 - [x] أيقونة التطبيق الرئيسية (1024×1024)

@@ -88,7 +88,7 @@ If signing files were accidentally committed, it's recommended to generate a new
 
 ```powershell
 # Windows PowerShell
-[Convert]::ToBase64String([IO.File]::ReadAllBytes("D:\FlutterProjects\quickchatData\upload-keystore.jks")) | Set-Clipboard
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("C:\flutterprojects\quickchat\quickchat\android\keystore\quickchat-keystore.jks")) | Set-Clipboard
 # الآن القيمة في الحافظة — الصقها كـ Secret
 ```
 
@@ -173,11 +173,12 @@ If you encounter any signing issues:
 
 ```
 android/
-├── key.properties          (🔒 NEVER commit to Git)
-├── quickchat-key.jks      (🔒 NEVER commit to Git)
+├── key.properties          (🔒 NEVER commit — محمي بـ .gitignore)
+├── keystore/
+│   └── quickchat-keystore.jks  (🔒 NEVER commit — محمي بـ android/.gitignore)
 ├── app/
-│   └── build.gradle.kts   (✅ Safe to commit - reads from key.properties)
-└── .gitignore             (✅ Protects sensitive files)
+│   └── build.gradle.kts   (✅ آمن للـ commit — يقرأ من key.properties)
+└── .gitignore             (✅ يحمي الملفات الحساسة)
 ```
 
 ---
