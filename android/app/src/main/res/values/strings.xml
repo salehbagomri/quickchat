@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuickChat</string>
+    <string name="widget_description">Quick access to your favorite WhatsApp contacts</string>
+    <string name="widget_no_favorites">No favorites yet</string>
+    <string name="tile_label">QuickChat</string>
+</resources>

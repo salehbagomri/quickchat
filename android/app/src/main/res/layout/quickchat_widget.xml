@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/widget_background"
+    android:padding="12dp"
+    android:gravity="center_horizontal">
+
+    <!-- Header row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:id="@+id/widget_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="QuickChat"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFFFF"
+            android:fontFamily="sans-serif-medium"/>
+
+        <!-- Open-app button -->
+        <TextView
+            android:id="@+id/widget_open_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:textSize="20sp"
+            android:textColor="#FFFFFFFF"
+            android:padding="4dp"/>
+    </LinearLayout>
+
+    <!-- Favorites list (up to 3) — each row is a separate RemoteView -->
+    <LinearLayout
+        android:id="@+id/widget_favorites_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- fav_row_0 -->
+        <TextView
+            android:id="@+id/fav_row_0"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center_vertical"
+            android:textColor="#FFFFFFFF"
+            android:textSize="13sp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:drawablePadding="8dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:background="@drawable/widget_row_bg"
+            android:layout_marginBottom="4dp"
+            android:visibility="gone"/>
+
+        <!-- fav_row_1 -->
+        <TextView
+            android:id="@+id/fav_row_1"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center_vertical"
+            android:textColor="#FFFFFFFF"
+            android:textSize="13sp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:drawablePadding="8dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:background="@drawable/widget_row_bg"
+            android:layout_marginBottom="4dp"
+            android:visibility="gone"/>
+
+        <!-- fav_row_2 -->
+        <TextView
+            android:id="@+id/fav_row_2"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center_vertical"
+            android:textColor="#FFFFFFFF"
+            android:textSize="13sp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:drawablePadding="8dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:background="@drawable/widget_row_bg"
+            android:visibility="gone"/>
+
+        <!-- Empty state -->
+        <TextView
+            android:id="@+id/widget_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No favorites yet"
+            android:textColor="#CCFFFFFF"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:visibility="visible"/>
+    </LinearLayout>
+
+</LinearLayout>
