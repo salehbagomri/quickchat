@@ -2,7 +2,7 @@
 
 ## ✅ 100% جاهز للنشر!
 
-**التاريخ**: 9 نوفمبر 2025
+**التاريخ**: 13 يونيو 2026 (تحديث v2.0.0 — اكتمال المرحلة 6)
 **الحالة**: 🟢 **جاهز بالكامل**
 
 ---
@@ -162,53 +162,51 @@ build/app/outputs/bundle/release/app-release.aab
 
 #### 5. **Release name** (اسم الإصدار):
 ```
-1.0.0 (1)
+2.0.0 (3)
 ```
 
 #### 6. **Release notes** (ملاحظات الإصدار):
 
 **بالعربي**:
 ```
-🎉 الإصدار الأول - v1.0.0
+🚀 تحديث ضخم - v2.0.0
 
-✨ المميزات:
-• راسل أي رقم واتساب بدون حفظه في جهات الاتصال
-• دعم أكثر من 195 دولة مع اختيار ذكي لرمز الدولة
-• 10 قوالب رسائل جاهزة للاستخدام الفوري
-• أنشئ وعدّل قوالبك الخاصة
-• سجل تلقائي للأرقام التي راسلتها مؤخرًا
-• دعم واتساب العادي وواتساب بزنس
-• واجهة باللغة العربية والإنجليزية
-• وضع فاتح ووضع داكن
-• تصميم نظيف وسهل الاستخدام
-• خصوصية محمية - لا نجمع أي بيانات شخصية
-• مجاني بالكامل بدون إعلانات
+✨ مميزات جديدة:
+• 📲 اختصارات سريعة من الشاشة الرئيسية (اضغط مطولاً على أيقونة التطبيق)
+• 🏠 ودجت المفضلة على شاشة الهاتف الرئيسية
+• 🔗 شارك رقمك عبر رابط wa.me أو رابط quickchat:// مع فتح مباشر
+• 📤 طابور إرسال جماعي يدوي آمن (مع تحذير سياسة واتساب)
+• 📷 امسح رمز QR للملء التلقائي لرقم الهاتف
+• 🗂️ تصنيف القوالب بشرائح فلترة
+• ⚡ Quick Settings Tile من لوحة الإعدادات السريعة
+• 🌐 دعم روابط التطبيق (App Links) المباشرة
 
-📱 مثالي لأصحاب الأعمال، سائقي التوصيل، فرق المبيعات، وكل من يتواصل مع أرقام جديدة يوميًا!
+🔒 خصوصية الكاميرا: تُستخدم محلياً فقط لمسح QR — لا صور تُحفظ أو تُرسل
 
-💬 لديك اقتراح؟ راسلنا: s.bagomri@gmail.com
+بالإضافة إلى دعم 8 لغات كاملة وتحسينات في الأداء والاستقرار.
+
+💬 اقتراح؟ راسلنا: s.bagomri@gmail.com
 ```
 
 **بالإنجليزي**:
 ```
-🎉 First Release - v1.0.0
+🚀 Major Update - v2.0.0
 
-✨ Features:
-• Message any WhatsApp number without saving it to contacts
-• Support for 195+ countries with smart country code selection
-• 10 ready-to-use message templates
-• Create and edit your own custom templates
-• Automatic history of recently messaged numbers
-• Support for WhatsApp and WhatsApp Business
-• Arabic and English interface
-• Light and dark mode
-• Clean and easy-to-use design
-• Privacy protected - we don't collect any personal data
-• Completely free with no ads
+✨ New Features:
+• 📲 App Shortcuts — long-press the app icon for quick actions
+• 🏠 Favorites home screen widget
+• 🔗 Share wa.me or quickchat:// deep links directly from the send screen
+• 📤 Manual broadcast queue with WhatsApp policy warning
+• 📷 QR code scanner to auto-fill phone numbers
+• 🗂️ Template category filter chips
+• ⚡ Quick Settings Tile for instant access
+• 🌐 Android App Links for direct deeplink opening
 
-📱 Perfect for business owners, delivery drivers, sales teams, and anyone who contacts new numbers daily!
+🔒 Camera privacy: used locally only for QR scanning — no photos saved or sent
 
-💬 Have a suggestion? Email us: s.bagomri@gmail.com
+Plus full 8-language support and performance improvements.
+
+💬 Suggestions? Email us: s.bagomri@gmail.com
 ```
 
 #### 7. اضغط **"Save"** ثم **"Review release"**
@@ -679,9 +677,10 @@ flutter build appbundle --release
 
 **الاسم**: QuickChat - واتساب مباشر
 **Package**: com.bagomri.quickchat
-**Version**: 1.0.0 (Build 1)
+**Version**: 2.0.0 (Build 3)
 **المطور**: Saleh Bagomri (صالح باقمري)
 **البريد**: s.bagomri@gmail.com
+**App Links**: `https://salehbagomri.github.io/.well-known/assetlinks.json` ✅
 **الحالة**: 🟢 **جاهز 100% للنشر**
 
 ---
@@ -689,7 +688,7 @@ flutter build appbundle --release
 ## 📅 التاريخ
 
 **تاريخ الإعداد**: 9 نوفمبر 2025
-**تاريخ الاكتمال**: 9 نوفمبر 2025
+**تاريخ تحديث v2.0.0**: 13 يونيو 2026
 **الوقت الإجمالي**: [سيكتمل بعد النشر]
 
 ---
