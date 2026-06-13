@@ -36,6 +36,27 @@ class WhatsAppService {
   }
 
   // ---------------------------------------------------------------------------
+  // Phone extraction — finds the first phone-like number in arbitrary text
+  // ---------------------------------------------------------------------------
+
+  /// Extracts the first phone-like sequence from [text].
+  ///
+  /// Handles +international, 00-prefix, and plain digit formats.
+  /// Returns `null` when no valid number is found.
+  /// When multiple numbers exist, the caller receives the first one —
+  /// Deep Link callers pass the phone explicitly, so ambiguity only
+  /// arises for clipboard/share where taking the first is acceptable.
+  static String? extractPhoneNumber(String text) {
+    if (text.isEmpty) return null;
+    final match =
+        RegExp(r'(\+|00)?[0-9][0-9\s\-\.]{5,17}[0-9]').firstMatch(text);
+    if (match == null) return null;
+    var cleaned = match.group(0)!.replaceAll(RegExp(r'[\s\-\.]'), '');
+    if (cleaned.startsWith('00')) cleaned = '+${cleaned.substring(2)}';
+    return isValidPhoneNumber(cleaned) ? cleaned : null;
+  }
+
+  // ---------------------------------------------------------------------------
   // Validation — E.164: 7–15 digits with optional leading +
   // ---------------------------------------------------------------------------
 

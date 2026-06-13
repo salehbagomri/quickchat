@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _handleSharedText(String? text) {
     if (text == null || text.isEmpty || !mounted) return;
-    final phone = _extractPhone(text);
+    final phone = WhatsAppService.extractPhoneNumber(text);
     if (phone != null) _phoneController.text = phone;
   }
 
@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final clipData = await Clipboard.getData(Clipboard.kTextPlain);
     if (!mounted) return;
 
-    final phone = _extractPhone(clipData?.text ?? '');
+    final phone = WhatsAppService.extractPhoneNumber(clipData?.text ?? '');
     if (phone == null) return;
 
     final l10n = AppLocalizations.of(context)!;
@@ -89,17 +89,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
-  }
-
-  /// Extracts the first phone-like sequence from arbitrary text.
-  /// Supports +international, 00-prefix, or plain digit formats.
-  String? _extractPhone(String text) {
-    final match =
-        RegExp(r'(\+|00)?[0-9][0-9\s\-\.]{5,17}[0-9]').firstMatch(text);
-    if (match == null) return null;
-    var cleaned = match.group(0)!.replaceAll(RegExp(r'[\s\-\.]'), '');
-    if (cleaned.startsWith('00')) cleaned = '+${cleaned.substring(2)}';
-    return WhatsAppService.isValidPhoneNumber(cleaned) ? cleaned : null;
   }
 
   @override

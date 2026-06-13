@@ -175,5 +175,59 @@ void main() {
         expect(WhatsAppService.isValidPhoneNumber('123456789012345'), isTrue);
       });
     });
+
+    // -------------------------------------------------------------------------
+    // extractPhoneNumber
+    // -------------------------------------------------------------------------
+    group('extractPhoneNumber', () {
+      test('returns null for empty string', () {
+        expect(WhatsAppService.extractPhoneNumber(''), isNull);
+      });
+
+      test('returns null when no phone in text', () {
+        expect(WhatsAppService.extractPhoneNumber('hello world no phone here'), isNull);
+      });
+
+      test('extracts plain digit number from text', () {
+        expect(WhatsAppService.extractPhoneNumber('call me at 967777616167 thanks'),
+            '967777616167');
+      });
+
+      test('extracts +international number', () {
+        expect(WhatsAppService.extractPhoneNumber('My number is +967777616167'),
+            '+967777616167');
+      });
+
+      test('converts 00-prefix to + notation', () {
+        expect(WhatsAppService.extractPhoneNumber('number: 00967777616167'),
+            '+967777616167');
+      });
+
+      test('strips dashes and spaces from extracted number', () {
+        expect(WhatsAppService.extractPhoneNumber('+967 777-616-167'),
+            '+967777616167');
+      });
+
+      test('strips dots from extracted number', () {
+        expect(WhatsAppService.extractPhoneNumber('+967.777.616.167'),
+            '+967777616167');
+      });
+
+      test('returns first number when multiple exist', () {
+        final result =
+            WhatsAppService.extractPhoneNumber('first 967777616167 second 12025550199');
+        expect(result, '967777616167');
+      });
+
+      test('returns null for number shorter than 7 digits', () {
+        expect(WhatsAppService.extractPhoneNumber('123456'), isNull);
+      });
+
+      test('extracts number from a wa.me URL', () {
+        final result =
+            WhatsAppService.extractPhoneNumber('https://wa.me/967777616167');
+        expect(result, '967777616167');
+      });
+    });
   });
 }
