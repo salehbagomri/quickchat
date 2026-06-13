@@ -353,4 +353,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dataDeletion => 'Data Deletion';
+
+  @override
+  String get shareDeepLink => 'Share app link';
 }

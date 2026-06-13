@@ -408,6 +408,8 @@
   "childSafety": "Child Safety",
   "@childSafety": { "description": "Child safety standards link text" },
   "dataDeletion": "Data Deletion",
-  "@dataDeletion": { "description": "Data deletion instructions link text" }
+  "@dataDeletion": { "description": "Data deletion instructions link text" },
+  "shareDeepLink": "Share app link",
+  "@shareDeepLink": { "description": "Tooltip for sharing a quickchat:// deep link" }
 }
 

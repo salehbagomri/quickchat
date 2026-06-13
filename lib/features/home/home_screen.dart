@@ -1,11 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show Clipboard, ClipboardData, HapticFeedback;
+import 'package:flutter/services.dart' show Clipboard, HapticFeedback;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:quickchat/core/extensions/whatsapp_result_ext.dart';
 import 'package:quickchat/core/router/app_router.dart';
 import 'package:quickchat/core/services/app_links_service.dart';
@@ -20,6 +18,7 @@ import 'package:quickchat/features/home/widgets/home_footer.dart';
 import 'package:quickchat/features/home/widgets/message_input_card.dart';
 import 'package:quickchat/features/home/widgets/phone_input_card.dart';
 import 'package:quickchat/features/home/widgets/send_button.dart';
+import 'package:quickchat/features/home/widgets/share_link_actions.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 import 'package:share_handler/share_handler.dart';
 
@@ -41,7 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _cubit = HomeCubit();
     _initShareHandler();
-    // Wire deep-link callback — fills phone/message when app opened via link
     AppLinksService.instance.onDeepLink = (phone, msg) {
       if (!mounted) return;
       _phoneController.text = phone;
@@ -142,6 +140,14 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  String _buildDeepLink(String phone, {String? message}) {
+    final clean = phone.replaceAll(RegExp(r'[^\d+]'), '');
+    final base = 'quickchat://send?phone=${Uri.encodeComponent(clean)}';
+    return message != null && message.isNotEmpty
+        ? '$base&msg=${Uri.encodeComponent(message)}'
+        : base;
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -213,7 +219,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                     return Padding(
                       padding: const EdgeInsets.only(top: 8),
-                      child: _buildLinkActions(context, l10n, phone),
+                      child: ValueListenableBuilder<TextEditingValue>(
+                        valueListenable: _messageController,
+                        builder: (_, msgValue, __) => ShareLinkActions(
+                          phone: phone,
+                          message: msgValue.text.trim().isNotEmpty
+                              ? msgValue.text.trim()
+                              : null,
+                          buildWaMeUrl: (p, {message}) =>
+                              _cubit.buildWaMeUrl(p, message: message),
+                          buildDeepLink: _buildDeepLink,
+                        ),
+                      ),
                     );
                   },
                 ),
@@ -239,101 +256,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 const HomeFooter(),
               ],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLinkActions(
-      BuildContext context, AppLocalizations l10n, String phone) {
-    return Row(
-      children: [
-        Expanded(
-          child: OutlinedButton.icon(
-            icon: const Icon(Icons.copy_outlined, size: 18),
-            label: Text(l10n.copyLink),
-            onPressed: () => _copyWaMeLink(context, l10n, phone),
-          ),
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: OutlinedButton.icon(
-            icon: const Icon(Icons.share_outlined, size: 18),
-            label: Text(l10n.shareLink),
-            onPressed: () => _shareWaMeLink(phone),
-          ),
-        ),
-        const SizedBox(width: 8),
-        Tooltip(
-          message: l10n.qrCode,
-          child: OutlinedButton(
-            onPressed: () => _showQrCode(context, l10n, phone),
-            child: const Icon(Icons.qr_code),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Future<void> _copyWaMeLink(
-      BuildContext context, AppLocalizations l10n, String phone) async {
-    final url = _cubit.buildWaMeUrl(phone,
-        message: _messageController.text.trim().isNotEmpty
-            ? _messageController.text.trim()
-            : null);
-    await Clipboard.setData(ClipboardData(text: url));
-    await HapticFeedback.lightImpact();
-    if (context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.linkCopied)),
-      );
-    }
-  }
-
-  Future<void> _shareWaMeLink(String phone) async {
-    final url = _cubit.buildWaMeUrl(phone,
-        message: _messageController.text.trim().isNotEmpty
-            ? _messageController.text.trim()
-            : null);
-    await Share.share(url);
-  }
-
-  void _showQrCode(BuildContext context, AppLocalizations l10n, String phone) {
-    final url = _cubit.buildWaMeUrl(phone,
-        message: _messageController.text.trim().isNotEmpty
-            ? _messageController.text.trim()
-            : null);
-    showModalBottomSheet<void>(
-      context: context,
-      builder: (_) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(l10n.qrCode,
-                  style: Theme.of(context).textTheme.titleLarge),
-              const SizedBox(height: 16),
-              Semantics(
-                label: l10n.qrCode,
-                image: true,
-                excludeSemantics: true,
-                child: Container(
-                  color: Colors.white,
-                  padding: const EdgeInsets.all(12),
-                  child: QrImageView(
-                    data: url,
-                    version: QrVersions.auto,
-                    size: 220,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 12),
-              Text(l10n.scanQrHint,
-                  style: Theme.of(context).textTheme.bodySmall),
-              const SizedBox(height: 8),
-            ],
           ),
         ),
       ),

@@ -356,4 +356,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get dataDeletion => 'Penghapusan Data';
+
+  @override
+  String get shareDeepLink => 'Bagikan tautan app';
 }

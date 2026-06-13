@@ -355,4 +355,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get dataDeletion => 'Eliminación de Datos';
+
+  @override
+  String get shareDeepLink => 'Compartir enlace de la app';
 }

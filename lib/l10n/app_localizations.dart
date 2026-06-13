@@ -781,6 +781,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Data Deletion'**
   String get dataDeletion;
+
+  /// Tooltip for sharing a quickchat:// deep link
+  ///
+  /// In en, this message translates to:
+  /// **'Share app link'**
+  String get shareDeepLink;
 }
 
 class _AppLocalizationsDelegate

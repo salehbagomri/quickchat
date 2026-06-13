@@ -351,4 +351,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dataDeletion => 'حذف البيانات';
+
+  @override
+  String get shareDeepLink => 'مشاركة رابط التطبيق';
 }

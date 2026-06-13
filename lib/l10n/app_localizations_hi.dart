@@ -350,4 +350,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get dataDeletion => 'डेटा हटाना';
+
+  @override
+  String get shareDeepLink => 'ऐप लिंक साझा करें';
 }

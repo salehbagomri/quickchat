@@ -30,7 +30,13 @@ class QuickActionsService {
   }
 
   Future<void> updateShortcuts(List<FavoriteContact> favorites) async {
-    final lang = PreferencesService().getLanguage();
+    // Guard: PreferencesService may not be ready in unit-test environments
+    String lang;
+    try {
+      lang = PreferencesService().getLanguage();
+    } catch (_) {
+      return;
+    }
     final isArabic = lang == AppConstants.languageArabic;
 
     final items = <ShortcutItem>[

@@ -352,4 +352,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get dataDeletion => 'ڈیٹا کا خاتمہ';
+
+  @override
+  String get shareDeepLink => 'ایپ لنک شیئر کریں';
 }

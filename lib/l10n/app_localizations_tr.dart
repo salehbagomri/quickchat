@@ -354,4 +354,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get dataDeletion => 'Veri Silme';
+
+  @override
+  String get shareDeepLink => 'Uygulama bağlantısını paylaş';
 }

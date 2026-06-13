@@ -16,9 +16,9 @@ void main() {
       expect(() => const QuickChatApp(isFirstLaunch: true), returnsNormally);
     });
 
-    test('is a StatelessWidget', () {
+    test('is a StatefulWidget', () {
       const app = QuickChatApp(isFirstLaunch: false);
-      expect(app, isA<StatelessWidget>());
+      expect(app, isA<StatefulWidget>());
     });
   });
 }
