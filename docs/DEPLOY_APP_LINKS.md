@@ -51,11 +51,21 @@ SHA256: AA:BB:CC:...
 ### الخيار A — مستودع GitHub Pages الجذري (الموصى به)
 
 1. أنشئ (أو افتح) مستودع `salehbagomri/salehbagomri.github.io`
-2. أضف الملف بهذا المسار الدقيق:
+2. أضف ملفاً فارغاً اسمه `.nojekyll` في جذر المستودع:
+   ```
+   .nojekyll
+   ```
+   > **ضروري**: Jekyll (محرك GitHub Pages الافتراضي) يتجاهل المجلدات
+   > التي تبدأ بنقطة مثل `.well-known`. هذا الملف يُوقف Jekyll ويجعل
+   > GitHub Pages يخدم الملفات مباشرةً.
+3. أضف ملف البصمة بهذا المسار الدقيق:
    ```
    .well-known/assetlinks.json
    ```
-3. ادفع التغييرات — GitHub Pages سيخدم الملف تلقائياً
+4. ادفع التغييرات — GitHub Pages سيخدم الملف مباشرةً بعد دقيقة أو دقيقتين
+
+**✅ مكتمل:** المستودع مُنشأ والملف متاح على:
+`https://salehbagomri.github.io/.well-known/assetlinks.json`
 
 ### الخيار B — نطاق مخصص (custom domain)
 
