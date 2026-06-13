@@ -156,5 +156,34 @@ flutter build ipa --release
 
 ---
 
+---
+
+## ميزات المرحلة 6 — ما يعبر iOS وما هو Android-only
+
+| الميزة | iOS | Android |
+|--------|-----|---------|
+| App Shortcuts (quick_actions) | ✅ يعبر | ✅ |
+| App Links / Deep Links (app_links) | ✅ يعبر — يحتاج Associated Domains في Xcode | ✅ |
+| QR Scanner (mobile_scanner) | ✅ يعبر — يحتاج NSCameraUsageDescription في Info.plist | ✅ |
+| Broadcast Queue | ✅ يعبر | ✅ |
+| Template Categories | ✅ يعبر | ✅ |
+| Home Screen Widget (home_widget) | ❌ Android-only (WidgetKit مختلف كلياً — لاحقاً) | ✅ |
+| Quick Settings Tile | ❌ Android-only (TileService) | ✅ |
+
+### iOS — Associated Domains لـ App Links
+في Xcode: Runner → Signing & Capabilities → + Associated Domains:
+```
+applinks:salehbagomri.github.io
+```
+
+### iOS — NSCameraUsageDescription لماسح QR
+في `ios/Runner/Info.plist`:
+```xml
+<key>NSCameraUsageDescription</key>
+<string>Used locally to scan QR codes containing phone numbers. No photos are saved or sent.</string>
+```
+
+---
+
 **الحالة**: تجهيز فقط — لا بناء iOS الآن
 **المطور**: Saleh Bagomri

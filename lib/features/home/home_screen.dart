@@ -8,6 +8,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:quickchat/core/extensions/whatsapp_result_ext.dart';
 import 'package:quickchat/core/router/app_router.dart';
+import 'package:quickchat/core/services/app_links_service.dart';
 import 'package:quickchat/core/theme/app_spacing.dart';
 import 'package:quickchat/data/services/whatsapp_service.dart';
 import 'package:quickchat/data/services/preferences_service.dart';
@@ -40,6 +41,12 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _cubit = HomeCubit();
     _initShareHandler();
+    // Wire deep-link callback — fills phone/message when app opened via link
+    AppLinksService.instance.onDeepLink = (phone, msg) {
+      if (!mounted) return;
+      _phoneController.text = phone;
+      if (msg != null) _messageController.text = msg;
+    };
     WidgetsBinding.instance.addPostFrameCallback((_) => _checkClipboard());
   }
 
@@ -94,6 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void dispose() {
     _sharingSub?.cancel();
+    AppLinksService.instance.onDeepLink = null;
     _phoneController.dispose();
     _messageController.dispose();
     _cubit.close();

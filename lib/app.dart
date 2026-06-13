@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:quickchat/core/services/app_links_service.dart';
 import 'package:quickchat/core/services/quick_actions_service.dart';
 import 'package:quickchat/core/theme/app_theme.dart';
 import 'package:quickchat/data/services/preferences_service.dart';
@@ -33,6 +34,7 @@ class _QuickChatAppState extends State<QuickChatApp> {
     // Initialize after first frame so navigatorKey.currentContext is valid
     WidgetsBinding.instance.addPostFrameCallback((_) {
       QuickActionsService.instance.initialize(navigatorKey);
+      AppLinksService.instance.initialize(navigatorKey);
     });
   }
 

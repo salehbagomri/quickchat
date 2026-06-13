@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuickChat — Open in WhatsApp</title>
+  <meta name="description" content="Open WhatsApp conversations without saving contacts. Privacy-first, no backend."/>
+  <style>
+    :root { --green: #25D366; --dark: #128C7E; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: #f5f5f5; padding: 24px;
+    }
+    .card {
+      background: #fff; border-radius: 20px; padding: 40px 32px;
+      text-align: center; max-width: 420px; width: 100%;
+      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+    }
+    .logo {
+      width: 80px; height: 80px; background: var(--green);
+      border-radius: 20px; margin: 0 auto 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 40px;
+    }
+    h1 { font-size: 26px; font-weight: 700; color: #111; margin-bottom: 8px; }
+    p  { color: #666; line-height: 1.6; margin-bottom: 24px; }
+    .btn {
+      display: inline-block; padding: 14px 28px; border-radius: 12px;
+      font-size: 16px; font-weight: 600; text-decoration: none;
+      transition: opacity .2s;
+    }
+    .btn:hover { opacity: .85; }
+    .btn-primary { background: var(--green); color: #fff; margin-bottom: 12px; }
+    .btn-secondary {
+      background: #f0f0f0; color: #333; font-size: 14px;
+      padding: 10px 20px;
+    }
+    .phone-display {
+      background: #f0faf4; border: 1px solid #d0eadb;
+      border-radius: 12px; padding: 12px 20px;
+      font-size: 20px; font-weight: 600; color: var(--dark);
+      margin-bottom: 20px; letter-spacing: 1px;
+    }
+    .hidden { display: none; }
+    footer { margin-top: 32px; color: #aaa; font-size: 13px; }
+    footer a { color: #aaa; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">💬</div>
+  <h1>QuickChat</h1>
+
+  <!-- State: phone in link -->
+  <div id="with-phone">
+    <p>You were shared a WhatsApp contact link.</p>
+    <div class="phone-display" id="phone-display"></div>
+    <a id="open-app-btn" href="#" class="btn btn-primary" style="display:block;margin-bottom:12px">
+      Open in QuickChat
+    </a>
+    <a id="wa-fallback-btn" href="#" class="btn btn-secondary" style="display:block">
+      Open directly in WhatsApp
+    </a>
+  </div>
+
+  <!-- State: no phone — generic landing -->
+  <div id="no-phone">
+    <p>Open WhatsApp conversations with any number — no need to save the contact. Privacy-first, no accounts, no servers.</p>
+    <a href="https://play.google.com/store/apps/details?id=com.bagomri.quickchat"
+       class="btn btn-primary" style="display:block;margin-bottom:12px">
+      ▶ Get it on Google Play
+    </a>
+  </div>
+</div>
+
+<footer>
+  <a href="https://salehbagomri.github.io/quickchat-privacy/">Privacy Policy</a>
+  &nbsp;·&nbsp;
+  Made with ❤ by Saleh Bagomri
+</footer>
+
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var phone  = params.get('phone') || '';
+    var msg    = params.get('msg')   || '';
+
+    if (phone) {
+      document.getElementById('no-phone').classList.add('hidden');
+      document.getElementById('phone-display').textContent = phone;
+
+      var deepLink = 'quickchat://send?phone=' + encodeURIComponent(phone) +
+                     (msg ? '&msg=' + encodeURIComponent(msg) : '');
+      var waLink   = 'https://wa.me/' + phone.replace(/\D/g, '') +
+                     (msg ? '?text=' + encodeURIComponent(msg) : '');
+
+      document.getElementById('open-app-btn').href      = deepLink;
+      document.getElementById('wa-fallback-btn').href   = waLink;
+
+      // Auto-attempt to open the app; fall back gracefully after 1.5 s
+      setTimeout(function () {
+        window.location.href = deepLink;
+      }, 300);
+    } else {
+      document.getElementById('with-phone').classList.add('hidden');
+    }
+  })();
+</script>
+</body>
+</html>
