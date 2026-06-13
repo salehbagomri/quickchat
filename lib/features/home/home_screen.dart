@@ -190,10 +190,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 BlocBuilder<HomeCubit, HomeState>(
                   buildWhen: (p, c) => p.countryCode != c.countryCode,
-                  builder: (_, __) => PhoneInputCard(
+                  builder: (_, state) => PhoneInputCard(
                     controller: _phoneController,
                     onCountryChanged: _cubit.updateCountryCode,
                     l10n: l10n,
+                    initialCountryCode: state.countryCode,
                   ),
                 ),
                 const SizedBox(height: AppSpacing.md),

@@ -20,6 +20,8 @@ class PreferencesService {
     }
   }
 
+  bool get isInitialized => _prefs != null;
+
   SharedPreferences get prefs {
     if (_prefs == null) {
       throw Exception('PreferencesService not initialized. Call init() first.');
@@ -73,6 +75,13 @@ class PreferencesService {
   Future<void> setLanguage(String language) async {
     await prefs.setString(AppConstants.keyLanguage, language);
   }
+
+  // Last used country dial code
+  String? getLastCountryCode() =>
+      prefs.getString(AppConstants.keyLastCountryCode);
+
+  Future<void> setLastCountryCode(String code) async =>
+      prefs.setString(AppConstants.keyLastCountryCode, code);
 
   // Theme Mode
   String getThemeMode() {

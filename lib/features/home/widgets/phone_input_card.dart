@@ -7,11 +7,13 @@ class PhoneInputCard extends StatelessWidget {
   final TextEditingController controller;
   final ValueChanged<String> onCountryChanged;
   final AppLocalizations l10n;
+  final String initialCountryCode;
 
   const PhoneInputCard({
     required this.controller,
     required this.onCountryChanged,
     required this.l10n,
+    this.initialCountryCode = '+967',
     super.key,
   });
 
@@ -24,8 +26,9 @@ class PhoneInputCard extends StatelessWidget {
         child: Row(
           children: [
             CountryCodePicker(
+              key: ValueKey(initialCountryCode),
               onChanged: (code) => onCountryChanged(code.dialCode ?? '+967'),
-              initialSelection: 'YE',
+              initialSelection: initialCountryCode,
               favorite: const ['+967', '+966', '+20', '+971'],
               showCountryOnly: false,
               showOnlyCountryWhenClosed: false,

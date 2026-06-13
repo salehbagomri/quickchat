@@ -1,8 +1,11 @@
+import 'dart:async' show unawaited;
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickchat/core/utils/locale_dial_code.dart';
 import 'package:quickchat/data/local_storage/hive_service.dart';
 import 'package:quickchat/data/models/chat_history.dart';
+import 'package:quickchat/data/services/preferences_service.dart';
 import 'package:quickchat/data/services/whatsapp_service.dart';
 
 part 'home_state.dart';
@@ -10,11 +13,22 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit([String? initialCountryCode])
       : super(HomeState(
-          countryCode: initialCountryCode ?? getDefaultDialCode(),
+          countryCode: initialCountryCode ?? _loadInitialCountryCode(),
         ));
 
-  void updateCountryCode(String code) =>
-      emit(state.copyWith(countryCode: code));
+  static String _loadInitialCountryCode() {
+    final prefs = PreferencesService();
+    if (prefs.isInitialized) {
+      return prefs.getLastCountryCode() ?? getDefaultDialCode();
+    }
+    return getDefaultDialCode();
+  }
+
+  void updateCountryCode(String code) {
+    final prefs = PreferencesService();
+    if (prefs.isInitialized) unawaited(prefs.setLastCountryCode(code));
+    emit(state.copyWith(countryCode: code));
+  }
 
   /// Resolves [rawPhone] + current country code into a full E.164-style number.
   String formatPhone(String rawPhone) {
