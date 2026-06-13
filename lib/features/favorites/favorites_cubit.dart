@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:quickchat/core/constants/app_constants.dart';
+import 'package:quickchat/core/services/quick_actions_service.dart';
 import 'package:quickchat/data/local_storage/hive_service.dart';
 import 'package:quickchat/data/models/favorite_contact.dart';
 
@@ -21,7 +22,9 @@ class FavoritesCubit extends Cubit<FavoritesState> {
 
   void _load() {
     if (isClosed) return;
-    emit(FavoritesState(contacts: HiveService().getAllFavorites()));
+    final contacts = HiveService().getAllFavorites();
+    emit(FavoritesState(contacts: contacts));
+    QuickActionsService.instance.updateShortcuts(contacts);
   }
 
   Future<void> addFavorite({
