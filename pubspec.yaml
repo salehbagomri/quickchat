@@ -58,9 +58,7 @@ flutter:
 flutter_native_splash:
   color: "#FFFFFF"
   color_dark: "#121212"
-  image: assets/icons/icon.png
   android_12:
-    image: assets/icons/icon.png
     color: "#FFFFFF"
     color_dark: "#121212"
   android: true
