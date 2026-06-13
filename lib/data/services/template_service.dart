@@ -99,24 +99,27 @@ class TemplateService {
 
   /// إعادة توليد القوالب الافتراضية بلغة جديدة — يحتفظ بقوالب المستخدم
   Future<void> regenerateDefaultTemplates(String languageCode) async {
-    // عناوين القوالب الافتراضية المعروفة (لـ migration من v1.0.0 حيث isDefault == null)
-    final knownDefaultTitles = {
-      ..._getArabicTemplates().map((t) => t['title']!),
-      ..._getEnglishTemplates().map((t) => t['title']!),
-      ..._getSpanishTemplates().map((t) => t['title']!),
-      ..._getHindiTemplates().map((t) => t['title']!),
-      ..._getPortugueseTemplates().map((t) => t['title']!),
-      ..._getIndonesianTemplates().map((t) => t['title']!),
-      ..._getUrduTemplates().map((t) => t['title']!),
-      ..._getTurkishTemplates().map((t) => t['title']!),
+    // أزواج (عنوان|||رسالة) للقوالب الافتراضية المعروفة
+    // (لـ migration من v1.0.0 حيث isDefault == null)
+    // المطابقة بالزوج معاً تمنع حذف قوالب المستخدم التي تشاركنا العنوان فقط
+    final knownDefaultPairs = {
+      for (final t in _getArabicTemplates()) '${t['title']}|||${t['message']}',
+      for (final t in _getEnglishTemplates()) '${t['title']}|||${t['message']}',
+      for (final t in _getSpanishTemplates()) '${t['title']}|||${t['message']}',
+      for (final t in _getHindiTemplates()) '${t['title']}|||${t['message']}',
+      for (final t in _getPortugueseTemplates()) '${t['title']}|||${t['message']}',
+      for (final t in _getIndonesianTemplates()) '${t['title']}|||${t['message']}',
+      for (final t in _getUrduTemplates()) '${t['title']}|||${t['message']}',
+      for (final t in _getTurkishTemplates()) '${t['title']}|||${t['message']}',
     };
 
     final toDelete = box.values.where((t) {
       // الحالة 1: قوالب v1.0.1+ — مُعلَّمة كافتراضية وغير معدّلة
       if (t.isDefaultTemplate && t.createdAt == t.updatedAt) return true;
-      // الحالة 2: migration — قوالب v1.0.0 (isDefault == null) بعناوين افتراضية معروفة وغير معدّلة
+      // الحالة 2: migration — قوالب v1.0.0 (isDefault == null) غير معدّلة
+      // يشترط تطابق العنوان والرسالة معاً لتجنب حذف قوالب المستخدم
       if (t.isDefault == null &&
-          knownDefaultTitles.contains(t.title) &&
+          knownDefaultPairs.contains('${t.title}|||${t.message}') &&
           t.createdAt == t.updatedAt) {
         return true;
       }

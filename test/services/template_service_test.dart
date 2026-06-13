@@ -174,6 +174,22 @@ void main() {
         expect(svc.getAllTemplates().length, 11); // 10 Arabic + 1 custom
       });
 
+      test('preserves v1.0.0-style template with default title but different message', () async {
+        // v1.0.0 templates have isDefault == null (field didn't exist yet).
+        // Migration must not delete them if the message differs from the known
+        // default — only an exact title+message pair identifies a real default.
+        final svc = TemplateService();
+        // Simulate a v1.0.0 template: same title as a default, custom message
+        await svc.addTemplate(
+          title: 'General Greeting',
+          message: 'Hey, I want to order pizza 🍕',
+        );
+
+        await svc.regenerateDefaultTemplates('ar');
+        final titles = svc.getAllTemplates().map((t) => t.title).toList();
+        expect(titles, contains('General Greeting')); // must survive
+      });
+
       test('preserves user-edited default templates (copyWith clears isDefault)', () async {
         final svc = TemplateService();
         await svc.addDefaultTemplates('en');
