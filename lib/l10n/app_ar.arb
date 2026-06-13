@@ -115,6 +115,29 @@
   "termsOfUse": "شروط الاستخدام",
   "childSafety": "سلامة الأطفال",
   "dataDeletion": "حذف البيانات",
-  "shareDeepLink": "مشاركة رابط التطبيق"
+  "shareDeepLink": "مشاركة رابط التطبيق",
+  "broadcast": "الإرسال الجماعي",
+  "broadcastQueue": "طابور الإرسال",
+  "broadcastWarningTitle": "تنبيه مهم",
+  "broadcastWarningBody": "واتساب يحظر الإرسال الجماعي الآلي. هذه الأداة تفتح واتساب لرقم واحد في كل مرة — عليك أنت الضغط على إرسال يدوياً لكل رقم. إساءة الاستخدام قد تؤدي لحظر رقمك.",
+  "broadcastUnderstood": "فهمت",
+  "addNumbers": "إضافة أرقام",
+  "enterNumbersHint": "رقم واحد في كل سطر",
+  "selectTemplate": "اختر قالباً",
+  "orTypeMessage": "أو اكتب رسالة",
+  "startBroadcast": "بدء الإرسال",
+  "nextContact": "الجهة التالية",
+  "broadcastProgress": "{current} من {total}",
+  "@broadcastProgress": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "broadcastDone": "اكتمل الإرسال",
+  "broadcastOpenWhatsApp": "فتح في واتساب",
+  "broadcastEmptyNumbers": "الرجاء إضافة رقم هاتف واحد على الأقل",
+  "broadcastEmptyMessage": "الرجاء إدخال رسالة",
+  "broadcastFromFavorites": "من المفضلة"
 }
 

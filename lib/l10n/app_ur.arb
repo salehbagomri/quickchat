@@ -115,5 +115,22 @@
   "termsOfUse": "استعمال کی شرائط",
   "childSafety": "بچوں کی حفاظت",
   "dataDeletion": "ڈیٹا کا خاتمہ",
-  "shareDeepLink": "ایپ لنک شیئر کریں"
+  "shareDeepLink": "ایپ لنک شیئر کریں",
+  "broadcast": "نشریات",
+  "broadcastQueue": "نشریات کی قطار",
+  "broadcastWarningTitle": "اہم اطلاع",
+  "broadcastWarningBody": "واٹس ایپ خودکار بلک بھیجنے سے منع کرتا ہے۔ یہ ٹول ایک وقت میں ایک رابطے کے لیے کھولتا ہے — آپ کو دستی طور پر بھیجنا ہوگا۔ غلط استعمال سے نمبر بلاک ہو سکتا ہے۔",
+  "broadcastUnderstood": "سمجھ گیا",
+  "addNumbers": "نمبر شامل کریں",
+  "enterNumbersHint": "فی سطر ایک نمبر",
+  "selectTemplate": "ٹیمپلیٹ منتخب کریں",
+  "orTypeMessage": "یا پیغام لکھیں",
+  "startBroadcast": "نشریات شروع کریں",
+  "nextContact": "اگلا رابطہ",
+  "broadcastProgress": "{total} میں سے {current}",
+  "broadcastDone": "نشریات مکمل",
+  "broadcastOpenWhatsApp": "واٹس ایپ میں کھولیں",
+  "broadcastEmptyNumbers": "براہ کرم کم از کم ایک نمبر شامل کریں",
+  "broadcastEmptyMessage": "براہ کرم ایک پیغام درج کریں",
+  "broadcastFromFavorites": "پسندیدہ سے"
 }

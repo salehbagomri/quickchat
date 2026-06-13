@@ -358,4 +358,58 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get shareDeepLink => 'Compartir enlace de la app';
+
+  @override
+  String get broadcast => 'Difusión';
+
+  @override
+  String get broadcastQueue => 'Cola de difusión';
+
+  @override
+  String get broadcastWarningTitle => 'Aviso importante';
+
+  @override
+  String get broadcastWarningBody =>
+      'WhatsApp prohíbe el envío masivo automatizado. Esta herramienta abre WhatsApp de UN contacto a la vez — TÚ debes presionar Enviar manualmente. El mal uso puede resultar en el bloqueo de tu número.';
+
+  @override
+  String get broadcastUnderstood => 'Entendido';
+
+  @override
+  String get addNumbers => 'Agregar números';
+
+  @override
+  String get enterNumbersHint => 'Un número por línea';
+
+  @override
+  String get selectTemplate => 'Seleccionar plantilla';
+
+  @override
+  String get orTypeMessage => 'o escribe un mensaje';
+
+  @override
+  String get startBroadcast => 'Iniciar difusión';
+
+  @override
+  String get nextContact => 'Siguiente contacto';
+
+  @override
+  String broadcastProgress(int current, int total) {
+    return '$current de $total';
+  }
+
+  @override
+  String get broadcastDone => 'Difusión completa';
+
+  @override
+  String get broadcastOpenWhatsApp => 'Abrir en WhatsApp';
+
+  @override
+  String get broadcastEmptyNumbers => 'Por favor agrega al menos un número';
+
+  @override
+  String get broadcastEmptyMessage => 'Por favor ingresa un mensaje';
+
+  @override
+  String get broadcastFromFavorites => 'De favoritos';
 }

@@ -115,5 +115,22 @@
   "termsOfUse": "Kullanım Şartları",
   "childSafety": "Çocuk Güvenliği",
   "dataDeletion": "Veri Silme",
-  "shareDeepLink": "Uygulama bağlantısını paylaş"
+  "shareDeepLink": "Uygulama bağlantısını paylaş",
+  "broadcast": "Yayın",
+  "broadcastQueue": "Yayın sırası",
+  "broadcastWarningTitle": "Önemli Uyarı",
+  "broadcastWarningBody": "WhatsApp otomatik toplu gönderimi yasaklar. Bu araç WhatsApp'ı BİR kişi için açar — her kişi için Gönder'e manuel olarak basmanız gerekir. Kötüye kullanım numaranızın yasaklanmasına yol açabilir.",
+  "broadcastUnderstood": "Anladım",
+  "addNumbers": "Numara ekle",
+  "enterNumbersHint": "Satır başına bir numara",
+  "selectTemplate": "Şablon seç",
+  "orTypeMessage": "veya mesaj yazın",
+  "startBroadcast": "Yayını başlat",
+  "nextContact": "Sonraki kişi",
+  "broadcastProgress": "{total} kişiden {current}",
+  "broadcastDone": "Yayın tamamlandı",
+  "broadcastOpenWhatsApp": "WhatsApp'ta aç",
+  "broadcastEmptyNumbers": "Lütfen en az bir numara ekleyin",
+  "broadcastEmptyMessage": "Lütfen bir mesaj girin",
+  "broadcastFromFavorites": "Favorilerden"
 }

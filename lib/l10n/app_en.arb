@@ -410,6 +410,46 @@
   "dataDeletion": "Data Deletion",
   "@dataDeletion": { "description": "Data deletion instructions link text" },
   "shareDeepLink": "Share app link",
-  "@shareDeepLink": { "description": "Tooltip for sharing a quickchat:// deep link" }
+  "@shareDeepLink": { "description": "Tooltip for sharing a quickchat:// deep link" },
+  "broadcast": "Broadcast",
+  "@broadcast": { "description": "Broadcast feature name" },
+  "broadcastQueue": "Broadcast Queue",
+  "@broadcastQueue": { "description": "Broadcast screen title" },
+  "broadcastWarningTitle": "Important Notice",
+  "@broadcastWarningTitle": { "description": "Warning dialog title before broadcast" },
+  "broadcastWarningBody": "WhatsApp prohibits automated bulk sending. This tool opens WhatsApp ONE contact at a time — YOU must press Send manually for each. Misuse may result in your number being banned.",
+  "@broadcastWarningBody": { "description": "Warning body explaining manual-only broadcast" },
+  "broadcastUnderstood": "I understand",
+  "@broadcastUnderstood": { "description": "Confirm broadcast warning" },
+  "addNumbers": "Add numbers",
+  "@addNumbers": { "description": "Add phone numbers to broadcast list" },
+  "enterNumbersHint": "One number per line",
+  "@enterNumbersHint": { "description": "Hint for bulk phone number entry" },
+  "selectTemplate": "Select template",
+  "@selectTemplate": { "description": "Select a message template for broadcast" },
+  "orTypeMessage": "or type a message",
+  "@orTypeMessage": { "description": "Label for manual message entry in broadcast" },
+  "startBroadcast": "Start Broadcast",
+  "@startBroadcast": { "description": "Button to begin the broadcast queue" },
+  "nextContact": "Next contact",
+  "@nextContact": { "description": "Advance to next contact in broadcast queue" },
+  "broadcastProgress": "{current} of {total}",
+  "@broadcastProgress": {
+    "description": "Progress indicator e.g. 2 of 5",
+    "placeholders": {
+      "current": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "broadcastDone": "Broadcast complete",
+  "@broadcastDone": { "description": "All contacts processed" },
+  "broadcastOpenWhatsApp": "Open in WhatsApp",
+  "@broadcastOpenWhatsApp": { "description": "Open current contact in WhatsApp" },
+  "broadcastEmptyNumbers": "Please add at least one phone number",
+  "@broadcastEmptyNumbers": { "description": "Validation error when number list is empty" },
+  "broadcastEmptyMessage": "Please enter a message",
+  "@broadcastEmptyMessage": { "description": "Validation error when message is empty" },
+  "broadcastFromFavorites": "From favorites",
+  "@broadcastFromFavorites": { "description": "Import favorites into broadcast list" }
 }
 

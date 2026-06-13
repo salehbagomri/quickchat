@@ -357,4 +357,58 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get shareDeepLink => 'Uygulama bağlantısını paylaş';
+
+  @override
+  String get broadcast => 'Yayın';
+
+  @override
+  String get broadcastQueue => 'Yayın sırası';
+
+  @override
+  String get broadcastWarningTitle => 'Önemli Uyarı';
+
+  @override
+  String get broadcastWarningBody =>
+      'WhatsApp otomatik toplu gönderimi yasaklar. Bu araç WhatsApp\'ı BİR kişi için açar — her kişi için Gönder\'e manuel olarak basmanız gerekir. Kötüye kullanım numaranızın yasaklanmasına yol açabilir.';
+
+  @override
+  String get broadcastUnderstood => 'Anladım';
+
+  @override
+  String get addNumbers => 'Numara ekle';
+
+  @override
+  String get enterNumbersHint => 'Satır başına bir numara';
+
+  @override
+  String get selectTemplate => 'Şablon seç';
+
+  @override
+  String get orTypeMessage => 'veya mesaj yazın';
+
+  @override
+  String get startBroadcast => 'Yayını başlat';
+
+  @override
+  String get nextContact => 'Sonraki kişi';
+
+  @override
+  String broadcastProgress(int current, int total) {
+    return '$total kişiden $current';
+  }
+
+  @override
+  String get broadcastDone => 'Yayın tamamlandı';
+
+  @override
+  String get broadcastOpenWhatsApp => 'WhatsApp\'ta aç';
+
+  @override
+  String get broadcastEmptyNumbers => 'Lütfen en az bir numara ekleyin';
+
+  @override
+  String get broadcastEmptyMessage => 'Lütfen bir mesaj girin';
+
+  @override
+  String get broadcastFromFavorites => 'Favorilerden';
 }

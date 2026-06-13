@@ -354,4 +354,58 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get shareDeepLink => 'مشاركة رابط التطبيق';
+
+  @override
+  String get broadcast => 'الإرسال الجماعي';
+
+  @override
+  String get broadcastQueue => 'طابور الإرسال';
+
+  @override
+  String get broadcastWarningTitle => 'تنبيه مهم';
+
+  @override
+  String get broadcastWarningBody =>
+      'واتساب يحظر الإرسال الجماعي الآلي. هذه الأداة تفتح واتساب لرقم واحد في كل مرة — عليك أنت الضغط على إرسال يدوياً لكل رقم. إساءة الاستخدام قد تؤدي لحظر رقمك.';
+
+  @override
+  String get broadcastUnderstood => 'فهمت';
+
+  @override
+  String get addNumbers => 'إضافة أرقام';
+
+  @override
+  String get enterNumbersHint => 'رقم واحد في كل سطر';
+
+  @override
+  String get selectTemplate => 'اختر قالباً';
+
+  @override
+  String get orTypeMessage => 'أو اكتب رسالة';
+
+  @override
+  String get startBroadcast => 'بدء الإرسال';
+
+  @override
+  String get nextContact => 'الجهة التالية';
+
+  @override
+  String broadcastProgress(int current, int total) {
+    return '$current من $total';
+  }
+
+  @override
+  String get broadcastDone => 'اكتمل الإرسال';
+
+  @override
+  String get broadcastOpenWhatsApp => 'فتح في واتساب';
+
+  @override
+  String get broadcastEmptyNumbers => 'الرجاء إضافة رقم هاتف واحد على الأقل';
+
+  @override
+  String get broadcastEmptyMessage => 'الرجاء إدخال رسالة';
+
+  @override
+  String get broadcastFromFavorites => 'من المفضلة';
 }

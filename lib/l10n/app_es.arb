@@ -115,5 +115,22 @@
   "termsOfUse": "Condiciones de Uso",
   "childSafety": "Seguridad Infantil",
   "dataDeletion": "Eliminación de Datos",
-  "shareDeepLink": "Compartir enlace de la app"
+  "shareDeepLink": "Compartir enlace de la app",
+  "broadcast": "Difusión",
+  "broadcastQueue": "Cola de difusión",
+  "broadcastWarningTitle": "Aviso importante",
+  "broadcastWarningBody": "WhatsApp prohíbe el envío masivo automatizado. Esta herramienta abre WhatsApp de UN contacto a la vez — TÚ debes presionar Enviar manualmente. El mal uso puede resultar en el bloqueo de tu número.",
+  "broadcastUnderstood": "Entendido",
+  "addNumbers": "Agregar números",
+  "enterNumbersHint": "Un número por línea",
+  "selectTemplate": "Seleccionar plantilla",
+  "orTypeMessage": "o escribe un mensaje",
+  "startBroadcast": "Iniciar difusión",
+  "nextContact": "Siguiente contacto",
+  "broadcastProgress": "{current} de {total}",
+  "broadcastDone": "Difusión completa",
+  "broadcastOpenWhatsApp": "Abrir en WhatsApp",
+  "broadcastEmptyNumbers": "Por favor agrega al menos un número",
+  "broadcastEmptyMessage": "Por favor ingresa un mensaje",
+  "broadcastFromFavorites": "De favoritos"
 }

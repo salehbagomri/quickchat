@@ -359,4 +359,58 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get shareDeepLink => 'Bagikan tautan app';
+
+  @override
+  String get broadcast => 'Siaran';
+
+  @override
+  String get broadcastQueue => 'Antrean siaran';
+
+  @override
+  String get broadcastWarningTitle => 'Pemberitahuan Penting';
+
+  @override
+  String get broadcastWarningBody =>
+      'WhatsApp melarang pengiriman massal otomatis. Alat ini membuka WhatsApp SATU kontak sekaligus — ANDA harus menekan Kirim secara manual. Penyalahgunaan dapat mengakibatkan nomor Anda diblokir.';
+
+  @override
+  String get broadcastUnderstood => 'Mengerti';
+
+  @override
+  String get addNumbers => 'Tambah nomor';
+
+  @override
+  String get enterNumbersHint => 'Satu nomor per baris';
+
+  @override
+  String get selectTemplate => 'Pilih template';
+
+  @override
+  String get orTypeMessage => 'atau ketik pesan';
+
+  @override
+  String get startBroadcast => 'Mulai siaran';
+
+  @override
+  String get nextContact => 'Kontak berikutnya';
+
+  @override
+  String broadcastProgress(int current, int total) {
+    return '$current dari $total';
+  }
+
+  @override
+  String get broadcastDone => 'Siaran selesai';
+
+  @override
+  String get broadcastOpenWhatsApp => 'Buka di WhatsApp';
+
+  @override
+  String get broadcastEmptyNumbers => 'Harap tambahkan setidaknya satu nomor';
+
+  @override
+  String get broadcastEmptyMessage => 'Harap masukkan pesan';
+
+  @override
+  String get broadcastFromFavorites => 'Dari favorit';
 }

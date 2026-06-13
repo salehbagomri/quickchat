@@ -787,6 +787,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Share app link'**
   String get shareDeepLink;
+
+  /// Broadcast feature name
+  ///
+  /// In en, this message translates to:
+  /// **'Broadcast'**
+  String get broadcast;
+
+  /// Broadcast screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Broadcast Queue'**
+  String get broadcastQueue;
+
+  /// Warning dialog title before broadcast
+  ///
+  /// In en, this message translates to:
+  /// **'Important Notice'**
+  String get broadcastWarningTitle;
+
+  /// Warning body explaining manual-only broadcast
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp prohibits automated bulk sending. This tool opens WhatsApp ONE contact at a time — YOU must press Send manually for each. Misuse may result in your number being banned.'**
+  String get broadcastWarningBody;
+
+  /// Confirm broadcast warning
+  ///
+  /// In en, this message translates to:
+  /// **'I understand'**
+  String get broadcastUnderstood;
+
+  /// Add phone numbers to broadcast list
+  ///
+  /// In en, this message translates to:
+  /// **'Add numbers'**
+  String get addNumbers;
+
+  /// Hint for bulk phone number entry
+  ///
+  /// In en, this message translates to:
+  /// **'One number per line'**
+  String get enterNumbersHint;
+
+  /// Select a message template for broadcast
+  ///
+  /// In en, this message translates to:
+  /// **'Select template'**
+  String get selectTemplate;
+
+  /// Label for manual message entry in broadcast
+  ///
+  /// In en, this message translates to:
+  /// **'or type a message'**
+  String get orTypeMessage;
+
+  /// Button to begin the broadcast queue
+  ///
+  /// In en, this message translates to:
+  /// **'Start Broadcast'**
+  String get startBroadcast;
+
+  /// Advance to next contact in broadcast queue
+  ///
+  /// In en, this message translates to:
+  /// **'Next contact'**
+  String get nextContact;
+
+  /// Progress indicator e.g. 2 of 5
+  ///
+  /// In en, this message translates to:
+  /// **'{current} of {total}'**
+  String broadcastProgress(int current, int total);
+
+  /// All contacts processed
+  ///
+  /// In en, this message translates to:
+  /// **'Broadcast complete'**
+  String get broadcastDone;
+
+  /// Open current contact in WhatsApp
+  ///
+  /// In en, this message translates to:
+  /// **'Open in WhatsApp'**
+  String get broadcastOpenWhatsApp;
+
+  /// Validation error when number list is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Please add at least one phone number'**
+  String get broadcastEmptyNumbers;
+
+  /// Validation error when message is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a message'**
+  String get broadcastEmptyMessage;
+
+  /// Import favorites into broadcast list
+  ///
+  /// In en, this message translates to:
+  /// **'From favorites'**
+  String get broadcastFromFavorites;
 }
 
 class _AppLocalizationsDelegate

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quickchat/features/broadcast/broadcast_screen.dart';
 import 'package:quickchat/features/favorites/favorites_screen.dart';
 import 'package:quickchat/features/history/history_screen.dart';
 import 'package:quickchat/features/home/home_screen.dart';
@@ -21,6 +22,7 @@ abstract class AppRouter {
   static const String settings = '/settings';
   static const String templates = '/templates';
   static const String privacy = '/privacy';
+  static const String broadcast = '/broadcast';
 
   // Push helpers ------------------------------------------------------------
 
@@ -59,6 +61,10 @@ abstract class AppRouter {
   /// Pushes [FavoritesScreen] (manage favorites).
   static Future<void> pushFavorites(BuildContext context) =>
       Navigator.push(context, _route(const FavoritesScreen()));
+
+  /// Pushes [BroadcastScreen].
+  static Future<void> pushBroadcast(BuildContext context) =>
+      Navigator.push(context, _route(const BroadcastScreen()));
 
   /// Pushes [PrivacyPolicyScreen].
   static Future<void> pushPrivacy(BuildContext context) =>

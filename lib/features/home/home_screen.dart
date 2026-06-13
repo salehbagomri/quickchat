@@ -168,6 +168,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   : const SizedBox.shrink(),
             ),
             IconButton(
+              icon: const Icon(Icons.campaign_outlined),
+              tooltip: l10n.broadcast,
+              onPressed: () => AppRouter.pushBroadcast(context),
+            ),
+            IconButton(
               icon: const Icon(Icons.settings),
               tooltip: l10n.settings,
               onPressed: () async {

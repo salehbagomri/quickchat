@@ -356,4 +356,58 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get shareDeepLink => 'Share app link';
+
+  @override
+  String get broadcast => 'Broadcast';
+
+  @override
+  String get broadcastQueue => 'Broadcast Queue';
+
+  @override
+  String get broadcastWarningTitle => 'Important Notice';
+
+  @override
+  String get broadcastWarningBody =>
+      'WhatsApp prohibits automated bulk sending. This tool opens WhatsApp ONE contact at a time — YOU must press Send manually for each. Misuse may result in your number being banned.';
+
+  @override
+  String get broadcastUnderstood => 'I understand';
+
+  @override
+  String get addNumbers => 'Add numbers';
+
+  @override
+  String get enterNumbersHint => 'One number per line';
+
+  @override
+  String get selectTemplate => 'Select template';
+
+  @override
+  String get orTypeMessage => 'or type a message';
+
+  @override
+  String get startBroadcast => 'Start Broadcast';
+
+  @override
+  String get nextContact => 'Next contact';
+
+  @override
+  String broadcastProgress(int current, int total) {
+    return '$current of $total';
+  }
+
+  @override
+  String get broadcastDone => 'Broadcast complete';
+
+  @override
+  String get broadcastOpenWhatsApp => 'Open in WhatsApp';
+
+  @override
+  String get broadcastEmptyNumbers => 'Please add at least one phone number';
+
+  @override
+  String get broadcastEmptyMessage => 'Please enter a message';
+
+  @override
+  String get broadcastFromFavorites => 'From favorites';
 }

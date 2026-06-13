@@ -355,4 +355,58 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get shareDeepLink => 'ایپ لنک شیئر کریں';
+
+  @override
+  String get broadcast => 'نشریات';
+
+  @override
+  String get broadcastQueue => 'نشریات کی قطار';
+
+  @override
+  String get broadcastWarningTitle => 'اہم اطلاع';
+
+  @override
+  String get broadcastWarningBody =>
+      'واٹس ایپ خودکار بلک بھیجنے سے منع کرتا ہے۔ یہ ٹول ایک وقت میں ایک رابطے کے لیے کھولتا ہے — آپ کو دستی طور پر بھیجنا ہوگا۔ غلط استعمال سے نمبر بلاک ہو سکتا ہے۔';
+
+  @override
+  String get broadcastUnderstood => 'سمجھ گیا';
+
+  @override
+  String get addNumbers => 'نمبر شامل کریں';
+
+  @override
+  String get enterNumbersHint => 'فی سطر ایک نمبر';
+
+  @override
+  String get selectTemplate => 'ٹیمپلیٹ منتخب کریں';
+
+  @override
+  String get orTypeMessage => 'یا پیغام لکھیں';
+
+  @override
+  String get startBroadcast => 'نشریات شروع کریں';
+
+  @override
+  String get nextContact => 'اگلا رابطہ';
+
+  @override
+  String broadcastProgress(int current, int total) {
+    return '$total میں سے $current';
+  }
+
+  @override
+  String get broadcastDone => 'نشریات مکمل';
+
+  @override
+  String get broadcastOpenWhatsApp => 'واٹس ایپ میں کھولیں';
+
+  @override
+  String get broadcastEmptyNumbers => 'براہ کرم کم از کم ایک نمبر شامل کریں';
+
+  @override
+  String get broadcastEmptyMessage => 'براہ کرم ایک پیغام درج کریں';
+
+  @override
+  String get broadcastFromFavorites => 'پسندیدہ سے';
 }

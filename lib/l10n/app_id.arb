@@ -115,5 +115,22 @@
   "termsOfUse": "Ketentuan Penggunaan",
   "childSafety": "Keamanan Anak",
   "dataDeletion": "Penghapusan Data",
-  "shareDeepLink": "Bagikan tautan app"
+  "shareDeepLink": "Bagikan tautan app",
+  "broadcast": "Siaran",
+  "broadcastQueue": "Antrean siaran",
+  "broadcastWarningTitle": "Pemberitahuan Penting",
+  "broadcastWarningBody": "WhatsApp melarang pengiriman massal otomatis. Alat ini membuka WhatsApp SATU kontak sekaligus — ANDA harus menekan Kirim secara manual. Penyalahgunaan dapat mengakibatkan nomor Anda diblokir.",
+  "broadcastUnderstood": "Mengerti",
+  "addNumbers": "Tambah nomor",
+  "enterNumbersHint": "Satu nomor per baris",
+  "selectTemplate": "Pilih template",
+  "orTypeMessage": "atau ketik pesan",
+  "startBroadcast": "Mulai siaran",
+  "nextContact": "Kontak berikutnya",
+  "broadcastProgress": "{current} dari {total}",
+  "broadcastDone": "Siaran selesai",
+  "broadcastOpenWhatsApp": "Buka di WhatsApp",
+  "broadcastEmptyNumbers": "Harap tambahkan setidaknya satu nomor",
+  "broadcastEmptyMessage": "Harap masukkan pesan",
+  "broadcastFromFavorites": "Dari favorit"
 }

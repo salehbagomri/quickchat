@@ -353,4 +353,58 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get shareDeepLink => 'ऐप लिंक साझा करें';
+
+  @override
+  String get broadcast => 'प्रसारण';
+
+  @override
+  String get broadcastQueue => 'प्रसारण कतार';
+
+  @override
+  String get broadcastWarningTitle => 'महत्वपूर्ण सूचना';
+
+  @override
+  String get broadcastWarningBody =>
+      'WhatsApp स्वचालित बल्क भेजने को प्रतिबंधित करता है। यह टूल एक बार में एक संपर्क के लिए खोलता है — आपको मैन्युअल रूप से भेजना होगा। दुरुपयोग से नंबर बैन हो सकता है।';
+
+  @override
+  String get broadcastUnderstood => 'समझ गया';
+
+  @override
+  String get addNumbers => 'नंबर जोड़ें';
+
+  @override
+  String get enterNumbersHint => 'प्रति पंक्ति एक नंबर';
+
+  @override
+  String get selectTemplate => 'टेम्पलेट चुनें';
+
+  @override
+  String get orTypeMessage => 'या संदेश टाइप करें';
+
+  @override
+  String get startBroadcast => 'प्रसारण शुरू करें';
+
+  @override
+  String get nextContact => 'अगला संपर्क';
+
+  @override
+  String broadcastProgress(int current, int total) {
+    return '$total में से $current';
+  }
+
+  @override
+  String get broadcastDone => 'प्रसारण पूर्ण';
+
+  @override
+  String get broadcastOpenWhatsApp => 'WhatsApp में खोलें';
+
+  @override
+  String get broadcastEmptyNumbers => 'कृपया कम से कम एक नंबर जोड़ें';
+
+  @override
+  String get broadcastEmptyMessage => 'कृपया एक संदेश दर्ज करें';
+
+  @override
+  String get broadcastFromFavorites => 'पसंदीदा से';
 }
