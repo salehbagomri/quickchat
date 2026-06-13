@@ -110,5 +110,9 @@
   "qrCode": "Kode QR",
   "linkCopied": "Tautan disalin ke papan klip",
   "scanQrHint": "Pindai untuk membuka di WhatsApp",
-  "clearField": "Hapus"
+  "clearField": "Hapus",
+  "privacyAndLegal": "Privasi & Hukum",
+  "termsOfUse": "Ketentuan Penggunaan",
+  "childSafety": "Keamanan Anak",
+  "dataDeletion": "Penghapusan Data"
 }

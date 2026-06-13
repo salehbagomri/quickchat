@@ -344,4 +344,16 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get clearField => 'Hapus';
+
+  @override
+  String get privacyAndLegal => 'Privasi & Hukum';
+
+  @override
+  String get termsOfUse => 'Ketentuan Penggunaan';
+
+  @override
+  String get childSafety => 'Keamanan Anak';
+
+  @override
+  String get dataDeletion => 'Penghapusan Data';
 }

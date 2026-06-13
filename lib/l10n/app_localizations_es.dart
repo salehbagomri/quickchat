@@ -343,4 +343,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get clearField => 'Limpiar';
+
+  @override
+  String get privacyAndLegal => 'Privacidad y Legal';
+
+  @override
+  String get termsOfUse => 'Condiciones de Uso';
+
+  @override
+  String get childSafety => 'Seguridad Infantil';
+
+  @override
+  String get dataDeletion => 'Eliminación de Datos';
 }

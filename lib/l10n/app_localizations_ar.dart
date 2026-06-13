@@ -339,4 +339,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get clearField => 'مسح';
+
+  @override
+  String get privacyAndLegal => 'الخصوصية والاتفاقيات';
+
+  @override
+  String get termsOfUse => 'شروط الاستخدام';
+
+  @override
+  String get childSafety => 'سلامة الأطفال';
+
+  @override
+  String get dataDeletion => 'حذف البيانات';
 }

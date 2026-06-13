@@ -110,6 +110,10 @@
   "qrCode": "رمز QR",
   "linkCopied": "تم نسخ الرابط",
   "scanQrHint": "امسح لفتح في واتساب",
-  "clearField": "مسح"
+  "clearField": "مسح",
+  "privacyAndLegal": "الخصوصية والاتفاقيات",
+  "termsOfUse": "شروط الاستخدام",
+  "childSafety": "سلامة الأطفال",
+  "dataDeletion": "حذف البيانات"
 }
 

@@ -129,6 +129,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   onTap: () => AppUtils.openUrl(AppConstants.playStoreUrl),
                 ),
               ),
+
+              const SizedBox(height: 24),
+
+              // الخصوصية والاتفاقيات
+              _sectionHeader(l10n.privacyAndLegal),
               SettingsSection(
                 child: ListTile(
                   leading: Icon(Icons.privacy_tip_outlined,
@@ -136,6 +141,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   title: Text(l10n.privacyPolicy),
                   trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
                   onTap: () => AppRouter.pushPrivacy(context),
+                ),
+              ),
+              SettingsSection(
+                child: ListTile(
+                  leading: Icon(Icons.gavel_outlined,
+                      color: Theme.of(context).colorScheme.primary),
+                  title: Text(l10n.termsOfUse),
+                  trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
+                  onTap: () => AppUtils.openUrl('https://salehbagomri.github.io/quickchat-privacy/terms.html'),
+                ),
+              ),
+              SettingsSection(
+                child: ListTile(
+                  leading: Icon(Icons.security_outlined,
+                      color: Theme.of(context).colorScheme.primary),
+                  title: Text(l10n.childSafety),
+                  trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
+                  onTap: () => AppUtils.openUrl('https://salehbagomri.github.io/quickchat-privacy/child-safety-standards.html'),
+                ),
+              ),
+              SettingsSection(
+                child: ListTile(
+                  leading: Icon(Icons.delete_forever_outlined,
+                      color: Theme.of(context).colorScheme.primary),
+                  title: Text(l10n.dataDeletion),
+                  trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
+                  onTap: () => AppUtils.openUrl('https://salehbagomri.github.io/quickchat-privacy/delete-account.html'),
                 ),
               ),
 

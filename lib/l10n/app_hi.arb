@@ -110,5 +110,9 @@
   "qrCode": "QR कोड",
   "linkCopied": "लिंक क्लिपबोर्ड पर कॉपी किया गया",
   "scanQrHint": "WhatsApp में खोलने के लिए स्कैन करें",
-  "clearField": "साफ करें"
+  "clearField": "साफ करें",
+  "privacyAndLegal": "गोपनीयता और कानूनी",
+  "termsOfUse": "उपयोग की शर्तें",
+  "childSafety": "बाल सुरक्षा",
+  "dataDeletion": "डेटा हटाना"
 }

@@ -757,6 +757,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Clear'**
   String get clearField;
+
+  /// Section header for privacy and legal settings
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy & Legal'**
+  String get privacyAndLegal;
+
+  /// Terms of use link text
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Use'**
+  String get termsOfUse;
+
+  /// Child safety standards link text
+  ///
+  /// In en, this message translates to:
+  /// **'Child Safety'**
+  String get childSafety;
+
+  /// Data deletion instructions link text
+  ///
+  /// In en, this message translates to:
+  /// **'Data Deletion'**
+  String get dataDeletion;
 }
 
 class _AppLocalizationsDelegate

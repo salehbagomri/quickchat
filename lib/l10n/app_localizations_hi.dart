@@ -338,4 +338,16 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get clearField => 'साफ करें';
+
+  @override
+  String get privacyAndLegal => 'गोपनीयता और कानूनी';
+
+  @override
+  String get termsOfUse => 'उपयोग की शर्तें';
+
+  @override
+  String get childSafety => 'बाल सुरक्षा';
+
+  @override
+  String get dataDeletion => 'डेटा हटाना';
 }

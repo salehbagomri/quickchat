@@ -110,5 +110,9 @@
   "qrCode": "کیو آر کوڈ",
   "linkCopied": "لنک کلپ بورڈ پر کاپی ہو گیا",
   "scanQrHint": "واٹس ایپ میں کھولنے کے لیے اسکین کریں",
-  "clearField": "صاف کریں"
+  "clearField": "صاف کریں",
+  "privacyAndLegal": "رازداری اور قانونی",
+  "termsOfUse": "استعمال کی شرائط",
+  "childSafety": "بچوں کی حفاظت",
+  "dataDeletion": "ڈیٹا کا خاتمہ"
 }

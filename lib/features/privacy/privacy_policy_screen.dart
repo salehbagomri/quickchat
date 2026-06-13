@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quickchat/core/constants/app_constants.dart';
+import 'package:quickchat/core/utils/app_utils.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
@@ -328,6 +329,73 @@ Last Updated: June 13, 2026''',
                 : 'QuickChat does not collect, store, or share any personal data',
             style: Theme.of(context).textTheme.bodyMedium,
             textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          const Divider(),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 4,
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              TextButton(
+                style: TextButton.styleFrom(
+                  minimumSize: Size.zero,
+                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                onPressed: () => AppUtils.openUrl('https://salehbagomri.github.io/quickchat-privacy/terms.html'),
+                child: Text(
+                  isArabic ? 'شروط الاستخدام' : 'Terms of Use',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 12,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
+              Text(
+                '|',
+                style: TextStyle(color: Colors.grey[400], fontSize: 12),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  minimumSize: Size.zero,
+                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                onPressed: () => AppUtils.openUrl('https://salehbagomri.github.io/quickchat-privacy/delete-account.html'),
+                child: Text(
+                  isArabic ? 'حذف البيانات' : 'Data Deletion',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 12,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
+              Text(
+                '|',
+                style: TextStyle(color: Colors.grey[400], fontSize: 12),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  minimumSize: Size.zero,
+                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                onPressed: () => AppUtils.openUrl('https://salehbagomri.github.io/quickchat-privacy/child-safety-standards.html'),
+                child: Text(
+                  isArabic ? 'سلامة الأطفال' : 'Child Safety',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 12,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

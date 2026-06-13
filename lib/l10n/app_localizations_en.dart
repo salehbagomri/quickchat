@@ -341,4 +341,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get clearField => 'Clear';
+
+  @override
+  String get privacyAndLegal => 'Privacy & Legal';
+
+  @override
+  String get termsOfUse => 'Terms of Use';
+
+  @override
+  String get childSafety => 'Child Safety';
+
+  @override
+  String get dataDeletion => 'Data Deletion';
 }

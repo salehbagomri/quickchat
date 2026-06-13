@@ -400,6 +400,14 @@
   "scanQrHint": "Scan to open in WhatsApp",
   "@scanQrHint": { "description": "Hint shown below QR code in the bottom sheet" },
   "clearField": "Clear",
-  "@clearField": { "description": "Tooltip for clear/reset icon buttons" }
+  "@clearField": { "description": "Tooltip for clear/reset icon buttons" },
+  "privacyAndLegal": "Privacy & Legal",
+  "@privacyAndLegal": { "description": "Section header for privacy and legal settings" },
+  "termsOfUse": "Terms of Use",
+  "@termsOfUse": { "description": "Terms of use link text" },
+  "childSafety": "Child Safety",
+  "@childSafety": { "description": "Child safety standards link text" },
+  "dataDeletion": "Data Deletion",
+  "@dataDeletion": { "description": "Data deletion instructions link text" }
 }
 

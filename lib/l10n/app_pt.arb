@@ -110,5 +110,9 @@
   "qrCode": "Código QR",
   "linkCopied": "Link copiado para a área de transferência",
   "scanQrHint": "Escaneie para abrir no WhatsApp",
-  "clearField": "Limpar"
+  "clearField": "Limpar",
+  "privacyAndLegal": "Privacidade e Legal",
+  "termsOfUse": "Termos de Uso",
+  "childSafety": "Segurança Infantil",
+  "dataDeletion": "Exclusão de Dados"
 }

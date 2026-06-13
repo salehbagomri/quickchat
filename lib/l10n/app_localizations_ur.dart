@@ -340,4 +340,16 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get clearField => 'صاف کریں';
+
+  @override
+  String get privacyAndLegal => 'رازداری اور قانونی';
+
+  @override
+  String get termsOfUse => 'استعمال کی شرائط';
+
+  @override
+  String get childSafety => 'بچوں کی حفاظت';
+
+  @override
+  String get dataDeletion => 'ڈیٹا کا خاتمہ';
 }

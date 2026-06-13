@@ -342,4 +342,16 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get clearField => 'Temizle';
+
+  @override
+  String get privacyAndLegal => 'Gizlilik ve Yasal';
+
+  @override
+  String get termsOfUse => 'Kullanım Şartları';
+
+  @override
+  String get childSafety => 'Çocuk Güvenliği';
+
+  @override
+  String get dataDeletion => 'Veri Silme';
 }
