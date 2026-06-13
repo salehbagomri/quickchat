@@ -346,6 +346,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get flipCamera => 'कैमरा बदलें';
 
   @override
+  String get allCategories => 'सभी';
+
+  @override
   String get clearField => 'साफ करें';
 
   @override

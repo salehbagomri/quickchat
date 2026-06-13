@@ -349,6 +349,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get flipCamera => 'Flip Camera';
 
   @override
+  String get allCategories => 'All';
+
+  @override
   String get clearField => 'Clear';
 
   @override

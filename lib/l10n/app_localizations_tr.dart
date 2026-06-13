@@ -350,6 +350,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get flipCamera => 'Kamerayı Döndür';
 
   @override
+  String get allCategories => 'Tümü';
+
+  @override
   String get clearField => 'Temizle';
 
   @override

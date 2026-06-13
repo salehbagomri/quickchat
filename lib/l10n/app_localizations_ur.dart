@@ -348,6 +348,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get flipCamera => 'کیمرہ بدلیں';
 
   @override
+  String get allCategories => 'سب';
+
+  @override
   String get clearField => 'صاف کریں';
 
   @override

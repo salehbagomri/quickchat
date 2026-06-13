@@ -351,6 +351,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get flipCamera => 'Cambiar cámara';
 
   @override
+  String get allCategories => 'Todas';
+
+  @override
   String get clearField => 'Limpiar';
 
   @override

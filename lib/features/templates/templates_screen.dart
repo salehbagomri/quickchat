@@ -6,6 +6,7 @@ import 'package:quickchat/data/models/message_template.dart';
 import 'package:quickchat/data/services/template_service.dart';
 import 'package:quickchat/features/templates/templates_cubit.dart';
 import 'package:quickchat/features/templates/widgets/template_card.dart';
+import 'package:quickchat/features/templates/widgets/template_category_chips.dart';
 import 'package:quickchat/features/templates/widgets/template_form_sheet.dart';
 import 'package:quickchat/features/templates/widgets/template_search_bar.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
@@ -71,6 +72,14 @@ class _TemplatesScreenState extends State<TemplatesScreen> {
               controller: _searchController,
               onChanged: _onSearch,
               onClear: _onClearSearch,
+            ),
+            BlocBuilder<TemplatesCubit, TemplatesState>(
+              buildWhen: (p, c) => p.selectedCategory != c.selectedCategory,
+              builder: (context, state) => TemplateCategoryChips(
+                categories: _cubit.availableCategories(),
+                selected: state.selectedCategory,
+                onSelected: _cubit.filterByCategory,
+              ),
             ),
             Expanded(
               child: BlocBuilder<TemplatesCubit, TemplatesState>(

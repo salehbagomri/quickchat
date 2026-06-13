@@ -352,6 +352,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get flipCamera => 'Balik kamera';
 
   @override
+  String get allCategories => 'Semua';
+
+  @override
   String get clearField => 'Hapus';
 
   @override

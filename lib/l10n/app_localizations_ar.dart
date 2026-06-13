@@ -347,6 +347,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get flipCamera => 'قلب الكاميرا';
 
   @override
+  String get allCategories => 'الكل';
+
+  @override
   String get clearField => 'مسح';
 
   @override

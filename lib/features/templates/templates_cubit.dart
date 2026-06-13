@@ -18,18 +18,43 @@ class TemplatesCubit extends Cubit<TemplatesState> {
 
   void _load() {
     if (isClosed) return;
-    final templates = state.query.isEmpty
-        ? _service.getAllTemplates()
-        : _service.searchTemplates(state.query);
+    final templates = _filtered(state.query, state.selectedCategory);
     emit(state.copyWith(templates: templates));
   }
 
-  void search(String query) {
-    final templates = query.isEmpty
+  List<MessageTemplate> _filtered(String query, String? category) {
+    var list = query.isEmpty
         ? _service.getAllTemplates()
         : _service.searchTemplates(query);
-    emit(TemplatesState(templates: templates, query: query));
+    if (category != null) {
+      list = list.where((t) => t.category == category).toList();
+    }
+    return list;
   }
+
+  void search(String query) {
+    emit(TemplatesState(
+      templates: _filtered(query, state.selectedCategory),
+      query: query,
+      selectedCategory: state.selectedCategory,
+    ));
+  }
+
+  void filterByCategory(String? category) {
+    emit(TemplatesState(
+      templates: _filtered(state.query, category),
+      query: state.query,
+      selectedCategory: category,
+    ));
+  }
+
+  /// Returns distinct non-null categories present in all templates (unsorted).
+  List<String> availableCategories() => _service
+      .getAllTemplates()
+      .map((t) => t.category)
+      .whereType<String>()
+      .toSet()
+      .toList();
 
   Future<void> addTemplate({
     required String title,

@@ -405,6 +405,8 @@
   "@flashlight": { "description": "Tooltip for torch toggle in QR scanner" },
   "flipCamera": "Flip Camera",
   "@flipCamera": { "description": "Tooltip for camera flip button in QR scanner" },
+  "allCategories": "All",
+  "@allCategories": { "description": "Filter chip label showing all template categories" },
   "clearField": "Clear",
   "@clearField": { "description": "Tooltip for clear/reset icon buttons" },
   "privacyAndLegal": "Privacy & Legal",

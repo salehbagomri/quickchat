@@ -351,6 +351,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get flipCamera => 'Virar câmera';
 
   @override
+  String get allCategories => 'Todas';
+
+  @override
   String get clearField => 'Limpar';
 
   @override

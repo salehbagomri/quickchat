@@ -770,6 +770,12 @@ abstract class AppLocalizations {
   /// **'Flip Camera'**
   String get flipCamera;
 
+  /// Filter chip label showing all template categories
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get allCategories;
+
   /// Tooltip for clear/reset icon buttons
   ///
   /// In en, this message translates to:

@@ -23,6 +23,10 @@ class MessageTemplate extends HiveObject {
   @HiveField(5)
   bool? isDefault;
 
+  // nullable for backward compat — old templates have null (shown under "All")
+  @HiveField(6)
+  String? category;
+
   bool get isDefaultTemplate => isDefault ?? false;
 
   MessageTemplate({
@@ -32,6 +36,7 @@ class MessageTemplate extends HiveObject {
     required this.createdAt,
     required this.updatedAt,
     this.isDefault,
+    this.category,
   });
 
   static int _idSeq = 0;
@@ -40,6 +45,7 @@ class MessageTemplate extends HiveObject {
     required String title,
     required String message,
     bool isDefault = false,
+    String? category,
   }) {
     final now = DateTime.now();
     return MessageTemplate(
@@ -49,12 +55,14 @@ class MessageTemplate extends HiveObject {
       createdAt: now,
       updatedAt: now,
       isDefault: isDefault ? true : null,
+      category: category,
     );
   }
 
   MessageTemplate copyWith({
     String? title,
     String? message,
+    String? category,
   }) {
     return MessageTemplate(
       id: id,
@@ -63,6 +71,7 @@ class MessageTemplate extends HiveObject {
       createdAt: createdAt,
       updatedAt: DateTime.now(),
       isDefault: null, // editing any template (including a default) makes it user-owned
+      category: category ?? this.category,
     );
   }
 }
