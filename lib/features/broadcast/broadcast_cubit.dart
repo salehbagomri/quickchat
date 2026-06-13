@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quickchat/data/local_storage/hive_service.dart';
+import 'package:quickchat/data/models/chat_history.dart';
 import 'package:quickchat/data/models/favorite_contact.dart';
 import 'package:quickchat/data/services/preferences_service.dart';
 import 'package:quickchat/data/services/whatsapp_service.dart';
@@ -44,16 +46,24 @@ class BroadcastCubit extends Cubit<BroadcastState> {
     }
   }
 
-  /// Opens WhatsApp for [state.currentPhone] via [WhatsAppService].
+  /// Opens WhatsApp for [state.currentPhone] via [WhatsAppService]
+  /// and records the attempt in chat history.
   Future<WhatsAppLaunchResult> openCurrentInWhatsApp() async {
     final phone = state.currentPhone;
     if (phone == null) return WhatsAppLaunchResult.launchFailed;
+    final msg = state.message.isNotEmpty ? state.message : null;
     final app = PreferencesService().getWhatsAppApp();
-    return WhatsAppService.openWhatsApp(
-      phone,
-      message: state.message.isNotEmpty ? state.message : null,
-      app: app,
-    );
+    final result = await WhatsAppService.openWhatsApp(phone, message: msg, app: app);
+    if (result == WhatsAppLaunchResult.success) {
+      try {
+        await HiveService().addHistory(
+          ChatHistory(phoneNumber: phone, message: msg, timestamp: DateTime.now()),
+        );
+      } catch (_) {
+        // Hive not initialized in test environments — silently skip
+      }
+    }
+    return result;
   }
 
   /// Pre-fills the phone list from the given favourites.

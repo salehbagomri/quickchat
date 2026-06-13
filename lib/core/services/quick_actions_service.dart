@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quick_actions/quick_actions.dart';
-import 'package:quickchat/core/constants/app_constants.dart';
 import 'package:quickchat/core/router/app_router.dart';
 import 'package:quickchat/data/models/favorite_contact.dart';
 import 'package:quickchat/data/services/preferences_service.dart';
@@ -37,12 +36,10 @@ class QuickActionsService {
     } catch (_) {
       return;
     }
-    final isArabic = lang == AppConstants.languageArabic;
-
     final items = <ShortcutItem>[
       ShortcutItem(
         type: 'new_message',
-        localizedTitle: isArabic ? 'رسالة جديدة' : 'New Message',
+        localizedTitle: _newMessageLabel(lang),
         icon: 'ic_shortcut_new_message',
       ),
       ...favorites.take(3).map((fav) => ShortcutItem(
@@ -54,6 +51,17 @@ class QuickActionsService {
 
     await _quickActions.setShortcutItems(items);
   }
+
+  static String _newMessageLabel(String lang) => const {
+        'ar': 'رسالة جديدة',
+        'es': 'Nuevo mensaje',
+        'hi': 'नया संदेश',
+        'pt': 'Nova mensagem',
+        'id': 'Pesan baru',
+        'ur': 'نیا پیغام',
+        'tr': 'Yeni mesaj',
+      }[lang] ??
+      'New Message';
 
   void _handleShortcut(String shortcutType) {
     if (shortcutType == 'new_message') {
