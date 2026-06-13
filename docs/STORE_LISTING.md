@@ -1,5 +1,9 @@
 # 📝 QuickChat - Store Listing Content (محتوى صفحة المتجر)
 
+**الإصدار الحالي**: 2.0.0 | **تاريخ التحديث**: 13 يونيو 2026
+
+---
+
 ## 📱 App Title (العنوان)
 **الحد الأقصى**: 50 حرف
 
@@ -108,10 +112,26 @@ QuickChat هو الحل الأمثل والأذكى!
 • تصميم نظيف وسهل الاستخدام
 • ألوان مريحة للعين
 
-🌐 دعم كامل للغة العربية والإنجليزية
-• واجهة مترجمة بالكامل
-• تحويل اللغة من الإعدادات
+🌐 دعم 8 لغات عالمية
+• العربية، الإنجليزية، الإسبانية، الهندية، البرتغالية، الإندونيسية، الأردية، التركية
+• تحويل اللغة من الإعدادات في ثانية
 • اتجاه النص الصحيح لكل لغة (RTL/LTR)
+
+⭐ جهات الاتصال المفضلة
+• احفظ أهم أرقامك كمفضلة مع اسم مخصص
+• وصول بنقرة واحدة من الشاشة الرئيسية
+• إدارة المفضلة بسهولة
+
+📋 كشف رقم الحافظة
+• عند فتح التطبيق يكتشف الأرقام في الحافظة تلقائياً
+• اقتراح خفي غير مزعج، يمكن تعطيله من الإعدادات
+
+🔗 مشاركة رابط wa.me وQR
+• انسخ رابط واتساب المباشر أو شاركه فوراً
+• ولّد QR للرابط — مثالي للتجار وبطاقات الأعمال
+
+📥 استقبال الأرقام من أي تطبيق
+• شارك رقماً من أي تطبيق آخر → يُفتح QuickChat معبأً تلقائياً
 
 ⚡ خفيف وسريع
 • حجم صغير (أقل من 20 ميجا)
@@ -242,10 +262,26 @@ Whether you're an online store owner, delivery driver, sales representative, or 
 • Clean and easy-to-use design
 • Eye-friendly colors
 
-🌐 Full Arabic and English Support
-• Fully translated interface
-• Switch language from settings
-• Proper text direction for each language (RTL/LTR)
+🌐 8 Languages Supported
+• Arabic, English, Spanish, Hindi, Portuguese, Indonesian, Urdu, Turkish
+• Switch language instantly from settings
+• Proper text direction (RTL/LTR) for every language
+
+⭐ Favorite Contacts
+• Save your top numbers as favorites with a custom label
+• One-tap access from the home screen
+• Easy favorites management
+
+📋 Smart Clipboard Detection
+• Auto-detects phone numbers in your clipboard when you open the app
+• Non-intrusive suggestion — disable anytime from Settings
+
+🔗 Share wa.me Links & QR Codes
+• Copy or share a direct WhatsApp link instantly
+• Generate a QR code — perfect for merchants and business cards
+
+📥 Receive Numbers from Any App
+• Share a number from any app → QuickChat opens with it pre-filled
 
 ⚡ Lightweight and Fast
 • Small size (under 20MB)
@@ -322,6 +358,60 @@ Developer: Saleh Bagomri
 ---
 
 ## 📝 Release Notes (ملاحظات الإصدار)
+
+### النسخة 2.0.0 — التحديث العالمي الكبير
+
+#### English:
+```
+🌍 QuickChat v2.0.0 — Global Update
+
+✨ What's New:
+• 6 new languages: Spanish, Hindi, Portuguese, Indonesian, Urdu, Turkish (8 total)
+• Auto-detect default country code from your device locale
+• Favorite contacts — save top numbers for one-tap access
+• Smart clipboard detection — auto-fills phone numbers from clipboard
+• Share wa.me links and generate QR codes
+• Receive numbers shared from other apps (Share Intent)
+• History search and grouped by day (Today / Yesterday / date)
+• Undo delete — for both history and templates
+• Privacy policy updated to reflect clipboard usage (local-only)
+
+🐛 Fixes & Improvements:
+• Changing language now preserves all user-created templates
+• Country picker correctly shows and saves your last-used country
+• Input limits: phone numbers (15 digits), template title (50), message (1000)
+• WhatsApp error messages now tell you if the app isn't installed
+• All UI text fully localized — no hardcoded strings
+
+📥 Download the update and go global!
+```
+
+#### العربي:
+```
+🌍 QuickChat نسخة 2.0.0 — التحديث العالمي الكبير
+
+✨ الجديد:
+• 6 لغات جديدة: إسبانية، هندية، برتغالية، إندونيسية، أردية، تركية (8 لغات الآن)
+• كشف رمز الدولة تلقائياً من لغة الجهاز
+• جهات الاتصال المفضلة — احفظ أهم الأرقام للوصول السريع
+• كشف ذكي للحافظة — يملأ الرقم تلقائياً عند وجوده في الحافظة
+• مشاركة رابط wa.me وتوليد QR Code
+• استقبال الأرقام المشاركة من أي تطبيق آخر
+• بحث في السجل وتجميع حسب اليوم (اليوم / أمس / التاريخ)
+• تراجع عن الحذف في السجل والقوالب
+• تحديث سياسة الخصوصية (الحافظة محلياً فقط)
+
+🐛 إصلاحات وتحسينات:
+• تغيير اللغة لم يعد يمسح قوالب المستخدم
+• اختيار الدولة يُعرض ويُحفظ بشكل صحيح
+• حدود للمدخلات: الهاتف (15 رقم)، عنوان القالب (50)، الرسالة (1000)
+• رسائل خطأ واتساب مميّزة (غير مثبت / فشل التشغيل)
+• جميع نصوص الواجهة مترجمة بالكامل
+
+📥 حدّث الآن واستمتع بالتجربة العالمية!
+```
+
+---
 
 ### النسخة 1.0.0 - الإصدار الأول
 
@@ -517,7 +607,7 @@ Saleh Bagomri
 
 **📱 QuickChat - جاهز للنشر!**
 
-**التاريخ**: 9 نوفمبر 2025
+**التاريخ**: 13 يونيو 2026
 **المطور**: Saleh Bagomri ❤️
-**الإصدار**: 1.0.0
+**الإصدار**: 2.0.0
 

@@ -67,7 +67,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Text(
-            isArabic ? 'آخر تحديث: 9 نوفمبر 2025' : 'Last Updated: November 9, 2025',
+            isArabic ? 'آخر تحديث: 13 يونيو 2026' : 'Last Updated: June 13, 2026',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                 ),
@@ -109,7 +109,12 @@ class PrivacyPolicyScreen extends StatelessWidget {
 البيانات المحلية فقط:
 • يتم حفظ سجل المحادثات والقوالب محلياً على جهازك فقط
 • يمكنك حذف هذه البيانات في أي وقت من إعدادات التطبيق
-• لا يتم إرسال أي بيانات إلى خوادمنا أو أي طرف ثالث''',
+• لا يتم إرسال أي بيانات إلى خوادمنا أو أي طرف ثالث
+
+الحافظة (اختياري):
+• عند فتح التطبيق، قد يقرأ التطبيق الحافظة بحثاً عن أرقام هواتف ويعرض اقتراحاً باستخدامها
+• هذه العملية تجري محلياً على جهازك فقط ولا يُرسل أي شيء عبر الإنترنت
+• يمكنك تعطيل هذه الميزة في أي وقت من إعدادات التطبيق''',
         ),
         _buildSection(
           context,
@@ -175,7 +180,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
           '8. التغييرات على سياسة الخصوصية',
           '''قد نقوم بتحديث سياسة الخصوصية من وقت لآخر. سيتم إخطارك بأي تغييرات عبر تحديث التطبيق.
 
-آخر تحديث: 9 نوفمبر 2025''',
+آخر تحديث: 13 يونيو 2026''',
         ),
         _buildSection(
           context,
@@ -200,7 +205,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
         _buildSection(
           context,
           '1. Data We Collect',
-          "We want to assure you that QuickChat does not collect, store, or share any personal data. The app works entirely locally on your device.\n\nWhat we DON'T collect:\n• We don't collect phone numbers\n• We don't collect messages or conversation content\n• We don't collect location information\n• We don't collect device information\n• We don't track your app usage\n\nLocal Data Only:\n• Chat history and templates are saved locally on your device only\n• You can delete this data anytime from the app settings\n• No data is sent to our servers or any third party",
+          "We want to assure you that QuickChat does not collect, store, or share any personal data. The app works entirely locally on your device.\n\nWhat we DON'T collect:\n• We don't collect phone numbers\n• We don't collect messages or conversation content\n• We don't collect location information\n• We don't collect device information\n• We don't track your app usage\n\nLocal Data Only:\n• Chat history and templates are saved locally on your device only\n• You can delete this data anytime from the app settings\n• No data is sent to our servers or any third party\n\nClipboard (optional):\n• When you open the app, it may read your clipboard to detect phone numbers and offer to use them\n• This happens locally on your device only — nothing is sent over the internet\n• You can disable this feature anytime from the app Settings",
         ),
         _buildSection(
           context,
@@ -256,7 +261,7 @@ We recommend:
           '8. Changes to Privacy Policy',
           '''We may update this Privacy Policy from time to time. You will be notified of any changes through an app update.
 
-Last Updated: November 9, 2025''',
+Last Updated: June 13, 2026''',
         ),
         _buildSection(
           context,
