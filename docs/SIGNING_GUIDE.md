@@ -80,6 +80,46 @@ If signing files were accidentally committed, it's recommended to generate a new
 
 ---
 
+## إعداد GitHub Actions Secrets (مطلوب للـ Release workflow)
+
+الـ release workflow يحتاج 4 secrets مُعدَّة في GitHub حتى يبني ويوقّع الـ AAB تلقائياً.
+
+### الخطوة 1 — ترميز ملف الـ keystore بـ base64
+
+```powershell
+# Windows PowerShell
+[Convert]::ToBase64String([IO.File]::ReadAllBytes("D:\FlutterProjects\quickchatData\upload-keystore.jks")) | Set-Clipboard
+# الآن القيمة في الحافظة — الصقها كـ Secret
+```
+
+أو على Linux/Mac:
+```bash
+base64 -w 0 upload-keystore.jks
+```
+
+### الخطوة 2 — إضافة الـ Secrets في GitHub
+
+اذهب إلى: **GitHub repo → Settings → Secrets and variables → Actions → New repository secret**
+
+| اسم السر | القيمة |
+|----------|--------|
+| `KEYSTORE_BASE64` | ناتج الخطوة 1 (سلسلة base64 طويلة) |
+| `KEY_ALIAS` | اسم المفتاح (عادةً `quickchat` أو ما اخترته عند الإنشاء) |
+| `KEY_PASSWORD` | كلمة مرور المفتاح |
+| `STORE_PASSWORD` | كلمة مرور الـ keystore |
+
+### الخطوة 3 — إعادة تشغيل الـ Release workflow
+
+بعد إضافة الـ secrets، شغّل الـ workflow يدوياً أو ادفع tag جديد:
+```bash
+git push origin v2.0.0  # إذا لم يعمل الـ tag الحالي
+# أو أنشئ tag جديداً
+git tag -d v2.0.0 && git push --delete origin v2.0.0
+git tag v2.0.0 && git push origin v2.0.0
+```
+
+---
+
 ## Building Release Version
 
 After setting up signing correctly, build your app for release:
