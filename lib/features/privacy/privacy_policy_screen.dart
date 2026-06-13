@@ -185,6 +185,15 @@ class PrivacyPolicyScreen extends StatelessWidget {
         ),
         _buildSection(
           context,
+          '8أ. الكاميرا (ماسح QR)',
+          '''عند استخدام ميزة مسح رمز QR:
+• تُفتح الكاميرا محلياً لقراءة الرمز فقط
+• لا يتم حفظ أي صورة أو مقطع فيديو
+• لا يُرسل أي شيء إلى الإنترنت
+• تُغلق الكاميرا فور اكتشاف الرقم أو إغلاق النافذة''',
+        ),
+        _buildSection(
+          context,
           '9. اتصل بنا',
           'إذا كان لديك أي أسئلة حول سياسة الخصوصية هذه، يمكنك التواصل معنا:\n\nالبريد الإلكتروني: ${AppConstants.developerEmail}\nالمطور: ${AppConstants.developerName}',
         ),
@@ -263,6 +272,15 @@ We recommend:
           '''We may update this Privacy Policy from time to time. You will be notified of any changes through an app update.
 
 Last Updated: June 13, 2026''',
+        ),
+        _buildSection(
+          context,
+          '8a. Camera (QR Scanner)',
+          '''When you use the QR code scanner feature:
+• The camera opens locally to read the code only
+• No photo or video is saved
+• Nothing is sent over the internet
+• The camera closes as soon as a number is detected or the sheet is dismissed''',
         ),
         _buildSection(
           context,

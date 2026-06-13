@@ -752,6 +752,24 @@ abstract class AppLocalizations {
   /// **'Scan to open in WhatsApp'**
   String get scanQrHint;
 
+  /// Title of the QR scanner bottom sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Scan QR Code'**
+  String get scanQrCode;
+
+  /// Tooltip for torch toggle in QR scanner
+  ///
+  /// In en, this message translates to:
+  /// **'Flashlight'**
+  String get flashlight;
+
+  /// Tooltip for camera flip button in QR scanner
+  ///
+  /// In en, this message translates to:
+  /// **'Flip Camera'**
+  String get flipCamera;
+
   /// Tooltip for clear/reset icon buttons
   ///
   /// In en, this message translates to:

@@ -343,6 +343,15 @@ class AppLocalizationsId extends AppLocalizations {
   String get scanQrHint => 'Pindai untuk membuka di WhatsApp';
 
   @override
+  String get scanQrCode => 'Pindai kode QR';
+
+  @override
+  String get flashlight => 'Senter';
+
+  @override
+  String get flipCamera => 'Balik kamera';
+
+  @override
   String get clearField => 'Hapus';
 
   @override

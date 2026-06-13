@@ -18,6 +18,7 @@ import 'package:quickchat/features/home/widgets/home_footer.dart';
 import 'package:quickchat/features/home/widgets/message_input_card.dart';
 import 'package:quickchat/features/home/widgets/phone_input_card.dart';
 import 'package:quickchat/features/home/widgets/send_button.dart';
+import 'package:quickchat/features/home/widgets/qr_scanner_sheet.dart';
 import 'package:quickchat/features/home/widgets/share_link_actions.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 import 'package:share_handler/share_handler.dart';
@@ -166,6 +167,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () => AppRouter.pushFavorites(context),
                     )
                   : const SizedBox.shrink(),
+            ),
+            IconButton(
+              icon: const Icon(Icons.qr_code_scanner),
+              tooltip: l10n.scanQrCode,
+              onPressed: () => QrScannerSheet.show(
+                context,
+                onPhoneDetected: (phone) => _phoneController.text = phone,
+              ),
             ),
             IconButton(
               icon: const Icon(Icons.campaign_outlined),

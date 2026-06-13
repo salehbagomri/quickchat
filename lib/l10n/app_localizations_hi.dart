@@ -337,6 +337,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get scanQrHint => 'WhatsApp में खोलने के लिए स्कैन करें';
 
   @override
+  String get scanQrCode => 'QR कोड स्कैन करें';
+
+  @override
+  String get flashlight => 'टॉर्च';
+
+  @override
+  String get flipCamera => 'कैमरा बदलें';
+
+  @override
   String get clearField => 'साफ करें';
 
   @override
