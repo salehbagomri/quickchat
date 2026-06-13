@@ -140,7 +140,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       color: Theme.of(context).colorScheme.primary),
                   title: Text(l10n.privacyPolicy),
                   trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
-                  onTap: () => AppRouter.pushPrivacy(context),
+                  onTap: () => AppUtils.openUrl('https://salehbagomri.github.io/quickchat-privacy/'),
                 ),
               ),
               SettingsSection(
