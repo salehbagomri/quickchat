@@ -12,6 +12,11 @@
 .swiftpm/
 migrate_working_dir/
 
+# Project-local agent/scratch files
+claude_project_instructions.md
+claude_project_setup_guide.md
+scripts/build/
+
 # IntelliJ related
 *.iml
 *.ipr
