@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   String _buildDeepLink(String phone, {String? message}) {
     final clean = phone.replaceAll(RegExp(r'[^\d+]'), '');
-    final base = 'quickchat://send?phone=${Uri.encodeComponent(clean)}';
+    final base = 'https://salehbagomri.github.io/quickchat/?phone=${Uri.encodeComponent(clean)}';
     return message != null && message.isNotEmpty
         ? '$base&msg=${Uri.encodeComponent(message)}'
         : base;
