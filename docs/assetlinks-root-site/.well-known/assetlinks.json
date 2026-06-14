@@ -5,7 +5,7 @@
       "namespace": "android_app",
       "package_name": "com.bagomri.quickchat",
       "sha256_cert_fingerprints": [
-        "REPLACE_WITH_YOUR_RELEASE_KEYSTORE_SHA256_FINGERPRINT"
+        "16:C2:D5:0C:FE:47:CA:6D:2B:1C:A8:B9:89:DC:31:D4:3C:46:9D:37:AE:14:73:82:0F:BB:80:D4:B7:E1:4C:B1"
       ]
     }
   }

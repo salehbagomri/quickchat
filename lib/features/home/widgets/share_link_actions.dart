@@ -32,34 +32,42 @@ class ShareLinkActions extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: OutlinedButton.icon(
-            icon: const Icon(Icons.copy_outlined, size: 18),
-            label: Text(l10n.copyLink),
-            onPressed: () => _copyLink(context, l10n),
+          child: Tooltip(
+            message: l10n.copyLink,
+            child: OutlinedButton(
+              onPressed: () => _copyLink(context, l10n),
+              child: const Icon(Icons.copy_outlined),
+            ),
           ),
         ),
         const SizedBox(width: 6),
         Expanded(
-          child: OutlinedButton.icon(
-            icon: const Icon(Icons.share_outlined, size: 18),
-            label: Text(l10n.shareLink),
-            onPressed: () => Share.share(_waMeUrl),
+          child: Tooltip(
+            message: l10n.shareLink,
+            child: OutlinedButton(
+              onPressed: () => Share.share(_waMeUrl),
+              child: const Icon(Icons.share_outlined),
+            ),
           ),
         ),
         const SizedBox(width: 6),
-        Tooltip(
-          message: l10n.qrCode,
-          child: OutlinedButton(
-            onPressed: () => _showQr(context, l10n),
-            child: const Icon(Icons.qr_code),
+        Expanded(
+          child: Tooltip(
+            message: l10n.qrCode,
+            child: OutlinedButton(
+              onPressed: () => _showQr(context, l10n),
+              child: const Icon(Icons.qr_code),
+            ),
           ),
         ),
         const SizedBox(width: 6),
-        Tooltip(
-          message: l10n.shareDeepLink,
-          child: OutlinedButton(
-            onPressed: () => Share.share(_deepLink),
-            child: const Icon(Icons.link),
+        Expanded(
+          child: Tooltip(
+            message: l10n.shareDeepLink,
+            child: OutlinedButton(
+              onPressed: () => Share.share(_deepLink),
+              child: const Icon(Icons.link),
+            ),
           ),
         ),
       ],
