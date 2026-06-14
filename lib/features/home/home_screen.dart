@@ -14,7 +14,6 @@ import 'package:quickchat/features/favorites/favorites_cubit.dart';
 import 'package:quickchat/features/settings/settings_cubit.dart';
 import 'package:quickchat/features/favorites/widgets/favorites_bar.dart';
 import 'package:quickchat/features/home/home_cubit.dart';
-import 'package:quickchat/features/home/widgets/home_footer.dart';
 import 'package:quickchat/features/home/widgets/message_input_card.dart';
 import 'package:quickchat/features/home/widgets/phone_input_card.dart';
 import 'package:quickchat/features/home/widgets/send_button.dart';
@@ -266,8 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
                 ),
-                const SizedBox(height: 30),
-                const HomeFooter(),
+
               ],
             ),
           ),
