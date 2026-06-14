@@ -77,6 +77,8 @@ class SettingsScreen extends StatelessWidget {
               ),
               SettingsGroup(
                 title: l10n.contactUs,
+                collapsible: true,
+                initiallyExpanded: false,
                 children: [
                   SettingsTile(
                     icon: Icons.email_outlined,
