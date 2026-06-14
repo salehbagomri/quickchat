@@ -58,61 +58,60 @@ class _SettingsGroupState extends State<SettingsGroup> {
       );
     }
 
-    // Collapsible: tappable header with rotating arrow + animated body.
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Semantics(
-          button: true,
-          expanded: _expanded,
-          label: widget.title,
-          child: InkWell(
-            onTap: () => setState(() => _expanded = !_expanded),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(
-                AppSpacing.md,
-                AppSpacing.md,
-                AppSpacing.md,
-                AppSpacing.sm,
+    // Collapsible: title row lives INSIDE the card; children slide in below.
+    return Card(
+      margin: const EdgeInsets.fromLTRB(
+        AppSpacing.md,
+        AppSpacing.md,
+        AppSpacing.md,
+        0,
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        children: [
+          Semantics(
+            button: true,
+            expanded: _expanded,
+            label: widget.title,
+            child: ListTile(
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.md,
+                vertical: AppSpacing.xs,
               ),
-              child: Row(
-                children: [
-                  Text(
-                    widget.title,
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: cs.onSurfaceVariant,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.5,
-                        ),
-                  ),
-                  const Spacer(),
-                  AnimatedRotation(
-                    turns: _expanded ? 0.5 : 0,
-                    duration: const Duration(milliseconds: 200),
-                    curve: Curves.easeInOut,
-                    child: Icon(
-                      Icons.expand_more,
-                      color: cs.onSurfaceVariant,
-                      size: 20,
+              title: Text(
+                widget.title,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: cs.onSurface,
                     ),
-                  ),
-                ],
               ),
+              trailing: AnimatedRotation(
+                turns: _expanded ? 0.5 : 0,
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeInOut,
+                child: Icon(
+                  Icons.expand_more,
+                  color: cs.onSurfaceVariant,
+                  size: 20,
+                ),
+              ),
+              onTap: () => setState(() => _expanded = !_expanded),
             ),
           ),
-        ),
-        ClipRect(
-          child: AnimatedSize(
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.easeInOut,
-            alignment: Alignment.topCenter,
-            child: _expanded ? _buildCard(cs) : const SizedBox.shrink(),
+          ClipRect(
+            child: AnimatedSize(
+              duration: const Duration(milliseconds: 200),
+              curve: Curves.easeInOut,
+              alignment: Alignment.topCenter,
+              child: _expanded ? _buildExpandedBody(cs) : const SizedBox.shrink(),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
+  // Shared card used by the non-collapsible path.
   Widget _buildCard(ColorScheme cs) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
@@ -130,6 +129,25 @@ class _SettingsGroupState extends State<SettingsGroup> {
           ],
         ],
       ),
+    );
+  }
+
+  // Body shown when the collapsible card is open.
+  Widget _buildExpandedBody(ColorScheme cs) {
+    return Column(
+      children: [
+        Divider(height: 1, thickness: 0.5, color: cs.outlineVariant),
+        for (int i = 0; i < widget.children.length; i++) ...[
+          widget.children[i],
+          if (i < widget.children.length - 1)
+            Divider(
+              height: 1,
+              thickness: 0.5,
+              indent: 72,
+              color: cs.outlineVariant,
+            ),
+        ],
+      ],
     );
   }
 }
