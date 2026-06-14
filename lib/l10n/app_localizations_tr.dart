@@ -233,6 +233,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get sendFeedback => 'Geri bildirim veya öneri gönderin';
 
   @override
+  String get contactEmail => 'E-posta';
+
+  @override
+  String get contactWhatsApp => 'WhatsApp';
+
+  @override
+  String get contactWebsite => 'Web sitesi';
+
+  @override
   String get rateApp => 'Uygulamayı Değerlendir';
 
   @override

@@ -233,6 +233,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sendFeedback => 'Send Feedback';
 
   @override
+  String get contactEmail => 'Email';
+
+  @override
+  String get contactWhatsApp => 'WhatsApp';
+
+  @override
+  String get contactWebsite => 'Website';
+
+  @override
   String get rateApp => 'Rate the App';
 
   @override

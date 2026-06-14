@@ -1,39 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:quickchat/core/constants/app_constants.dart';
+import 'package:quickchat/core/extensions/whatsapp_result_ext.dart';
 import 'package:quickchat/core/router/app_router.dart';
+import 'package:quickchat/core/theme/app_spacing.dart';
 import 'package:quickchat/core/utils/app_utils.dart';
 import 'package:quickchat/core/widgets/confirm_dialog.dart';
 import 'package:quickchat/data/local_storage/hive_service.dart';
+import 'package:quickchat/data/services/whatsapp_service.dart';
 import 'package:quickchat/features/settings/settings_cubit.dart';
 import 'package:quickchat/features/settings/widgets/language_tile.dart';
-import 'package:quickchat/features/settings/widgets/settings_section.dart';
+import 'package:quickchat/features/settings/widgets/settings_footer.dart';
+import 'package:quickchat/features/settings/widgets/settings_group.dart';
+import 'package:quickchat/features/settings/widgets/settings_tile.dart';
 import 'package:quickchat/features/settings/widgets/theme_tile.dart';
 import 'package:quickchat/features/settings/widgets/whatsapp_app_tile.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
-
-  @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-  String _version = '';
-
-  @override
-  void initState() {
-    super.initState();
-    _loadVersion();
-  }
-
-  Future<void> _loadVersion() async {
-    final info = await PackageInfo.fromPlatform();
-    setState(() => _version = '${info.version}+${info.buildNumber}');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,152 +29,117 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: BlocBuilder<SettingsCubit, SettingsState>(
         builder: (context, state) {
           return ListView(
-            padding: const EdgeInsets.symmetric(vertical: 8),
+            padding: const EdgeInsets.only(bottom: AppSpacing.xl),
             children: [
-              // المظهر والتخصيص
-              _sectionHeader(l10n.appearanceCustomization),
-              const SettingsSection(child: ThemeTile()),
-              const SettingsSection(child: LanguageTile()),
-
-              const SizedBox(height: 24),
-
-              // واتساب
-              _sectionHeader(l10n.whatsappPreferences),
-              const SettingsSection(child: WhatsAppAppTile()),
-
-              const SizedBox(height: 24),
-
-              // الاستخدام والبيانات
-              _sectionHeader(l10n.usageData),
-              SettingsSection(
-                child: ListTile(
-                  leading: Icon(Icons.article_outlined,
-                      color: Theme.of(context).colorScheme.primary),
-                  title: Text(l10n.templates),
-                  subtitle: Text(l10n.manageTemplates),
-                  trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
-                  onTap: () async {
-                    final msg = await AppRouter.pushTemplates(context);
-                    if (msg != null && context.mounted) {
-                      Navigator.pop(context, msg);
-                    }
-                  },
-                ),
+              SettingsGroup(
+                title: l10n.appearanceCustomization,
+                children: const [ThemeTile(), LanguageTile()],
               ),
-              SettingsSection(
-                child: SwitchListTile(
-                  secondary: Icon(Icons.content_paste_outlined,
-                      color: Theme.of(context).colorScheme.primary),
-                  title: Text(l10n.clipboardDetectionTitle),
-                  subtitle: Text(l10n.clipboardDetectionDesc),
-                  value: state.clipboardDetection,
-                  onChanged: (v) =>
-                      context.read<SettingsCubit>().toggleClipboardDetection(v),
-                ),
+              SettingsGroup(
+                title: l10n.whatsappPreferences,
+                children: const [WhatsAppAppTile()],
               ),
-              SettingsSection(
-                child: ListTile(
-                  leading: Icon(Icons.delete_outline,
-                      color: Theme.of(context).colorScheme.error),
-                  title: Text(l10n.clearHistory),
-                  trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
-                  onTap: () => _clearHistory(context, l10n),
-                ),
+              SettingsGroup(
+                title: l10n.usageData,
+                children: [
+                  SettingsTile(
+                    icon: Icons.article_outlined,
+                    title: l10n.templates,
+                    subtitle: l10n.manageTemplates,
+                    onTap: () async {
+                      final msg = await AppRouter.pushTemplates(context);
+                      if (msg != null && context.mounted) {
+                        Navigator.pop(context, msg);
+                      }
+                    },
+                  ),
+                  SettingsTile(
+                    icon: Icons.content_paste_outlined,
+                    title: l10n.clipboardDetectionTitle,
+                    subtitle: l10n.clipboardDetectionDesc,
+                    trailing: Switch(
+                      value: state.clipboardDetection,
+                      onChanged: (v) => context
+                          .read<SettingsCubit>()
+                          .toggleClipboardDetection(v),
+                    ),
+                    onTap: () => context
+                        .read<SettingsCubit>()
+                        .toggleClipboardDetection(!state.clipboardDetection),
+                  ),
+                  SettingsTile(
+                    icon: Icons.delete_outline,
+                    title: l10n.clearHistory,
+                    destructive: true,
+                    onTap: () => _clearHistory(context, l10n),
+                  ),
+                ],
               ),
-
-              const SizedBox(height: 24),
-
-              // عام
-              _sectionHeader(l10n.general),
-              SettingsSection(
-                child: ListTile(
-                  leading: Icon(Icons.info_outline,
-                      color: Theme.of(context).colorScheme.primary),
-                  title: Text(l10n.aboutApp),
-                  trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
-                  onTap: () => _showAbout(context, l10n),
-                ),
+              SettingsGroup(
+                title: l10n.contactUs,
+                children: [
+                  SettingsTile(
+                    icon: Icons.email_outlined,
+                    title: l10n.contactEmail,
+                    subtitle: AppConstants.developerEmail,
+                    onTap: () => _contactEmail(context, l10n),
+                  ),
+                  SettingsTile(
+                    icon: Icons.chat_outlined,
+                    title: l10n.contactWhatsApp,
+                    subtitle: AppConstants.developerPhone,
+                    onTap: () => _contactWhatsApp(context, l10n),
+                  ),
+                  SettingsTile(
+                    icon: Icons.public,
+                    title: l10n.contactWebsite,
+                    subtitle: 'www.bagomri.com',
+                    onTap: () => AppUtils.openUrl(AppConstants.developerWebsite),
+                  ),
+                ],
               ),
-              SettingsSection(
-                child: ListTile(
-                  leading: Icon(Icons.email_outlined,
-                      color: Theme.of(context).colorScheme.primary),
-                  title: Text(l10n.contactUs),
-                  subtitle: Text(l10n.sendFeedback),
-                  trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
-                  onTap: () => _contactEmail(context, l10n),
-                ),
+              SettingsGroup(
+                title: l10n.general,
+                children: [
+                  SettingsTile(
+                    icon: Icons.star_outline,
+                    title: l10n.rateApp,
+                    subtitle: l10n.rateAppDescription,
+                    onTap: () => AppUtils.openUrl(AppConstants.playStoreUrl),
+                  ),
+                ],
               ),
-              SettingsSection(
-                child: ListTile(
-                  leading: const Icon(Icons.star_outline, color: Colors.amber),
-                  title: Text(l10n.rateApp),
-                  subtitle: Text(l10n.rateAppDescription),
-                  trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
-                  onTap: () => AppUtils.openUrl(AppConstants.playStoreUrl),
-                ),
+              SettingsGroup(
+                title: l10n.privacyAndLegal,
+                children: [
+                  SettingsTile(
+                    icon: Icons.privacy_tip_outlined,
+                    title: l10n.privacyPolicy,
+                    onTap: () =>
+                        AppUtils.openUrl(AppConstants.privacyPolicyUrl),
+                  ),
+                  SettingsTile(
+                    icon: Icons.gavel_outlined,
+                    title: l10n.termsOfUse,
+                    onTap: () => AppUtils.openUrl(AppConstants.termsOfUseUrl),
+                  ),
+                  SettingsTile(
+                    icon: Icons.security_outlined,
+                    title: l10n.childSafety,
+                    onTap: () => AppUtils.openUrl(AppConstants.childSafetyUrl),
+                  ),
+                  SettingsTile(
+                    icon: Icons.delete_forever_outlined,
+                    title: l10n.dataDeletion,
+                    onTap: () =>
+                        AppUtils.openUrl(AppConstants.dataDeletionUrl),
+                  ),
+                ],
               ),
-
-              const SizedBox(height: 24),
-
-              // الخصوصية والاتفاقيات
-              _sectionHeader(l10n.privacyAndLegal),
-              SettingsSection(
-                child: ListTile(
-                  leading: Icon(Icons.privacy_tip_outlined,
-                      color: Theme.of(context).colorScheme.primary),
-                  title: Text(l10n.privacyPolicy),
-                  trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
-                  onTap: () => AppUtils.openUrl('https://salehbagomri.github.io/quickchat-privacy/'),
-                ),
-              ),
-              SettingsSection(
-                child: ListTile(
-                  leading: Icon(Icons.gavel_outlined,
-                      color: Theme.of(context).colorScheme.primary),
-                  title: Text(l10n.termsOfUse),
-                  trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
-                  onTap: () => AppUtils.openUrl('https://salehbagomri.github.io/quickchat-privacy/terms.html'),
-                ),
-              ),
-              SettingsSection(
-                child: ListTile(
-                  leading: Icon(Icons.security_outlined,
-                      color: Theme.of(context).colorScheme.primary),
-                  title: Text(l10n.childSafety),
-                  trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
-                  onTap: () => AppUtils.openUrl('https://salehbagomri.github.io/quickchat-privacy/child-safety-standards.html'),
-                ),
-              ),
-              SettingsSection(
-                child: ListTile(
-                  leading: Icon(Icons.delete_forever_outlined,
-                      color: Theme.of(context).colorScheme.primary),
-                  title: Text(l10n.dataDeletion),
-                  trailing: Icon(Icons.chevron_right, color: Colors.grey[400]),
-                  onTap: () => AppUtils.openUrl('https://salehbagomri.github.io/quickchat-privacy/delete-account.html'),
-                ),
-              ),
-
-              const SizedBox(height: 24),
+              const SettingsFooter(),
             ],
           );
         },
-      ),
-    );
-  }
-
-  Widget _sectionHeader(String title) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Text(
-        title,
-        style: TextStyle(
-          fontSize: 13,
-          fontWeight: FontWeight.w600,
-          color: Theme.of(context).colorScheme.onSurfaceVariant,
-          letterSpacing: 0.5,
-        ),
       ),
     );
   }
@@ -213,49 +163,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
     }
   }
 
-  void _showAbout(BuildContext context, AppLocalizations l10n) {
-    showAboutDialog(
-      context: context,
-      applicationName: 'QuickChat',
-      applicationVersion: _version,
-      applicationIcon: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primaryContainer,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: SvgPicture.asset('assets/icons/icon.svg', width: 40, height: 40),
-      ),
-      children: [
-        const SizedBox(height: 16),
-        Text(
-          l10n.aboutAppDescription,
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 14),
-        ),
-        const SizedBox(height: 16),
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text('${l10n.developer}: ',
-              style: const TextStyle(fontWeight: FontWeight.bold)),
-          Text(l10n.developerName),
-        ]),
-        const SizedBox(height: 8),
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text('${l10n.version}: ',
-              style: const TextStyle(fontWeight: FontWeight.bold)),
-          Text(_version),
-        ]),
-      ],
-    );
-  }
-
   Future<void> _contactEmail(
       BuildContext context, AppLocalizations l10n) async {
     final success = await AppUtils.openEmail(
       AppConstants.developerEmail,
       subject: l10n.feedbackEmailSubject,
     );
-
     if (!success && context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(l10n.noEmailApp),
@@ -272,6 +185,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         duration: const Duration(seconds: 5),
       ));
+    }
+  }
+
+  Future<void> _contactWhatsApp(
+      BuildContext context, AppLocalizations l10n) async {
+    final app = context.read<SettingsCubit>().state.whatsAppApp;
+    final result = await WhatsAppService.openWhatsApp(
+      AppConstants.developerPhone,
+      app: app,
+    );
+    if (result != WhatsAppLaunchResult.success && context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(result.errorMessage(l10n))),
+      );
     }
   }
 }

@@ -232,6 +232,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get sendFeedback => 'प्रतिक्रिया या सुझाव भेजें';
 
   @override
+  String get contactEmail => 'ईमेल';
+
+  @override
+  String get contactWhatsApp => 'व्हाट्सऐप';
+
+  @override
+  String get contactWebsite => 'वेबसाइट';
+
+  @override
   String get rateApp => 'ऐप को रेट करें';
 
   @override

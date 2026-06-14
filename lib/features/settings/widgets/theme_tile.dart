@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickchat/features/settings/settings_cubit.dart';
+import 'package:quickchat/features/settings/widgets/settings_tile.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 
 class ThemeTile extends StatelessWidget {
@@ -19,24 +20,10 @@ class ThemeTile extends StatelessWidget {
       };
     }
 
-    return ListTile(
-      leading: Icon(Icons.palette_outlined,
-          color: Theme.of(context).colorScheme.primary),
-      title: Text(l10n.theme),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            themeName(),
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium
-                ?.copyWith(color: Colors.grey[600]),
-          ),
-          const SizedBox(width: 4),
-          Icon(Icons.chevron_right, color: Colors.grey[400]),
-        ],
-      ),
+    return SettingsTile(
+      icon: Icons.palette_outlined,
+      title: l10n.theme,
+      value: themeName(),
       onTap: () => _showThemeDialog(context, state, l10n),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quickchat/data/services/whatsapp_service.dart';
 import 'package:quickchat/features/settings/settings_cubit.dart';
+import 'package:quickchat/features/settings/widgets/settings_tile.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 
 class WhatsAppAppTile extends StatelessWidget {
@@ -18,24 +19,10 @@ class WhatsAppAppTile extends StatelessWidget {
           WhatsAppApp.auto => l10n.defaultWhatsapp,
         };
 
-    return ListTile(
-      leading:
-          Icon(Icons.chat_outlined, color: Theme.of(context).colorScheme.primary),
-      title: Text(l10n.selectWhatsappApp),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            currentLabel(),
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium
-                ?.copyWith(color: Colors.grey[600]),
-          ),
-          const SizedBox(width: 4),
-          Icon(Icons.chevron_right, color: Colors.grey[400]),
-        ],
-      ),
+    return SettingsTile(
+      icon: Icons.chat_outlined,
+      title: l10n.selectWhatsappApp,
+      value: currentLabel(),
       onTap: () => _showDialog(context, state.whatsAppApp, l10n),
     );
   }

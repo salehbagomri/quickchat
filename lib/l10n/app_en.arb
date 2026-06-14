@@ -292,6 +292,18 @@
   "@sendFeedback": {
     "description": "Send feedback description"
   },
+  "contactEmail": "Email",
+  "@contactEmail": {
+    "description": "Email contact label"
+  },
+  "contactWhatsApp": "WhatsApp",
+  "@contactWhatsApp": {
+    "description": "WhatsApp contact label"
+  },
+  "contactWebsite": "Website",
+  "@contactWebsite": {
+    "description": "Website contact label"
+  },
   "rateApp": "Rate the App",
   "@rateApp": {
     "description": "Rate app option"

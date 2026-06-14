@@ -233,6 +233,15 @@ class AppLocalizationsUr extends AppLocalizations {
   String get sendFeedback => 'تاثرات یا مشورے بھیجیں';
 
   @override
+  String get contactEmail => 'ای میل';
+
+  @override
+  String get contactWhatsApp => 'واٹس ایپ';
+
+  @override
+  String get contactWebsite => 'ویب سائٹ';
+
+  @override
   String get rateApp => 'ایپ کو ریٹ کریں';
 
   @override

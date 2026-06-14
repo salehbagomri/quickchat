@@ -234,6 +234,15 @@ class AppLocalizationsId extends AppLocalizations {
   String get sendFeedback => 'Kirim masukan atau saran';
 
   @override
+  String get contactEmail => 'Email';
+
+  @override
+  String get contactWhatsApp => 'WhatsApp';
+
+  @override
+  String get contactWebsite => 'Situs web';
+
+  @override
   String get rateApp => 'Beri Nilai Aplikasi';
 
   @override

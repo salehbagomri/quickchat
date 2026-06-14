@@ -35,8 +35,20 @@ class AppConstants {
   // Developer / Contact Info
   static const String developerEmail = 's.bagomri@gmail.com';
   static const String developerName = 'Saleh Bagomri';
+  static const String developerPhone = '+967770727055';
+  static const String developerWebsite = 'https://www.bagomri.com';
   static const String instagramHandle = '@salehbagomri';
   static const String instagramUrl = 'https://instagram.com/salehbagomri';
+
+  // Legal URLs
+  static const String privacyPolicyUrl =
+      'https://salehbagomri.github.io/quickchat-privacy/';
+  static const String termsOfUseUrl =
+      'https://salehbagomri.github.io/quickchat-privacy/terms.html';
+  static const String childSafetyUrl =
+      'https://salehbagomri.github.io/quickchat-privacy/child-safety-standards.html';
+  static const String dataDeletionUrl =
+      'https://salehbagomri.github.io/quickchat-privacy/delete-account.html';
 
   // Store
   static const String playStoreId = 'com.bagomri.quickchat';

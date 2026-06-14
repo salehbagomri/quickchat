@@ -363,7 +363,7 @@ Last Updated: June 13, 2026''',
                   padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
-                onPressed: () => AppUtils.openUrl('https://salehbagomri.github.io/quickchat-privacy/terms.html'),
+                onPressed: () => AppUtils.openUrl(AppConstants.termsOfUseUrl),
                 child: Text(
                   isArabic ? 'شروط الاستخدام' : 'Terms of Use',
                   style: TextStyle(
@@ -383,7 +383,7 @@ Last Updated: June 13, 2026''',
                   padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
-                onPressed: () => AppUtils.openUrl('https://salehbagomri.github.io/quickchat-privacy/delete-account.html'),
+                onPressed: () => AppUtils.openUrl(AppConstants.dataDeletionUrl),
                 child: Text(
                   isArabic ? 'حذف البيانات' : 'Data Deletion',
                   style: TextStyle(
@@ -403,7 +403,7 @@ Last Updated: June 13, 2026''',
                   padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
-                onPressed: () => AppUtils.openUrl('https://salehbagomri.github.io/quickchat-privacy/child-safety-standards.html'),
+                onPressed: () => AppUtils.openUrl(AppConstants.childSafetyUrl),
                 child: Text(
                   isArabic ? 'سلامة الأطفال' : 'Child Safety',
                   style: TextStyle(

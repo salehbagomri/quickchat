@@ -548,6 +548,24 @@ abstract class AppLocalizations {
   /// **'Send Feedback'**
   String get sendFeedback;
 
+  /// Email contact label
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get contactEmail;
+
+  /// WhatsApp contact label
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get contactWhatsApp;
+
+  /// Website contact label
+  ///
+  /// In en, this message translates to:
+  /// **'Website'**
+  String get contactWebsite;
+
   /// Rate app option
   ///
   /// In en, this message translates to:

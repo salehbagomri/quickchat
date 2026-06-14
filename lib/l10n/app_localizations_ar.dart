@@ -231,6 +231,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get sendFeedback => 'إرسال ملاحظات أو اقتراحات';
 
   @override
+  String get contactEmail => 'البريد الإلكتروني';
+
+  @override
+  String get contactWhatsApp => 'واتساب';
+
+  @override
+  String get contactWebsite => 'الموقع الإلكتروني';
+
+  @override
   String get rateApp => 'قيّم التطبيق';
 
   @override

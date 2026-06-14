@@ -234,6 +234,15 @@ class AppLocalizationsPt extends AppLocalizations {
   String get sendFeedback => 'Enviar comentários ou sugestões';
 
   @override
+  String get contactEmail => 'E-mail';
+
+  @override
+  String get contactWhatsApp => 'WhatsApp';
+
+  @override
+  String get contactWebsite => 'Site';
+
+  @override
   String get rateApp => 'Avaliar o App';
 
   @override
