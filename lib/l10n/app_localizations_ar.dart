@@ -353,15 +353,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get scanQrHint => 'امسح لفتح في واتساب';
 
   @override
-  String get scanQrCode => 'مسح رمز QR';
-
-  @override
-  String get flashlight => 'المصباح';
-
-  @override
-  String get flipCamera => 'قلب الكاميرا';
-
-  @override
   String get allCategories => 'الكل';
 
   @override

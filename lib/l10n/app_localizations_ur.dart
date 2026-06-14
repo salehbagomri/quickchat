@@ -354,15 +354,6 @@ class AppLocalizationsUr extends AppLocalizations {
   String get scanQrHint => 'واٹس ایپ میں کھولنے کے لیے اسکین کریں';
 
   @override
-  String get scanQrCode => 'QR کوڈ اسکین کریں';
-
-  @override
-  String get flashlight => 'ٹارچ';
-
-  @override
-  String get flipCamera => 'کیمرہ بدلیں';
-
-  @override
   String get allCategories => 'سب';
 
   @override

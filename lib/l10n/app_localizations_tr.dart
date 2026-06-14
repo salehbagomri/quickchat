@@ -356,15 +356,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get scanQrHint => 'WhatsApp\'ta açmak için tara';
 
   @override
-  String get scanQrCode => 'QR Kodu Tara';
-
-  @override
-  String get flashlight => 'El Feneri';
-
-  @override
-  String get flipCamera => 'Kamerayı Döndür';
-
-  @override
   String get allCategories => 'Tümü';
 
   @override

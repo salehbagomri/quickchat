@@ -1,7 +1,7 @@
 name: quickchat
 description: "WhatsApp QuickChat - Direct messaging without saving contacts"
 publish_to: 'none'
-version: 2.1.0+4
+version: 2.1.0+5
 
 environment:
   sdk: ^3.9.2
@@ -43,7 +43,6 @@ dependencies:
   quick_actions: ^1.0.0
   app_links: ^6.0.0
   home_widget: ^0.7.0
-  mobile_scanner: ^5.0.0
 
 dev_dependencies:
   flutter_test:

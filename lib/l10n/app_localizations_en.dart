@@ -355,15 +355,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scanQrHint => 'Scan to open in WhatsApp';
 
   @override
-  String get scanQrCode => 'Scan QR Code';
-
-  @override
-  String get flashlight => 'Flashlight';
-
-  @override
-  String get flipCamera => 'Flip Camera';
-
-  @override
   String get allCategories => 'All';
 
   @override
