@@ -242,6 +242,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get contactWebsite => 'Web sitesi';
 
   @override
+  String get contactUsCardTitle => 'Destek ve İletişim';
+
+  @override
+  String get contactUsCardSubtitle => 'E-posta · WhatsApp · Web sitesi';
+
+  @override
   String get rateApp => 'Uygulamayı Değerlendir';
 
   @override

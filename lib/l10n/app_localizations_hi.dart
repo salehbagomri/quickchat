@@ -241,6 +241,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get contactWebsite => 'वेबसाइट';
 
   @override
+  String get contactUsCardTitle => 'सहायता और संपर्क';
+
+  @override
+  String get contactUsCardSubtitle => 'ईमेल · व्हाट्सऐप · वेबसाइट';
+
+  @override
   String get rateApp => 'ऐप को रेट करें';
 
   @override

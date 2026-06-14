@@ -240,6 +240,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get contactWebsite => 'الموقع الإلكتروني';
 
   @override
+  String get contactUsCardTitle => 'الدعم والتواصل';
+
+  @override
+  String get contactUsCardSubtitle => 'بريد · واتساب · الموقع الإلكتروني';
+
+  @override
   String get rateApp => 'قيّم التطبيق';
 
   @override

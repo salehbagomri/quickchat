@@ -243,6 +243,12 @@ class AppLocalizationsId extends AppLocalizations {
   String get contactWebsite => 'Situs web';
 
   @override
+  String get contactUsCardTitle => 'Dukungan & Kontak';
+
+  @override
+  String get contactUsCardSubtitle => 'Email · WhatsApp · Situs web';
+
+  @override
   String get rateApp => 'Beri Nilai Aplikasi';
 
   @override

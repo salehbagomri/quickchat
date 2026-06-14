@@ -242,6 +242,12 @@ class AppLocalizationsUr extends AppLocalizations {
   String get contactWebsite => 'ویب سائٹ';
 
   @override
+  String get contactUsCardTitle => 'سپورٹ اور رابطہ';
+
+  @override
+  String get contactUsCardSubtitle => 'ای میل · واٹس ایپ · ویب سائٹ';
+
+  @override
   String get rateApp => 'ایپ کو ریٹ کریں';
 
   @override

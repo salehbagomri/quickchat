@@ -304,6 +304,14 @@
   "@contactWebsite": {
     "description": "Website contact label"
   },
+  "contactUsCardTitle": "Support & Contact",
+  "@contactUsCardTitle": {
+    "description": "Collapsible header title for the Contact Us section"
+  },
+  "contactUsCardSubtitle": "Email · WhatsApp · Website",
+  "@contactUsCardSubtitle": {
+    "description": "Collapsible header subtitle for the Contact Us section"
+  },
   "rateApp": "Rate the App",
   "@rateApp": {
     "description": "Rate app option"

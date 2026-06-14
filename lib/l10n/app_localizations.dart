@@ -566,6 +566,18 @@ abstract class AppLocalizations {
   /// **'Website'**
   String get contactWebsite;
 
+  /// Collapsible header title for the Contact Us section
+  ///
+  /// In en, this message translates to:
+  /// **'Support & Contact'**
+  String get contactUsCardTitle;
+
+  /// Collapsible header subtitle for the Contact Us section
+  ///
+  /// In en, this message translates to:
+  /// **'Email · WhatsApp · Website'**
+  String get contactUsCardSubtitle;
+
   /// Rate app option
   ///
   /// In en, this message translates to:

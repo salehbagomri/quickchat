@@ -79,6 +79,9 @@ class SettingsScreen extends StatelessWidget {
                 title: l10n.contactUs,
                 collapsible: true,
                 initiallyExpanded: false,
+                collapsibleIcon: Icons.contact_support_outlined,
+                collapsibleTitle: l10n.contactUsCardTitle,
+                collapsibleSubtitle: l10n.contactUsCardSubtitle,
                 children: [
                   SettingsTile(
                     icon: Icons.email_outlined,

@@ -243,6 +243,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get contactWebsite => 'Sitio web';
 
   @override
+  String get contactUsCardTitle => 'Soporte y contacto';
+
+  @override
+  String get contactUsCardSubtitle => 'Correo · WhatsApp · Sitio web';
+
+  @override
   String get rateApp => 'Calificar la App';
 
   @override
