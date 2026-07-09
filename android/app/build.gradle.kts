@@ -46,8 +46,8 @@ android {
         applicationId = "com.bagomri.quickchat"
         minSdk = flutter.minSdkVersion  // Android 5.0 (Lollipop) - covers 99%+ devices
         targetSdk = 35  // Android 15 - required by Google Play
-        versionCode = 5
-        versionName = "2.1.0"
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
     }
 
     buildTypes {
