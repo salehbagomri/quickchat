@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:quickchat/app.dart';
 import 'package:quickchat/core/services/home_widget_service.dart';
 import 'package:quickchat/data/local_storage/hive_service.dart';
@@ -18,6 +19,9 @@ void main() async {
   ]);
 
   try {
+    // Initialize Mobile Ads
+    await MobileAds.instance.initialize();
+
     // Initialize core services
     await PreferencesService().init();
     await HiveService().init();

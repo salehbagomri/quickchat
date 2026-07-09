@@ -18,6 +18,8 @@ import 'package:quickchat/features/home/widgets/message_input_card.dart';
 import 'package:quickchat/features/home/widgets/phone_input_card.dart';
 import 'package:quickchat/features/home/widgets/send_button.dart';
 import 'package:quickchat/features/home/widgets/share_link_actions.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:quickchat/helpers/ad_helper.dart';
 import 'package:quickchat/l10n/app_localizations.dart';
 import 'package:share_handler/share_handler.dart';
 
@@ -33,18 +35,43 @@ class _HomeScreenState extends State<HomeScreen> {
   final _messageController = TextEditingController();
   late final HomeCubit _cubit;
   StreamSubscription<SharedMedia>? _sharingSub;
+  BannerAd? _bannerAd;
+  bool _isBannerAdReady = false;
 
   @override
   void initState() {
     super.initState();
     _cubit = HomeCubit();
     _initShareHandler();
+    _loadBannerAd();
     AppLinksService.instance.onDeepLink = (phone, msg) {
       if (!mounted) return;
       _phoneController.text = phone;
       if (msg != null) _messageController.text = msg;
     };
     WidgetsBinding.instance.addPostFrameCallback((_) => _checkClipboard());
+  }
+
+  void _loadBannerAd() {
+    _bannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: (_) {
+          setState(() {
+            _isBannerAdReady = true;
+          });
+        },
+        onAdFailedToLoad: (ad, err) {
+          debugPrint('Failed to load a banner ad: ${err.message}');
+          _isBannerAdReady = false;
+          ad.dispose();
+        },
+      ),
+    );
+
+    _bannerAd!.load();
   }
 
   Future<void> _initShareHandler() async {
@@ -101,6 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
     AppLinksService.instance.onDeepLink = null;
     _phoneController.dispose();
     _messageController.dispose();
+    _bannerAd?.dispose();
     _cubit.close();
     super.dispose();
   }
@@ -183,6 +211,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+        bottomNavigationBar: _isBannerAdReady
+            ? SizedBox(
+                width: _bannerAd!.size.width.toDouble(),
+                height: _bannerAd!.size.height.toDouble(),
+                child: AdWidget(ad: _bannerAd!),
+              )
+            : null,
         body: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(AppSpacing.lg),
